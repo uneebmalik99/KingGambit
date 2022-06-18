@@ -1,0 +1,6 @@
+module Pods_KingGambit_KingGambitTests {
+  umbrella header "Pods-KingGambit-KingGambitTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
