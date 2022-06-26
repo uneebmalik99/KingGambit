@@ -53,6 +53,7 @@
     <attr format="reference" name="materialThemeOverlay"/>
     <attr format="dimension" name="minTouchTargetSize"/>
     <attr format="reference" name="navigationViewStyle"/>
+    <attr format="reference" name="nestedScrollViewStyle"/>
     <attr format="reference" name="popupMenuBackground"/>
     <attr format="reference" name="recyclerViewStyle"/>
     <attr format="color" name="rippleColor"/>
@@ -84,6 +85,7 @@
     <attr format="string" name="title"/>
     <attr format="boolean" name="useMaterialThemeColors"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
+    <bool name="abc_allow_stacked_button_bar">false</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="mtrl_btn_textappearance_all_caps">true</bool>
     <color name="abc_decor_view_status_guard">#ff000000</color>
@@ -259,9 +261,6 @@
     <dimen name="abc_seekbar_track_background_height_material">2dp</dimen>
     <dimen name="abc_seekbar_track_progress_height_material">2dp</dimen>
     <dimen name="abc_select_dialog_padding_start_material">20dp</dimen>
-    <dimen name="abc_star_big">48dp</dimen>
-    <dimen name="abc_star_medium">36dp</dimen>
-    <dimen name="abc_star_small">16dp</dimen>
     <dimen name="abc_switch_padding">3dp</dimen>
     <dimen name="abc_text_size_body_1_material">14sp</dimen>
     <dimen name="abc_text_size_body_2_material">14sp</dimen>
@@ -283,7 +282,6 @@
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
     <dimen name="action_bar_size">16dp</dimen>
     <dimen name="appcompat_dialog_background_inset">16dp</dimen>
-    <dimen name="autofill_inline_suggestion_icon_size">20dp</dimen>
     <dimen name="cardview_compat_inset_shadow">1dp</dimen>
     <dimen name="cardview_default_elevation">2dp</dimen>
     <dimen name="cardview_default_radius">2dp</dimen>
@@ -582,16 +580,12 @@
     <item name="ghost_view_holder" type="id"/>
     <item name="home" type="id"/>
     <item name="item_touch_helper_previous_elevation" type="id"/>
-    <item name="labelled_by" type="id"/>
     <item name="line1" type="id"/>
     <item name="line3" type="id"/>
     <item name="mtrl_card_checked_layer_id" type="id"/>
     <item name="mtrl_child_content_container" type="id"/>
     <item name="mtrl_internal_children_alpha_tag" type="id"/>
     <item name="parent_matrix" type="id"/>
-    <item name="pointer_enter" type="id"/>
-    <item name="pointer_leave" type="id"/>
-    <item name="pointer_move" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="react_test_id" type="id"/>
@@ -599,7 +593,6 @@
     <item name="save_overlay_view" type="id"/>
     <item name="snackbar_action" type="id"/>
     <item name="snackbar_text" type="id"/>
-    <item name="special_effects_controller_view_tag" type="id"/>
     <item name="split_action_bar" type="id"/>
     <item name="tag_accessibility_actions" type="id"/>
     <item name="tag_accessibility_clickable_spans" type="id"/>
@@ -629,9 +622,6 @@
     <item name="view_offset_helper" type="id"/>
     <item name="view_tag_instance_handle" type="id"/>
     <item name="view_tag_native_id" type="id"/>
-    <id name="view_tree_lifecycle_owner"/>
-    <id name="view_tree_saved_state_registry_owner"/>
-    <id name="view_tree_view_model_store_owner"/>
     <item name="visible_removing_fragment_view_tag" type="id"/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
@@ -688,9 +678,10 @@
     <string name="abc_shareactionprovider_share_with_application">Share with <ns1:g example="Mail" id="application_name">%s</ns1:g></string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="alert_description" translatable="false">Alert</string>
-    <string name="app_name">KingGambit</string>
+    <string name="app_name">Kinggambit</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="button_description" translatable="false">Button</string>
     <string name="catalyst_change_bundle_location" project="catalyst" translatable="false">Change Bundle Location</string>
     <string name="catalyst_copy_button" project="catalyst" translatable="false">Copy\n</string>
     <string name="catalyst_debug" project="catalyst" translatable="false">Debug</string>
@@ -698,19 +689,17 @@
     <string name="catalyst_debug_chrome_stop" project="catalyst" translatable="false">Stop Chrome Debugging</string>
     <string name="catalyst_debug_connecting" project="catalyst" translatable="false">Connecting to debugger...</string>
     <string name="catalyst_debug_error" project="catalyst" translatable="false">Failed to connect to debugger!</string>
-    <string name="catalyst_debug_open" project="catalyst" translatable="false">Open Debugger</string>
+    <string name="catalyst_debug_nuclide" project="catalyst" translatable="false">Debug with Nuclide</string>
+    <string name="catalyst_debug_nuclide_error" project="catalyst" translatable="false">Failed to communicate with the bundler to enabling debugging with Nuclide.</string>
     <string name="catalyst_debug_stop" project="catalyst" translatable="false">Stop Debugging</string>
-    <string name="catalyst_devtools_open" project="catalyst" translatable="false">Open React DevTools</string>
     <string name="catalyst_dismiss_button" project="catalyst" translatable="false">Dismiss\n(ESC)</string>
     <string name="catalyst_heap_capture" project="catalyst" translatable="false">Capture Heap</string>
     <string name="catalyst_hot_reloading" project="catalyst" translatable="false">Enable Fast Refresh</string>
     <string name="catalyst_hot_reloading_auto_disable" project="catalyst" translatable="false">Disabling Fast Refresh because it requires a development bundle.</string>
     <string name="catalyst_hot_reloading_auto_enable" project="catalyst" translatable="false">Switching to development bundle in order to enable Fast Refresh.</string>
     <string name="catalyst_hot_reloading_stop" project="catalyst" translatable="false">Disable Fast Refresh</string>
-    <string name="catalyst_inspector" project="catalyst" translatable="false">Show Element Inspector</string>
-    <string name="catalyst_inspector_stop" project="catalyst" translatable="false">Hide Element Inspector</string>
+    <string name="catalyst_inspector" project="catalyst" translatable="false">Toggle Inspector</string>
     <string name="catalyst_loading_from_url" project="catalyst" translatable="false">Loading from %1$s…</string>
-    <string name="catalyst_open_flipper_error" project="catalyst" translatable="false">Failed to open Flipper. Please check that Metro is running.</string>
     <string name="catalyst_perf_monitor" project="catalyst" translatable="false">Show Perf Monitor</string>
     <string name="catalyst_perf_monitor_stop" project="catalyst" translatable="false">Hide Perf Monitor</string>
     <string name="catalyst_reload" project="catalyst" translatable="false">Reload</string>
@@ -783,6 +772,7 @@
     <string name="radiogroup_description" translatable="false">Radio Group</string>
     <string name="rn_tab_description" translatable="false">Tab</string>
     <string name="scrollbar_description" translatable="false">Scroll Bar</string>
+    <string name="search_description" translatable="false">Search Field</string>
     <string name="search_menu_title">Search</string>
     <string name="spinbutton_description" translatable="false">Spin Button</string>
     <string name="state_busy_description" translatable="false">busy</string>
@@ -791,7 +781,6 @@
     <string name="state_mixed_description" translatable="false">mixed</string>
     <string name="state_off_description" translatable="false">off</string>
     <string name="state_on_description" translatable="false">on</string>
-    <string name="state_unselected_description" translatable="false">unselected</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="summary_description" translatable="false">Summary</string>
     <string name="tablist_description" translatable="false">Tab List</string>
@@ -818,9 +807,9 @@
     <item name="android:windowEnterAnimation">@anim/mtrl_bottom_sheet_slide_in</item>
     <item name="android:windowExitAnimation">@anim/mtrl_bottom_sheet_slide_out</item>
   </style>
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="android:textColor">#000000</item>
     </style>
     <style name="Base.AlertDialog.AppCompat" parent="android:Widget">
         <item name="android:layout">@layout/abc_alert_dialog_material</item>
@@ -1118,7 +1107,6 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="actionBarWidgetTheme">@null</item>
         <item name="actionBarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="actionModeTheme">?attr/actionBarTheme</item>
 
         <!-- Panel attributes -->
         <item name="listChoiceBackgroundIndicator">@drawable/abc_list_selector_holo_dark</item>
@@ -1816,11 +1804,9 @@
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Spinner.DropDown.ActionBar</item>
 
         <!-- Action Mode -->
-        <item name="actionModeTheme">?attr/actionBarTheme</item>
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
         <item name="actionModeSplitBackground">?attr/colorPrimaryDark</item>
-        <item name="actionModeCloseContentDescription">@string/abc_action_mode_done</item>
         <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_material</item>
         <item name="actionModeCloseButtonStyle">@style/Widget.AppCompat.ActionButton.CloseMode</item>
 
@@ -2011,11 +1997,9 @@
         <item name="actionMenuTextColor">?android:attr/textColorPrimaryDisableOnly</item>
 
         <!-- Action Mode -->
-        <item name="actionModeTheme">?attr/actionBarTheme</item>
         <item name="actionModeStyle">@style/Widget.AppCompat.ActionMode</item>
         <item name="actionModeBackground">@drawable/abc_cab_background_top_material</item>
         <item name="actionModeSplitBackground">?attr/colorPrimaryDark</item>
-        <item name="actionModeCloseContentDescription">@string/abc_action_mode_done</item>
         <item name="actionModeCloseDrawable">@drawable/abc_ic_ab_back_material</item>
         <item name="actionModeCloseButtonStyle">@style/Widget.AppCompat.ActionButton.CloseMode</item>
 
@@ -2228,9 +2212,7 @@
         <item name="contentInsetStart">16dp</item>
         <item name="contentInsetStartWithNavigation">@dimen/abc_action_bar_content_inset_with_nav</item>
         <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>
-        <item name="android:paddingStart">@dimen/abc_action_bar_default_padding_start_material</item>
         <item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>
-        <item name="android:paddingEnd">@dimen/abc_action_bar_default_padding_end_material</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionBar" parent="">
         <item name="displayOptions">showTitle</item>
@@ -2310,17 +2292,6 @@
         <item name="titleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionMode.Title</item>
         <item name="subtitleTextStyle">@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle</item>
         <item name="closeItemLayout">@layout/abc_action_mode_close_item_material</item>
-
-        <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="titleMargin">4dp</item>
-        <item name="maxButtonHeight">@dimen/abc_action_bar_default_height_material</item>
-        <item name="buttonGravity">top</item>
-        <item name="contentInsetStart">16dp</item>
-        <item name="contentInsetStartWithNavigation">@dimen/abc_action_bar_content_inset_with_nav</item>
-        <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>
-        <item name="android:paddingStart">@dimen/abc_action_bar_default_padding_start_material</item>
-        <item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>
-        <item name="android:paddingEnd">@dimen/abc_action_bar_default_padding_end_material</item>
     </style>
     <style name="Base.Widget.AppCompat.ActivityChooserView" parent="">
         <item name="android:gravity">center</item>
@@ -2678,6 +2649,12 @@
     <style name="CardView.Light">
         <item name="cardBackgroundColor">@color/cardview_light_background</item>
     </style>
+    <style name="ClockTimePickerDialog" ns2:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+      <item name="android:timePickerStyle">@style/ClockTimePickerStyle</item>
+    </style>
+    <style name="ClockTimePickerStyle" ns2:targetApi="lollipop" parent="android:Widget.Material.Light.TimePicker">
+      <item name="android:timePickerMode">clock</item>
+    </style>
     <style name="DialogAnimationFade">
     <item name="android:windowEnterAnimation">@anim/catalyst_fade_in</item>
     <item name="android:windowExitAnimation">@anim/catalyst_fade_out</item>
@@ -2800,9 +2777,9 @@
         <item name="android:actionModePasteDrawable">?actionModePasteDrawable</item>
         <item name="android:actionModeSelectAllDrawable">?actionModeSelectAllDrawable</item>
 
-        <item name="android:textSelectHandle">@drawable/abc_text_select_handle_middle_mtrl</item>
-        <item name="android:textSelectHandleLeft">@drawable/abc_text_select_handle_left_mtrl</item>
-        <item name="android:textSelectHandleRight">@drawable/abc_text_select_handle_right_mtrl</item>
+        <item name="android:textSelectHandle">@drawable/abc_text_select_handle_middle_mtrl_dark</item>
+        <item name="android:textSelectHandleLeft">@drawable/abc_text_select_handle_left_mtrl_dark</item>
+        <item name="android:textSelectHandleRight">@drawable/abc_text_select_handle_right_mtrl_dark</item>
     </style>
     <style name="Platform.AppCompat.Light" parent="android:Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
@@ -2870,9 +2847,9 @@
         <item name="android:actionModePasteDrawable">?actionModePasteDrawable</item>
         <item name="android:actionModeSelectAllDrawable">?actionModeSelectAllDrawable</item>
 
-        <item name="android:textSelectHandle">@drawable/abc_text_select_handle_middle_mtrl</item>
-        <item name="android:textSelectHandleLeft">@drawable/abc_text_select_handle_left_mtrl</item>
-        <item name="android:textSelectHandleRight">@drawable/abc_text_select_handle_right_mtrl</item>
+        <item name="android:textSelectHandle">@drawable/abc_text_select_handle_middle_mtrl_light</item>
+        <item name="android:textSelectHandleLeft">@drawable/abc_text_select_handle_left_mtrl_light</item>
+        <item name="android:textSelectHandleRight">@drawable/abc_text_select_handle_right_mtrl_light</item>
     </style>
     <style name="Platform.MaterialComponents" parent="Theme.AppCompat"/>
     <style name="Platform.MaterialComponents.Dialog" parent="Theme.AppCompat.Dialog"/>
@@ -3021,6 +2998,12 @@
     </style>
     <style name="SpinnerDatePickerStyle" ns2:targetApi="lollipop" parent="android:Widget.Material.Light.DatePicker">
         <item name="android:datePickerMode">spinner</item>
+    </style>
+    <style name="SpinnerTimePickerDialog" ns2:targetApi="lollipop" parent="Theme.AppCompat.Light.Dialog">
+      <item name="android:timePickerStyle">@style/SpinnerTimePickerStyle</item>
+    </style>
+    <style name="SpinnerTimePickerStyle" ns2:targetApi="lollipop" parent="android:Widget.Material.Light.TimePicker">
+      <item name="android:timePickerMode">spinner</item>
     </style>
     <style name="Test.ShapeAppearanceOverlay.MaterialComponents.MaterialCalendar.Day" parent="">
     <item name="cornerFamily">rounded</item>
@@ -3287,22 +3270,6 @@
     <style name="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-    <style name="Theme.AutofillInlineSuggestion" parent="@android:style/Theme.DeviceDefault">
-        <item name="isAutofillInlineSuggestionTheme">true</item>
-        <item name="autofillInlineSuggestionChip">@style/Widget.Autofill.InlineSuggestionChip</item>
-        <item name="autofillInlineSuggestionStartIconStyle">
-            @style/Widget.Autofill.InlineSuggestionStartIconStyle
-        </item>
-        <item name="autofillInlineSuggestionTitle">
-            @style/Widget.Autofill.InlineSuggestionTitle
-        </item>
-        <item name="autofillInlineSuggestionSubtitle">
-            @style/Widget.Autofill.InlineSuggestionSubtitle
-        </item>
-        <item name="autofillInlineSuggestionEndIconStyle">
-            @style/Widget.Autofill.InlineSuggestionEndIconStyle
-        </item>
     </style>
     <style name="Theme.Catalyst"/>
     <style name="Theme.Catalyst.LogBox">
@@ -3719,40 +3686,6 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
-    <style name="Widget.Autofill" parent="android:Widget"/>
-    <style name="Widget.Autofill.InlineSuggestionChip">
-        <item name="android:background">@drawable/autofill_inline_suggestion_chip_background</item>
-        <item name="android:paddingStart">13dp</item>
-        <item name="android:paddingLeft">13dp</item>
-        <item name="android:paddingEnd">13dp</item>
-        <item name="android:paddingRight">13dp</item>
-    </style>
-    <style name="Widget.Autofill.InlineSuggestionEndIconStyle">
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:maxWidth">@dimen/autofill_inline_suggestion_icon_size</item>
-        <item name="android:adjustViewBounds">true</item>
-    </style>
-    <style name="Widget.Autofill.InlineSuggestionStartIconStyle">
-        <item name="android:scaleType">fitCenter</item>
-        <item name="android:maxWidth">@dimen/autofill_inline_suggestion_icon_size</item>
-        <item name="android:adjustViewBounds">true</item>
-    </style>
-    <style name="Widget.Autofill.InlineSuggestionSubtitle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#99202124</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:typeface">sans</item>
-        <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
-    </style>
-    <style name="Widget.Autofill.InlineSuggestionTitle" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#FF202124</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:typeface">sans</item>
-        <item name="android:layout_marginStart">4dp</item>
-        <item name="android:layout_marginLeft">4dp</item>
-        <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:layout_marginRight">4dp</item>
-    </style>
     <style name="Widget.Compat.NotificationActionContainer" parent=""/>
     <style name="Widget.Compat.NotificationActionText" parent=""/>
     <style name="Widget.Design.AppBarLayout" parent="android:Widget">
@@ -4904,10 +4837,6 @@
              action bar. This will be inherited by any widget inflated
              into the action bar. -->
         <attr format="reference" name="actionBarTheme"/>
-        <!-- Reference to a theme that should be used to inflate the
-             action bar in action mode. This will be inherited by any widget inflated
-             into the action bar. -->
-        <attr format="reference" name="actionModeTheme"/>
         <!-- Reference to a theme that should be used to inflate widgets
              and layouts destined for the action bar. Most of the time
              this will be a reference to the current theme, but when
@@ -4960,11 +4889,9 @@
         <!-- Drawable to use for the Web Search action button in WebView selection action modes -->
         <attr format="reference" name="actionModeWebSearchDrawable"/>
 
-        <!-- Content description to use for the close action mode button -->
-        <attr format="string" name="actionModeCloseContentDescription"/>
-
         <!-- PopupWindow style to use for action modes when showing as a window overlay. -->
         <attr format="reference" name="actionModePopupWindowStyle"/>
+
 
         <!-- =================== -->
         <!-- Text styles -->
@@ -5223,24 +5150,10 @@
         <eat-comment/>
 
         <!-- Animated Drawable to use for single choice indicators. -->
-        <attr format="reference" name="listChoiceIndicatorSingleAnimated"/>
-        <!-- Animated Drawable to use for multiple choice indicators. -->
         <attr format="reference" name="listChoiceIndicatorMultipleAnimated"/>
+        <!-- Animated Drawable to use for multiple choice indicators. -->
+        <attr format="reference" name="listChoiceIndicatorSingleAnimated"/>
 
-    </declare-styleable>
-    <declare-styleable name="Autofill.InlineSuggestion">
-        <!-- Private boolean attribute to identify the theme and the child of the theme.  -->
-        <attr format="boolean" name="isAutofillInlineSuggestionTheme"/>
-        <!-- Defines the overall style for the entire chip, such as the background.  -->
-        <attr format="reference" name="autofillInlineSuggestionChip"/>
-        <!-- Defines the style for the start icon, such as the scaleType.  -->
-        <attr format="reference" name="autofillInlineSuggestionStartIconStyle"/>
-        <!-- Defines the style of the title TextView, such as the color, size, etc.  -->
-        <attr format="reference" name="autofillInlineSuggestionTitle"/>
-        <!-- Defines the style of the subtitle TextView, such as the color, size, etc.  -->
-        <attr format="reference" name="autofillInlineSuggestionSubtitle"/>
-        <!-- Defines the style for the end icon, such as the scaleType.  -->
-        <attr format="reference" name="autofillInlineSuggestionEndIconStyle"/>
     </declare-styleable>
     <declare-styleable name="Badge">
     <attr format="color" name="backgroundColor"/>
@@ -5390,6 +5303,13 @@
         <!-- Whether to automatically stack the buttons when there is not
              enough space to lay them out side-by-side. -->
         <attr format="boolean" name="allowStacking"/>
+    </declare-styleable>
+    <declare-styleable name="Capability">
+        <!-- Resource reference to the string array of query patterns for a custom capability. -->
+        <attr format="reference" name="queryPatterns"/>
+        <!-- Indicates whether a parameter in a capability template can only contain a matched
+             shortcut id and not an arbitrary string. -->
+        <attr format="boolean" name="shortcutMatchRequired"/>
     </declare-styleable>
     <declare-styleable name="CardView">
         <!-- Background color for CardView. -->
@@ -6772,6 +6692,9 @@
 
     <!-- Progress bar Auto Rotate interval in milliseconds -->
     <attr name="progressBarAutoRotateInterval"/>
+
+    <!-- Scale type of the actual image. -->
+    <attr name="actualImageScaleType"/>
 
     <!-- A drawable or color to be used as a background. -->
     <attr name="backgroundImage"/>

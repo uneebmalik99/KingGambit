@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UIKit/UIKit.h"
+
 typedef NS_ENUM(NSInteger, FLEXNetworkTransactionState) {
   FLEXNetworkTransactionStateUnstarted,
   FLEXNetworkTransactionStateAwaitingResponse,
@@ -30,6 +32,10 @@ typedef NS_ENUM(NSInteger, FLEXNetworkTransactionState) {
 @property(nonatomic, assign) NSTimeInterval duration;
 
 @property(nonatomic, assign) int64_t receivedDataLength;
+
+/// Only applicable for image downloads. A small thumbnail to preview the full
+/// response.
+@property(nonatomic, strong) UIImage* responseThumbnail;
 
 /// Populated lazily. Handles both normal HTTPBody data and HTTPBodyStreams.
 @property(nonatomic, strong, readonly) NSData* cachedRequestBody;

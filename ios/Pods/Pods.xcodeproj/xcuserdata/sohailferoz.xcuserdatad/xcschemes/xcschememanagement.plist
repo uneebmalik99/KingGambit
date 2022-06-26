@@ -69,22 +69,32 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Folly.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>OpenSSL-Universal.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KingGambit-KingGambitTests.xcscheme</key>
+		<key>Pods-Kinggambit-KinggambitTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KingGambit.xcscheme</key>
+		<key>Pods-Kinggambit-tvOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RCT-Folly.xcscheme</key>
+		<key>Pods-Kinggambit-tvOSTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Kinggambit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -99,12 +109,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RNScreens.xcscheme</key>
+		<key>RNCMaskedView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-Codegen.xcscheme</key>
+		<key>RNGestureHandler.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNReanimated.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNScreens.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -194,32 +214,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>React-logger.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-perflogger.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>React-runtimeexecutor.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>React.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>ReactCommon.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>SocketRocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -234,12 +234,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>boost.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>fmt.xcscheme</key>
+		<key>boost-for-react-native.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

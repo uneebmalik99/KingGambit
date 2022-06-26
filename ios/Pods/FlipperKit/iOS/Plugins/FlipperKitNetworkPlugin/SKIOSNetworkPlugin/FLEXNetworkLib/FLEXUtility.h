@@ -10,6 +10,13 @@
 #import <objc/runtime.h>
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#define FLEXFloor(x) \
+  (floor([[UIScreen mainScreen] scale] * (x)) / [[UIScreen mainScreen] scale])
+
+#define FLEX_AT_LEAST_IOS11_SDK \
+  defined(__IPHONE_11_0) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_11_0)
 
 @interface NSNumber (SonarUtility)
 
@@ -19,8 +26,7 @@
 
 @interface NSDate (SonarUtility)
 
-+ (NSTimeInterval)timestamp;
-
++ (uint64_t)timestamp;
 @end
 
 @interface FLEXUtility : NSObject

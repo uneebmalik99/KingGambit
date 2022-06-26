@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A8B54EECEC2945DC3B068B124FD7AB73"
-               BuildableName = "libPods-KingGambit.a"
-               BlueprintName = "Pods-KingGambit"
+               BlueprintIdentifier = "C3F895D7B12638E8A280793ACFF25B53"
+               BuildableName = "libPods-Kinggambit.a"
+               BlueprintName = "Pods-Kinggambit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
