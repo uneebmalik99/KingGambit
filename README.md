@@ -1,2 +1,0 @@
-# KingGambit
-KingGambit Client App
