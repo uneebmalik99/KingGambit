@@ -1,7 +1,10 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-// import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from "react";
+import {
+  createStackNavigator,
+  HeaderBackground,
+} from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { DrawerContent } from "./Drawer";
 import Splash from '../screen/Splash';
 import Login from '../screen/Login';
 import Register from '../screen/Register';
@@ -13,49 +16,123 @@ import TrackYourLoad from '../screen/TrackYourLoad';
 import ForgetPass from '../screen/ForgetPass';
 import VerificationCode from '../screen/VerificationCode';
 import ChangePass from '../screen/ChangePass';
+import ConfirmationPage from '../screen/ConfirmationPage';
+import Profile from "../screen/Profile";
+import DriverDetails from "../screen/DriverDetails";
+import CreateLoadconfirmation from "../screen/CreateLoadconfirmation";
 
-const AppNavigator = () => {
+const Stack = createStackNavigator();
+const AppDrawer = createDrawerNavigator();
 
-    const Stack = createNativeStackNavigator();
-    return (
-        // <View>
-        //     <Text></Text>
-        // </View>
 
-        <Stack.Navigator >
-        <Stack.Screen name="Splash" component={Splash} />
+const AppDrawerScreen = () => {
+  return (
+    <AppDrawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}
+    >
+      <AppDrawer.Screen
+        name="welcome"
+        component={Welcome}
+        options={{ headerShown: false }}
+      />
+
+
+
+         <AppDrawer.Screen
+        name="maps"
+        component={Maps}
+        options={{ headerShown: false }}
+      />
+
+     
+
+      <Stack.Screen
+        name="trackYourLoad"
+        component={TrackYourLoad}
+        options={{ headerShown: false }}
+      />
+   
+    </AppDrawer.Navigator>
+  );
+};
+
+const WelcomeStack = () => {
+  
+  return (
+    <Stack.Navigator initialRouteName={'Splash'}>
+        <Stack.Screen name="Splash" component={Splash} options={{
+          headerShown: false
+        }} />
         <Stack.Screen name="login" component={Login} options={{
           headerShown: false
         }}/>
         <Stack.Screen name="register" component={Register} options={{
           headerShown: false
         }}/>
-        <Stack.Screen name="welcome" component={Welcome}options={{
-          headerShown: false
-        }} />
-        <Stack.Screen name="createLoad" component={CreateLoad}options={{
-          headerShown: false
-        }} />
-        <Stack.Screen name="maps" component={Maps}options={{
-          headerShown: false
-        }} />
-        <Stack.Screen name="allLoad" component={AllLoad} options={{
-          headerShown: false
-        }}/>
-        <Stack.Screen name="trackyourDelivery" component={TrackYourLoad}options={{
-          headerShown: false
-        }} />
-        <Stack.Screen name="forgetPass" component={ForgetPass}options={{
+         <Stack.Screen name="forgetPass" component={ForgetPass}options={{
           headerShown: false
         }} />
         <Stack.Screen name="verificationCode" component={VerificationCode} options={{
           headerShown: false
         }}/>
+          <Stack.Screen name="confirmationPage" component={ConfirmationPage} options={{
+          headerShown: false
+        }}/>
         <Stack.Screen name="changePass" component={ChangePass}options={{
           headerShown: false
         }} />
-      </Stack.Navigator>
-    )
-}
 
-export default AppNavigator
+    </Stack.Navigator>
+  );
+};
+
+ 
+
+const AppNavigator = () => {
+
+  return (
+    <Stack.Navigator initialRouteName="WelcomeStack">
+      <Stack.Screen
+        name="WelcomeStack"
+        component={WelcomeStack}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AppDrawer"
+        component={AppDrawerScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="createLoad"
+        component={CreateLoad}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="allLoad"
+        component={AllLoad}
+        options={{ headerShown: false }}
+      />
+       <Stack.Screen
+        name="CreateLoadconfirmation"
+        component={CreateLoadconfirmation}
+        options={{ headerShown: false }}
+      />
+
+      
+        <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
+       <Stack.Screen
+        name="DriverDetails"
+        component={DriverDetails}
+        options={{ headerShown: false }}
+      />
+    
+    </Stack.Navigator>
+  );
+};
+
+export default AppNavigator;

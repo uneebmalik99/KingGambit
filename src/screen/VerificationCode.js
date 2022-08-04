@@ -1,67 +1,27 @@
-import { View,ImageBackground, Text,TextInput,StyleSheet ,TouchableOpacity,Button, SafeAreaView } from 'react-native'
-
 import React from 'react'
+import { View,ImageBackground,Dimensions, Text,TextInput,StyleSheet ,TouchableOpacity,Button, SafeAreaView } from 'react-native'
+import { Appbar } from "react-native-paper";
+
+
+const deviceHeight = Dimensions.get("window").height;
+const deviceWidth = Dimensions.get("window").width
 
 const VerificationCode = ({navigation}) => {
   return (
-    
-  //     <>
-  //       <SafeAreaView style={styles.container}>
-  //       <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}>
-  //     {/* <Text style={styles.text}>Inside</Text> */}
-  //       {/* <Button 
-    
-  //   title="Login"
-  //   //  onPress={() => navigation.navigate('welcome')}
-  // /> */}
-  // {/* <Image  ></Image> */}
-  //  <View 
-  //  style={styles.forgetFirst}
-  //   // title="Login"
-  //   //  onPress={() => navigation.navigate('welcome')}
-  //     >
-  //       <Text>Forget Password</Text>
-
-  //   </View>
-  //          <View style={styles.logtxt}>   
-  //           <TextInput   
-  //       style={styles.input}
-  //       placeholder="Enter Email "/>
-            
-           
-  //     <View style={styles.btnBorder}>
-  //      <TouchableOpacity 
-  //  style={styles.btnBorderSize}
-  //   // title="Login"
-  //    onPress={() => navigation.navigate('verificationCode')}
-  //     >
-  //       <Text>Submit</Text>
-
-  //   </TouchableOpacity>
-  //      </View>
-  //     </View>
-      
-  //     </ImageBackground>
-  //       </SafeAreaView>
-  //       </>
   <>
   <SafeAreaView style={styles.container}>
   <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}>
-{/* <Text style={styles.text}>Inside</Text> */}
-  {/* <Button 
+  </ImageBackground>
 
-title="Login"
-//  onPress={() => navigation.navigate('welcome')}
-/> */}
-{/* <Image  ></Image> */}
-<View 
-style={styles.loginFirst}
-// title="Login"
-//  onPress={() => navigation.navigate('welcome')}
->
-  <Text style={styles.HeaderTxt}>Verification Code</Text>
+<Appbar.Header style={styles.header}>
 
+<View style={styles.headview}>
+  <Text style={styles.register_txt}>Verification Code</Text>
 </View>
+
+</Appbar.Header>
+
+
      <View style={styles.logtxt}>   
       <View style={{ width:"90%",marginTop:20,alignSelf:"center",paddingHorizontal:10}}>
         <TextInput   
@@ -79,7 +39,7 @@ style={styles.loginFirst}
  <TouchableOpacity 
 style={styles.btnBorderSize}
 // title="Login"
-onPress={() => navigation.navigate('changePass')}
+onPress={() => navigation.navigate('confirmationPage')}
 >
   <Text style={{color:"black",fontSize:15,}}>Submit</Text>
 
@@ -87,7 +47,6 @@ onPress={() => navigation.navigate('changePass')}
  </View>
 </View>
 
-</ImageBackground>
   </SafeAreaView>
   </>
   )
@@ -95,11 +54,20 @@ onPress={() => navigation.navigate('changePass')}
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-    //   justifyContent: center,
-    // marginTop: 170,
       backgroundColor: "#eaeaea",
       height:"100%"
 
+    },
+    header: {
+      elevation: 0,
+      backgroundColor: 'transparent',
+      borderBottomRightRadius:15,
+      borderBottomLeftRadius:15,
+      alignItems: "center",
+      paddingHorizontal:0,
+      paddingVertical:0,
+      justifyContent: "center",
+      borderRadius:15
     },
   input: {
     height: 60,
@@ -116,6 +84,19 @@ const styles = StyleSheet.create({
     
     
   },
+  headview:{
+    height:'100%',
+    width:'100%',
+    borderBottomRightRadius:15,
+    borderBottomLeftRadius:15,
+    justifyContent:'center',
+    backgroundColor:'#EFDF79'
+  },
+  register_txt:{
+  fontSize:16,
+  fontWeight:'600',
+  alignSelf:'center' 
+},
   logtxt:{
     marginTop:120,
     borderColor:'#EFDF79',
@@ -168,8 +149,11 @@ alignContent:"center"
 // fontSize:40
 },
 image: {
-// flex: 1,
-justifyContent: "center"
+  justifyContent: "center",
+  height:deviceHeight,
+  width:deviceWidth,
+  position:'absolute',
+  paddingVertical:0
 },
 loginFirst:{
 // marginTop:0,

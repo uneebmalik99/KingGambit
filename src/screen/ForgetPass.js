@@ -1,27 +1,29 @@
-import { View,ImageBackground, Text,TextInput,StyleSheet ,TouchableOpacity,Button, SafeAreaView,Dimensions } from 'react-native'
-
 import React from 'react'
+import { View,ImageBackground,Dimensions, Text,TextInput,StyleSheet ,TouchableOpacity,Button, SafeAreaView } from 'react-native'
 import { Appbar } from "react-native-paper";
 
 
 const deviceHeight = Dimensions.get("window").height;
-const deviceWidth = Dimensions.get("window").width;
+const deviceWidth = Dimensions.get("window").width
+
 const ForgetPass = ({navigation}) => {
   return (
-    
-  
+ 
+  <>
   <SafeAreaView style={styles.container}>
-   <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}>
-            </ImageBackground>
+  <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}>
+  </ImageBackground>
 
-            <Appbar.Header style={styles.header}>
+<Appbar.Header style={styles.header}>
 
-              <View style={styles.headview}>
-                <Text style={{color:"black",fontSize:15,alignSelf:'center'}}> Forget Password</Text>
-              </View>
-              
-            </Appbar.Header>
-          
+<View style={styles.headview}>
+  
+  <Text style={styles.register_txt}>Forget Password</Text>
+</View>
+
+</Appbar.Header>
+
+
      <View style={styles.logtxt}>   
       <View style={{ width:"90%",marginTop:20,alignSelf:"center",paddingHorizontal:10}}>
         <TextInput   
@@ -47,19 +49,27 @@ onPress={() => navigation.navigate('verificationCode')}
  </View>
 </View>
 
-{/* </ImageBackground> */}
   </SafeAreaView>
-  
+  </>
   )
 }
 const styles = StyleSheet.create({
   container: {
       flex: 1,
-    //   justifyContent: center,
-    // marginTop: 170,
       backgroundColor: "#eaeaea",
       height:"100%"
 
+    },
+    header: {
+      elevation: 0,
+      backgroundColor: 'transparent',
+      borderBottomRightRadius:15,
+      borderBottomLeftRadius:15,
+      alignItems: "center",
+      paddingHorizontal:0,
+      paddingVertical:0,
+      justifyContent: "center",
+      borderRadius:15
     },
   input: {
     height: 60,
@@ -76,12 +86,27 @@ const styles = StyleSheet.create({
     
     
   },
+  headview:{
+    height:'100%',
+    width:'100%',
+    flexDirection:'row',
+    justifyContent:'center',
+    borderBottomRightRadius:15,
+    borderBottomLeftRadius:15,
+    justifyContent:'center',
+    backgroundColor:'#EFDF79'
+  },
+  register_txt:{
+  fontSize:16,
+  fontWeight:'600',
+  alignSelf:'center' 
+},
   logtxt:{
     marginTop:120,
     borderColor:'#EFDF79',
   borderWidth:1,
   
-  height:"40%",
+  height:"51%",
   paddingVertical:10,
   width:300,
   alignSelf:"center",
@@ -128,8 +153,11 @@ alignContent:"center"
 // fontSize:40
 },
 image: {
-// flex: 1,
-justifyContent: "center"
+  justifyContent: "center",
+  height:deviceHeight,
+  width:deviceWidth,
+  position:'absolute',
+  paddingVertical:0
 },
 loginFirst:{
 // marginTop:0,
@@ -150,40 +178,6 @@ HeaderTxt:{
   fontWeight:"500",
   fontSize:16,
   marginTop:0
-}
-,
-
-headview:{
-  height:'100%',
-  width:'100%',
-  borderBottomRightRadius:15,
-  borderBottomLeftRadius:15,
-  justifyContent:'center',
-  backgroundColor:'#EFDF79'
-},
-image: {
-  // flex: 1,
-  // height:"100%",
-  // width:"100%",
-  justifyContent: "center",
-  height:deviceHeight,
-  width:deviceWidth,
-  position:'absolute',
-  paddingVertical:0
-},
-header: {
-  elevation: 0,
-  backgroundColor: 'transparent',
-  alignItems: "center",
-  justifyContent: "center",
-  width:deviceWidth,
-
-  paddingHorizontal:0,
-  paddingVertical:0,
-  // width:deviceWidth*0.07,
-  // height: deviceHeight * 0.07,
-  // alignSelf: "flex-start",
-
 }
 });
 export default ForgetPass

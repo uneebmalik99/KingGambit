@@ -1,51 +1,160 @@
-import { View, Text,TouchableOpacity,TextInput,StyleSheet,Button, ScrollView } from 'react-native'
+import React,{useState,useRef,useEffect} from 'react'
+import { View, Text,TouchableOpacity,TextInput,StyleSheet,Button, ScrollView, Image } from 'react-native'
 import { Appbar } from "react-native-paper";
+import StarReview from 'react-native-star-review';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
+import MapView, { PROVIDER_GOOGLE ,Geojson, Marker} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+import MapViewDirections from 'react-native-maps-directions';
+// import database from '@react-native-firebase/database';
 
-import React from 'react'
+const TrackYourDelivery = ({route, navigation}) => {
 
-const TrackYourDelivery = ({navigation}) => {
+
+
+  // const reference = database().ref('/DriverLocations');
+
+  const { data ,plat ,plong,dlat,dlong} = route.params;
+  
+// console.log(data);
+  const GOOGLE_MAPS_APIKEY ='AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo'
+  const[location,setLocation] =useState({
+    pickupLocation:{
+      latitude: data.P_Latitude,
+      longitude: data.P_Longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    },
+    dropUpLocation:{
+      latitude:data.D_Latitude,
+      longitude: data.D_Longitudes,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }
+  
+  })
+  const mapRef =useRef()
+
+  
+  const [platitude , setplatitude] = useState(plat)
+  const [plongitude , setplongitude] = useState(plong)
+  const [dlatitude , setdlatitude] = useState(dlat)
+  const [dlongitude , setdlongitude] = useState(dlong)
+
+  const {pickupLocation,dropUpLocation} = location
+
+  useEffect(()=>{
+
+  // console.log(parseFloat(data.P_Latitude));
+
+  let floatNuumber = parseFloat(data.P_Latitude);
+  console.log(floatNuumber);
+     },[])
+
+
   return (
     <View>
       <Appbar.Header style={styles.header}>
-      <Text style={{color:"black",fontSize:15,}}>
-        Track The Delivery
-      </Text>
-      
-      </Appbar.Header>
-      <ScrollView>
-      <View style={styles.mapShow}>
-        
-      <Text style={{color:"black",fontSize:15,alignSelf:"center"}}>Maps</Text>
-    <View style={{marginTop:170}}>
-      {/* <Text style={styles.text}>Where He Pickup Load</Text>
-      <Text style={styles.text2}>Where He Gonna Drop The Load</Text> */}
-      
-      </View>
-     
-</View>
 
-<TouchableOpacity style={styles.btnDelivered}
+        <View style={styles.headview}>
+          <View style={{justifyContent:"center"}}>
+            <Ionicons name='chevron-back' onPress={()=> {navigation.goBack()}} color={'grey'} style={{alignSelf:'center'}} size={25}/>
+            </View>
+          <Text style={{color:"black",fontSize:16,alignSelf:'center'}}>Track Your Load</Text>
+          <View>
+            </View>
+        </View>
+
+      </Appbar.Header>
+
+    <ScrollView>
+      <View style={styles.mapShow}>
+
+      <MapView 
+    style={{width:"100%",height:"100%"}}
+    // initialRegion={
+    //   pickupLocation
+    // }
+  >
+    <Marker
+    coordinate={{latitude:platitude, longitude:plongitude}}
+    />
+
+    <Marker
+    coordinate={{latitude:dlatitude, longitude:dlongitude}}
+    />
+
+  <MapViewDirections
+    origin={{latitude:platitude, longitude:plongitude}}
+    destination={{latitude:dlatitude, longitude:dlongitude}}
+    apikey={GOOGLE_MAPS_APIKEY}
+    // stroke
+    strokeWidth={3}
+    strokeColor='red'
+   
+  />
     
-    // onPress={() => navigation.navigate('')}
-   >
-     <Text style={{color:"black"}}>Driver Name</Text>
-  </ TouchableOpacity>
-  <TouchableOpacity style={styles.btnDelivered}
+  </MapView>
+     
+      </View>
+
+
+
+<View style={{paddingHorizontal:20, width:'100%'}}>
+
+{data.Driver_Id != null ?
+<View>
+<TouchableOpacity
+// onPress={()=> {navigation.navigate('DriverDetails',{id:data.Driver_Id})}}
+style={{width:'90%',marginTop:10, borderWidth:1.2, borderRadius:15,borderColor:'#EFDF79', height:80,alignSelf:'center', flexDirection:'row'}}>
+<View style={{  padding:"2%", width: "25%", height: "100%" }}>
+            <Image source={require('../assets/bk.png')}  style={{width:"100%",borderRadius:400/2, height:"100%"}} />
+          </View>
+
+  <View style={{height:'100%', width:'75%', }}>
+    <View style={{height:'30%',width:'100%', justifyContent:'flex-end', }}>
+      <View style={{borderRadius:10,height:'100%', alignSelf:'flex-end',backgroundColor:'black', paddingHorizontal:'8%', borderRadius:10,borderColor:'#EFDF79', borderWidth:2}}>
+        <Text style={{color:'#EFDF79'}}>Accepted</Text>
+      </View>
+    </View>
+
+    <View style={{height:'75%',justifyContent:'center', paddingHorizontal:'5%'}}>
+      <Text style={{alignSelf:'center'}}>Driver Name</Text>
+      <StarReview 
+       ratings={2}
+       stars={5}
+       starColor="#EFDF79"
+    
+     />
+    </View>
+  </View>
+
+  </TouchableOpacity>
+
+  
+
+
+  <View style={styles.btnDelivered}
     
     // onPress={() => navigation.navigate('')}
    >
      <Text style={{color:"black"}}>
       DOT Number
 </Text>
-  </ TouchableOpacity>
-  <TouchableOpacity style={styles.btnDelivered}
+  </View>
+  <View style={styles.btnDelivered}
     
     // onPress={() => navigation.navigate('')}
    >
      <Text style={{color:"black"}}> MC Number
 </Text>
-  </ TouchableOpacity>
-  <TouchableOpacity style={styles.btnDelivered}
+  </View>
+
+</View>
+:
+
+null}
+  <View style={styles.btnDelivered}
     
     // onPress={() => navigation.navigate('')}
    >
@@ -54,8 +163,8 @@ const TrackYourDelivery = ({navigation}) => {
      1- Driving can drive 11 hours a day
      2- Once the Load is Confirmed and pickup the load cannot be cancel
 </Text>
-  </ TouchableOpacity>
-
+  </View>
+</View>
 
   </ScrollView>
     </View>
@@ -70,15 +179,13 @@ const styles = StyleSheet.create({
       backgroundColor: "#eaeaea"
     },
     btnDelivered:{
-      // width:40,
-      width:"60%",
-      marginTop:2,
+      width:"90%",
+      marginTop:10,
       alignSelf:"center",
       alignItems:"center",
-      borderRadius:20,
-      // borderColor:'#EFDF79',
+      borderRadius:15,
       padding:20,
-      borderWidth:1,
+      borderWidth:1.2,
      borderColor:'#EFDF79',
       alignContent:"center"
     },
@@ -93,13 +200,24 @@ const styles = StyleSheet.create({
   },
   header: {
     elevation: 0,
-    backgroundColor: '#EFDF79',
+    backgroundColor: 'transparent',
     alignItems: "center",
     justifyContent: "center",
-    // width:deviceWidth*0.07,
-    // height: deviceHeight * 0.07,
-    // alignSelf: "flex-start",
-    borderRadius:15
+    width:deviceWidth,
+    paddingHorizontal:0,
+    paddingVertical:0,
+  
+  },
+  
+  headview:{
+    height:'100%',
+    width:'100%',
+    flexDirection:'row',
+    borderBottomRightRadius:15,
+    borderBottomLeftRadius:15,
+    paddingHorizontal:10,
+    justifyContent:'space-between',
+    backgroundColor:'#EFDF79'
   },
   text:{
       alignSelf:"center"
@@ -109,10 +227,8 @@ const styles = StyleSheet.create({
     marginTop:50
 }
 ,mapShow:{
-    height: 300,
-    margin: 20,
-    borderWidth: 1,
-    padding: 10,
+    height: deviceHeight*0.5,
+    margin: 10,
     borderColor:'c#EFDF79'
   }
 });

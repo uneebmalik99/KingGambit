@@ -1,123 +1,188 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, FlatList,Dimensions, ScrollView,Image } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, StyleSheet, FlatList,Dimensions, ScrollView,Image, Platform } from 'react-native'
 import { Avatar, Button, Title, Card, Paragraph } from 'react-native-paper'
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Appbar } from "react-native-paper";
+import AppUrlCollection from '../UrlCollection/AppUrlCollection';
+import AppConstance from '../constance/AppConstance';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Spinner from 'react-native-loading-spinner-overlay';
+import AppColors from '../Colors/AppColors';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
 const AllLoad = ({ navigation }) => {
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1',
-      title: 'Pick Up Location Distination Load Details Dock Number',
-      image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-    },
-    {
-      id: '3ac68afc-c605',
 
-      title: 'Pick up Confirmation Drop of Location Dock Number',
-      image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-    },
-    {
-      id: '58694a0f-3da1',
+  const [data,setdata] = useState([])
+  const [spinner,setspinner]=useState(false)
 
-      title: 'Pick up Confirmation Drop of Location Dock Number',
-      // image:require('../assets/bk.png')
 
-    },
-    {
-      id: '58694a0f-3da1',
+  const LoadApi =()=>{
+  //  alert(AppConstance.Id)
 
-      title: 'Pick up Confirmation Drop of Location Dock Number',
+    setspinner(true)
+// console.log(AppConstance.AUTH_KEY)
+    // setshowIndicator(true)
+    setTimeout(() => {
+      // setshowIndicator(false)
+    // navigation.navigate('welcome')
+      
+    }, 2000);
 
-    },
-    {
-      id: '58694a0f-3da1',
+  var url = AppUrlCollection.LOADS +'?User_id='+AppConstance.Id;
 
-      title: 'Pick Up Location Distination Load Details Dock Number',
-    },
-  ];
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type':  'application/json',
+      'Authorization': "Bearer "+AppConstance.AUTH_KEY
+    }
+})
+    .then((response) =>  response.json() )
+    .then((responseJson) => {
 
-  const Item = ({ title }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('trackyourDelivery')}>
-      <View style={styles.input}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
+      setdata(responseJson)
+      setspinner(false)
+        if(responseJson.message == 'SUCCESS'){
+          console.log('login data response',responseJson);
+          setspinner(false)
+       
+        }else if(responseJson.status == 422){
+          alert(responseJson.errors.password)
+        }else if(responseJson.status == 401){
+          alert(responseJson.error)
+        }
+    console.log('login data response',responseJson);
+  //   setspinner(false)  
+    })
+    .catch((error) => {
+      setspinner(false)
+      alert(error)
+        console.warn(error)
+    });
+    
+    // <ActivityIndicator size='large' color="#EFDF79" animating={true}  />
+}
+
+useEffect(()=>{
+  LoadApi()
+},[])
+
+
+const nextpage = (data)=>{
+
+
+  let plat1 = data.P_Latitude
+  plat1= parseFloat(plat1)
+  // console.log(d)
+  let plong1 = data.P_Longitude
+  plong1= parseFloat(plong1)
+  // console.log(d)
+  let dlat1 = data.D_Latitude
+  dlat1= parseFloat(dlat1)
+  // console.log(d)
+  let dlong1 = data.D_Longitudes
+  dlong1= parseFloat(dlong1)
+  
+
+  // alert(d)
+  navigation.navigate('trackYourLoad',{data:data , plat:plat1, plong:plong1, dlat:dlat1, dlong:dlong1  })
+}
+
+
 
   const renderItem = ({ item }) => (
-    // <Item title={item.title} />
 
+     <TouchableOpacity 
+                  style={{height:Platform.OS=='ios'? deviceHeight*0.15:deviceHeight*0.2,width:"100%",borderRadius:15,borderRadius:10, marginTop:10,backgroundColor:'#b3b3b3'}}
+                    onPress={() => {
+                      
+                      nextpage(item);
+                    }}>
 
-    <TouchableOpacity 
-    style={{height: deviceHeight*0.28,width:"100%",borderRadius:15, marginTop:10,backgroundColor:'grey'}}
-    onPress={() => navigation.navigate('trackyourDelivery')}>
+      <View style={{ height:"20%", backgroundColor: "#EFDF79",borderRadius:10, justifyContent:"center"}}>
+          <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
+      </View>
 
-      {/* <View style={{ borderColor: '#EFDF79',height:"100%",borderRadius:15, borderWidth: 1,backgroundColor: "grey" }}> */}
-        <View style={{ height:"17%", backgroundColor: "#EFDF79",justifyContent:"center"}}>
-          {/* Load Dock Number:{item.id}  */}
-          <Text style={styles.txt}>Load Dock Number:{item.id}</Text>
-        </View>
+      <View style={{  paddingVertical:"2%", height:"80%", paddingHorizontal:'3%',flexDirection: "row" }}>
 
-        <View style={{  paddingVertical:"2%", height:"83%", paddingHorizontal:'3%',flexDirection: "row" }}>
-
-          <View style={{  padding:"3%", width: "35%", height: "100%" }}>
-            {/* <Text style={styles.txt} >35</Text> */}
-            <Image source={require('../assets/bk.png')} style={{width:"100%",height:"100%"}} />
+          <View style={{  padding:"1%", width: "35%", height: "100%" }}>
+            <Image source={require('../assets/bk.png')}  style={{width:"100%",borderRadius:10, height:"100%"}} />
           </View>
 
 
 
 
-          <View style={{  width: "65%",paddingHorizontal:"5%", alignItems: "center", justifyContent: "space-around" }}>
+          <View style={{  width: "65%",paddingHorizontal:"1%", alignItems: "flex-start", justifyContent: "space-around" }}>
 
             <View style={{  width: "100%", }}>
-              <Text style={styles.txt}>65 Pimber</Text>
+              <Text style={styles.txt}>Pick Up Location: {item.P_Address}</Text>
             </View>
 
             <View style={{  width: "100%" }}>
-              <Text style={styles.txt}>Pick upk Number</Text>
+              <Text style={styles.txt}>Drop Off Location:: {item.D_Address}</Text>
             </View>
 
             <View style={{  width: "100%", }}>
-              <Text style={styles.txt}>Pick up ck Number</Text>
+              <Text style={styles.txt}>Status: {item.Status == '0'? "In Transit":"Complete"}</Text>
             </View>
 
           </View>
 
-        </View>
+      </View>
 
-      {/* </View> */}
-    </TouchableOpacity>
+     </TouchableOpacity>
 
   );
 
   return (
 
 
-    <View>
+    <SafeAreaView>
+ <Spinner
+        visible={spinner}
+        textContent={"Loading..."}
+        color	={AppColors.Appcolor }
+        animation	='fade'
+        size='large'
+        overlayColor='rgba(0, 0, 0, 0.30)'
+         textStyle={{ color: AppColors.Appcolor }}
+      />
+<Appbar.Header style={styles.header}>
 
+<View style={styles.headview}>
+  <View style={{justifyContent:"center"}}>
+    <Ionicons name='chevron-back' onPress={()=> {navigation.goBack()}} color={'grey'} style={{alignSelf:'center'}} size={25}/>
+    </View>
+  <Text style={{color:"black",fontSize:16,alignSelf:'center'}}>Loads</Text>
+  <View>
+    </View>
+</View>
 
-      <Appbar.Header style={styles.header}>
-        <Text style={{ fontSize: 20, color: 'black' }}>All Load</Text>
-
-      </Appbar.Header>
+</Appbar.Header>
+  
       <ScrollView>
 
         {/* <Text style={styles.text}>All Load</Text> */}
+{data.length>0?
+ <FlatList
+ data={data}
+ contentContainerStyle={{width:deviceWidth, paddingHorizontal:'5%',paddingBottom:"30%"}}
+ renderItem={renderItem}
+ keyExtractor={item => item.id}
+/>
+:
+<View style={{height:deviceHeight,justifyContent:'center', width:deviceWidth}}>
+<Text style={{alignSelf:'center'}}>No Loads</Text>
+  </View>
 
-        <FlatList
-          data={DATA}
-          contentContainerStyle={{width:deviceWidth, paddingHorizontal:'5%',paddingBottom:"30%"}}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-        />
+}
+
+       
       </ScrollView>
-    </View>
+    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
@@ -142,13 +207,12 @@ const styles = StyleSheet.create({
   },
   header: {
     elevation: 0,
-    backgroundColor: '#EFDF79',
-    alignItems: "center",
-    justifyContent: "center",
-    // width:deviceWidth*0.07,
-    // height: deviceHeight * 0.07,
-    // alignSelf: "flex-start",
-    borderRadius: 15
+  backgroundColor: 'transparent',
+  alignItems: "center",
+  justifyContent: "center",
+  width:deviceWidth,
+  paddingHorizontal:0,
+  paddingVertical:0,
   },
   card: {
     margin: 10,
@@ -157,9 +221,20 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgrey"
 
   },
+  headview:{
+        height:'100%',
+        width:'100%',
+        borderBottomRightRadius:15,
+        borderBottomLeftRadius:15,
+        flexDirection:'row',
+        paddingHorizontal:10,
+        justifyContent:'space-between',
+        backgroundColor:'#EFDF79'
+      },
   txt: {
     color: 'black',
-    alignSelf:"center"
+    alignSelf:"center",
+    
   }
 });
 

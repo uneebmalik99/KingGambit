@@ -1,64 +1,69 @@
+import React,{useEffect} from 'react'
 import { View, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, Button, ScrollView } from 'react-native'
 import { Appbar } from "react-native-paper";
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/dist/Feather';
+import database from '@react-native-firebase/database';
 
-import React from 'react'
+import firebase from '@react-native-firebase/app';
+
+import AppColors from '../Colors/AppColors';
 
 const WelcomeLogistic = ({navigation}) => {
-  return (
+  useEffect(()=>{
+database().ref('/kingGamBit/Loads/1').once('value').then((snapshot)=>   {console.log(snapshot)} )
 
+
+  },[])
+
+
+
+  return (
         <SafeAreaView style={styles.container}>
 
 <Appbar.Header style={styles.header}>
 
 <View style={styles.headview}>
-  <Text style={{color:"black",fontSize:15,alignSelf:'center'}}> Login</Text>
+
+  <Ionicons name='menu-outline' 
+  onPress={() => navigation.openDrawer()}
+  style={{alignSelf:'center',}} size={30} color='white'/>
+  <Text style={{color:"white",fontSize:16,fontWeight:'600', alignSelf:'center' , }}>Home</Text>
+  <MaterialCommunityIcons  name='account-circle-outline' 
+  onPress={() => { navigation.navigate('Profile')}}
+  style={{alignSelf:'center',}} size={30} color='white'/>
 </View>
 
 </Appbar.Header>
-<ScrollView>
-      <View   style={styles.allLoadd}>
-      <TouchableOpacity
-      
+
+<ScrollView style={{paddingVertical:0}}>
+<View style={{height:deviceHeight}}>
+<TouchableOpacity 
         onPress={() => navigation.navigate('createLoad')}
-      >
-       <Text style={{color:"black",fontSize:20}}>(icon)</Text>
-       <Text style={{color:"black",fontSize:20}}>Create a Load</Text>
-      </TouchableOpacity>
-      </View>
-      
-      <View   style={styles.allLoadd}>
-      <TouchableOpacity
-      
-        onPress={() => navigation.navigate('allLoad')}
-      >
-       <Text style={{color:"black",fontSize:20}}>(icon)</Text>
 
-       <Text style={{color:"black",fontSize:20}}>ALL Load</Text>
-      </TouchableOpacity>
-      </View>
-      <TouchableOpacity style={styles.btnChkLoad}
-    
-    onPress={() => navigation.navigate('incomingLoad')}
-   >
-     <Text style={{color:"black"}}>Check ALL Lodad</Text>
-  </ TouchableOpacity>
-      {/* <Button title='Chk All Load' onPress={()=>navigation.navigate('incomingLoad')}></Button> */}
-   
-      <TextInput   
-style={styles.input}
-placeholder="Bank Information"
-editable={false}
-placeholderTextColor={'black'}
+style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around', backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Create a Load</Text>
+  </TouchableOpacity>
 
-/>
-<TextInput   
-style={styles.input}
-placeholder="Account Number and Routing Number"
-editable={false}
-placeholderTextColor={'black'}
+  <TouchableOpacity 
+          onPress={() => navigation.navigate('allLoad')}
 
-/>
+  style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>ALL Load</Text>
+  </TouchableOpacity>
+
+  {/* <TouchableOpacity 
+          onPress={() => {savedata()}}
+
+  style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Frebase</Text>
+  </TouchableOpacity> */}
+</View>
 </ScrollView>
 
     </SafeAreaView>
@@ -67,7 +72,7 @@ placeholderTextColor={'black'}
 }
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
+      // flex: 1,
     //   justifyContent: center,
     backgroundColor: "#eaeaea",
     height:deviceHeight,
@@ -90,11 +95,13 @@ const styles = StyleSheet.create({
     
     headview:{
       height:'100%',
+      paddingHorizontal:13,
       width:'100%',
+      flexDirection:'row',
       borderBottomRightRadius:15,
       borderBottomLeftRadius:15,
-      justifyContent:'center',
-      backgroundColor:'#EFDF79'
+      justifyContent:'space-between',
+      backgroundColor:AppColors.Appcolor
     },
     btnChkLoad:{
       marginTop:20,
@@ -124,7 +131,8 @@ const styles = StyleSheet.create({
       marginTop:70,
       color:"black"
   },
-  allLoadd:{marginTop:40, borderWidth:2,borderRadius:10,width:250,alignSelf:"center",
-  height:150,justifyContent:"center",alignItems:"center",borderColor:'#EFDF79'}
+  allLoadd:{
+    marginTop:20, borderWidth:1.5,borderRadius:10,width:'80%',height:'60%', alignSelf:"center", justifyContent:"center",alignItems:"center",borderColor:'#EFDF79'
+  }
 });
 export default WelcomeLogistic
