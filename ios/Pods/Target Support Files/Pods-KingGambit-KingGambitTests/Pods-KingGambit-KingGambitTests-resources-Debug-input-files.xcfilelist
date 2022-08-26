@@ -1,4 +1,4 @@
-${PODS_ROOT}/Target Support Files/Pods-KingGambit-KingGambitTests/Pods-KingGambit-KingGambitTests-resources.sh
+${PODS_ROOT}/Target Support Files/Pods-KingGamBit-KingGamBitTests/Pods-KingGamBit-KingGamBitTests-resources.sh
 ${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle
 ${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf
 ${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf

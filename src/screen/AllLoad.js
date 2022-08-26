@@ -12,8 +12,10 @@ import AppColors from '../Colors/AppColors';
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
-const AllLoad = ({ navigation }) => {
+const AllLoad = ({route, navigation }) => {
 
+
+  const { status } = route.params;
 
   const [data,setdata] = useState([])
   const [spinner,setspinner]=useState(false)
@@ -31,7 +33,15 @@ const AllLoad = ({ navigation }) => {
       
     }, 2000);
 
-  var url = AppUrlCollection.LOADS +'?User_id='+AppConstance.Id;
+    var url ;
+    if(status == ''){
+      url = AppUrlCollection.LOADS +'?User_id='+AppConstance.Id;
+
+    }
+    else{
+      url = AppUrlCollection.LOADS +'?User_id='+AppConstance.Id + '&Status='+status;
+
+    }
 
   fetch(url, {
     method: 'GET',
@@ -102,31 +112,32 @@ const nextpage = (data)=>{
                       nextpage(item);
                     }}>
 
-      <View style={{ height:"20%", backgroundColor: "#EFDF79",borderRadius:10, justifyContent:"center"}}>
+      <View style={{ height:"20%", backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
           <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
       </View>
 
       <View style={{  paddingVertical:"2%", height:"80%", paddingHorizontal:'3%',flexDirection: "row" }}>
 
-          <View style={{  padding:"1%", width: "35%", height: "100%" }}>
+          {/* <View style={{  padding:"1%", width: "35%", height: "100%" }}>
             <Image source={require('../assets/bk.png')}  style={{width:"100%",borderRadius:10, height:"100%"}} />
-          </View>
+          </View> */}
 
 
 
 
-          <View style={{  width: "65%",paddingHorizontal:"1%", alignItems: "flex-start", justifyContent: "space-around" }}>
+          <View style={{  width: "90%",paddingHorizontal:"1%", alignItems: "flex-start", justifyContent: "space-around" }}>
 
-            <View style={{  width: "100%", }}>
-              <Text style={styles.txt}>Pick Up Location: {item.P_Address}</Text>
+            <View style={{  width: "100%",flexDirection:'row' }}>
+           
+              <Text style={styles.txt}>Pick Up: {item.P_Address}</Text>
             </View>
 
-            <View style={{  width: "100%" }}>
-              <Text style={styles.txt}>Drop Off Location:: {item.D_Address}</Text>
+            <View style={{  width: "100%" , flexDirection:'row'}}>
+              <Text style={styles.txt}>Drop Off: {item.D_Address}</Text>
             </View>
 
             <View style={{  width: "100%", }}>
-              <Text style={styles.txt}>Status: {item.Status == '0'? "In Transit":"Complete"}</Text>
+              <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":"Completed"}</Text>
             </View>
 
           </View>
@@ -229,10 +240,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         paddingHorizontal:10,
         justifyContent:'space-between',
-        backgroundColor:'#EFDF79'
+        backgroundColor:AppColors.Appcolor
       },
   txt: {
-    color: 'black',
+    color: 'white',
     alignSelf:"center",
     
   }

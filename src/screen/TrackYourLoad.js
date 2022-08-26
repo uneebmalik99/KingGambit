@@ -6,12 +6,9 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
 import MapView, { PROVIDER_GOOGLE ,Geojson, Marker} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
-// import database from '@react-native-firebase/database';
+import database from '@react-native-firebase/database';
 
 const TrackYourDelivery = ({route, navigation}) => {
-
-
-
   // const reference = database().ref('/DriverLocations');
 
   const { data ,plat ,plong,dlat,dlong} = route.params;
@@ -35,6 +32,8 @@ const TrackYourDelivery = ({route, navigation}) => {
   })
   const mapRef =useRef()
 
+  const [driverplatitude, setdriverplatitude] = useState(plat)
+  const [driverplongitude, setdriverplongitude] = useState(plong)
   
   const [platitude , setplatitude] = useState(plat)
   const [plongitude , setplongitude] = useState(plong)
@@ -45,10 +44,22 @@ const TrackYourDelivery = ({route, navigation}) => {
 
   useEffect(()=>{
 
+    database()
+    .ref('/kingGamBit/Loads/1')
+    .on('value', snapshot => {
+
+      let C_Latitude = snapshot.child('C_Latitude');
+      let C_Longitude = snapshot.child('C_Longitude');
+      // setdriverplatitude(C_Latitude)
+      // setdriverplongitude(C_Longitude)
+      console.log(C_Latitude , C_Longitude);
+
+      console.log('User data: ', snapshot.val());
+    });
+    
   // console.log(parseFloat(data.P_Latitude));
 
-  let floatNuumber = parseFloat(data.P_Latitude);
-  console.log(floatNuumber);
+
      },[])
 
 
@@ -72,13 +83,34 @@ const TrackYourDelivery = ({route, navigation}) => {
 
       <MapView 
     style={{width:"100%",height:"100%"}}
-    // initialRegion={
-    //   pickupLocation
-    // }
+    initialRegion={
+      {
+        latitude:platitude, longitude:plongitude,
+        latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      }
+    }
   >
-    <Marker
+
+<Marker
     coordinate={{latitude:platitude, longitude:plongitude}}
-    />
+   
+    >
+      </Marker>
+
+{/* {data.Driver_Id != null ? */}
+    <Marker
+    coordinate={{latitude:driverplatitude, longitude:driverplongitude}}
+   
+    >
+            <Image source={require('../assets/car.png')} resizeMode={'contain'} resizeMethod={'resize'}  />
+
+      </Marker>
+      {/* :
+      null
+
+} */}
+
 
     <Marker
     coordinate={{latitude:dlatitude, longitude:dlongitude}}

@@ -25,6 +25,7 @@ import AppConstance, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import StarReview from 'react-native-star-review'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -101,10 +102,10 @@ export function DrawerContent(props) {
       </View>
       <View style={styles.drawerContent}>
    
-        <DrawerContentScrollView style={{ paddingVertical: 0,paddingTop:0, marginTop:5, }} {...props}>
+      <DrawerContentScrollView style={{ paddingVertical: 0,paddingTop:0, marginTop:5, }} {...props}>
           
           <Drawer.Section style={styles.drawerSection}>
-            <DrawerItem
+            {/* <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="home-outline" color="black" size={size} />
               )}
@@ -113,42 +114,70 @@ export function DrawerContent(props) {
               // onPress={() => {
               //   props.navigation.navigate("Home");
               // }}
-            />
+            /> */}
             <DrawerItem
+              icon={({ color, size }) => (
+                <AntDesign name="CodeSandbox" size={size} color="black" />
+              )}
+              label={'Loads'}
+              labelStyle={{ color: "black" }}
+              onPress={() => {
+                props.navigation.navigate("allLoad", {status:''});
+              }}
+            />
+            {/* <DrawerItem
               icon={({ color, size }) => (
                 <Icon name="car" size={size} color="black" />
               )}
               label={AppConstance.Email}
               labelStyle={{ color: "black" }}
+              // labelStyle={{ color: "black" }}
+              onPress={() => {
+                props.navigation.navigate("Profile");
+              }}
              
-            />
+            /> */}
             <DrawerItem
               icon={({ color, size }) => (
-                <FontAwesome name="ship" size={size - 2} color="black" />
-              )}
-              label={AppConstance.Phone}
+                <MaterialCommunityIcons  name='account-circle-outline' 
+                onPress={() => { navigation.navigate('profile')}}
+                style={{alignSelf:'center',}} size={30} color='black'/>              )}
+              label={'Profile'}
               labelStyle={{ color: "black" }}
               onPress={() => {
-                props.navigation.navigate("ContainerCarlist");
+                props.navigation.navigate("Profile");
               }}
             />
             <DrawerItem
             style={{marginLeft:15}}
               icon={({ color, size }) => (
-                <FontAwesome5 name="file-invoice" size={size} color="black" />
+                <Ionicons name="ios-settings-outline" size={size} color="black" />
               )}
-              label={AppConstance.DateofBirth}
+              label={'Setting'}
               labelStyle={{ color: "black" }}
-              
+              onPress={() => {
+                props.navigation.navigate("Setting");
+              }}
             />
-            <DrawerItem
+              <DrawerItem
+            style={{marginLeft:15}}
+              icon={({ color, size }) => (
+                <MaterialIcons name="contact-support" size={size} color="black" />
+              )}
+              label={'Contact Us'}
+              labelStyle={{ color: "black" }}
+              onPress={() => {
+                props.navigation.navigate("Contact");
+              }}
+            />
+            {/* <DrawerItem
               icon={({ color, size }) => (
                 <AntDesign name="customerservice" size={size} color="black" />
               )}
               label={AppConstance.EIN}
               labelStyle={{ color: "black" }}
              
-            />
+            /> */}
         
           </Drawer.Section>
         </DrawerContentScrollView>

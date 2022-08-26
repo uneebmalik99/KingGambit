@@ -14,7 +14,7 @@ const deviceWidth = Dimensions.get("window").width;
 // const image = {require('    ')};
 const Login = ({navigation}) => {
 
-  const [email,setemail] = useState('Uneeb@gmail.com')
+  const [email,setemail] = useState('uneebmalik99@gmail.com')
   const [password,setpassword] = useState('12345678')
   const [spinner,setspinner]=useState(false)
   const [firebasetoken, setfirebasetoken] =useState('')
@@ -92,7 +92,9 @@ alert(e)
     let value = {};
     value.Email = email;
     value.Password=password;
-    value.Device_id=firebasetoken
+    // value.Device_id=firebasetoken
+
+    value.Device_id='ffnCLL6GQ2GWx9o7J_gemz:APA91bEgiETXXJysMxw0UtOhZ5z5cr8z6nYB1LyY6t1M8B1AwRv3Ts6E0UaE2_eDICIa2IIeojY0i3jn8DRvje256hLOUGKZFpAxKTci5p6DrrWgXy82bQKhmbCTAzjcf1xpQT23qakt'
 
     var url =AppUrlCollection.LOGIN;
 
@@ -100,6 +102,7 @@ alert(e)
       method: 'POST',
       headers: {
         'Content-Type':  'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(value),
   })

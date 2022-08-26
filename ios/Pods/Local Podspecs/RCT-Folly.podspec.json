@@ -80,7 +80,10 @@
     "folly/net/detail/*.h",
     "folly/portability/*.h"
   ],
-  "libraries": "c++abi",
+  "libraries": [
+    "stdc++",
+    "c++abi"
+  ],
   "pod_target_xcconfig": {
     "USE_HEADERMAP": "NO",
     "CLANG_CXX_LANGUAGE_STANDARD": "c++17",
@@ -105,11 +108,7 @@
         "folly/concurrency/CacheLocality.cpp",
         "folly/detail/Futex.cpp",
         "folly/synchronization/ParkingLot.cpp",
-        "folly/portability/Malloc.cpp",
-        "folly/concurrency/CacheLocality.h",
-        "folly/synchronization/ParkingLot.h",
-        "folly/synchronization/SanitizeThread.h",
-        "folly/system/ThreadId.h"
+        "folly/portability/Malloc.cpp"
       ],
       "preserve_paths": [
         "folly/concurrency/CacheLocality.h",

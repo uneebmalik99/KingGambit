@@ -1,24 +1,28 @@
 import React, { useState , useEffect} from 'react'
-import { View, Text,TextInput,StyleSheet,Button, ScrollView, SafeAreaView,ImageBackground ,Dimensions, TouchableOpacity, Alert} from 'react-native'
+import { View, Text,TextInput,StyleSheet,Button, ScrollView, SafeAreaView,ImageBackground ,Dimensions, TouchableOpacity, Alert, Image} from 'react-native'
 import { ActivityIndicator, Appbar } from "react-native-paper";
-import AppUrlCollection from '../UrlCollection/AppUrlCollection';
+// import AppUrlCollection from '../UrlCollection/AppUrlCollection';
 import SelectList from 'react-native-dropdown-select-list'
-import DeviceInfo from 'react-native-device-info';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
-
+// import ImagePicker from 'react-native-image-crop-picker';
+import AppUrlCollection from '../UrlCollection/AppUrlCollection';
+import AppConstance from '../constance/AppConstance';
+import { Input } from 'react-native-elements';
 // or ES6+ destructured imports
+import DocumentPicker from 'react-native-document-picker';
 
 import { getUniqueId, getManufacturer } from 'react-native-device-info';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width
-
+let editableColor ='#EFDF79'
 
 
 const Profile = ({navigation}) => {
 
 
   const [spinner,setspinner] = useState(false)  
+  const [imageuser,setimageuser] = useState('https://reactjs.org/logo-og.png')
   const [deviceId,setdeviceId] = useState('')
   const [showIndicator,setshowIndicator] = useState(false)
   const [selected, setSelected] = useState()
@@ -26,12 +30,19 @@ const Profile = ({navigation}) => {
   const data = [
       {key:'0',value:'Bank Info'},{key:'1',value:'Credit Card'},
       ]
+
+
+  const [Editable,setEditable] = useState(false)
+  const [editableColoru,seteditableColoru] = useState()
+
   const [email,setemail] = useState('')
   const [name,setname] = useState('')
   const [phone,setphone] = useState('')
   const [dateofbirth,setdateofbirth] = useState('')
-  const [companyName,setcompanyName] = useState('')
-  const [ein,setein] = useState('')
+  // const [snn,setsnn] = useState('')
+  // const [dl,setdl] = useState('')
+  const [CompanyName, setCompanyName] = useState('')
+  const [EIN, setEIN] = useState('')
   const [bankinfo,setbankinfo] = useState('')
   const [bankacountnumber,setbankacountnumber] = useState('')
   const [creditcardnumber,setcreditcardnumber] = useState('')
@@ -39,126 +50,175 @@ const Profile = ({navigation}) => {
   const [securitycode,setsecuritycode] = useState('')
   const [zipcode,setzipcode] = useState('')
   const [password,setpassword] = useState('')
+  const [paymentType,setpaymentType] = useState(selected)
   const [role,setrole] = useState('')
+const [DrivePicture,setDrivePicture]= useState('')
+const [states,setstates]=useState('')
 
+  const changeInput =()=>{
+    setEditable(true)
+    seteditableColoru('#CE9829')
 
+    // editableColor=editableColoru
+    alert("change")
 
-  const registerApi =()=>{
+  }
+  
+  editableColor=editableColoru
+  
+  const getApi =()=>{
 
-    setshowIndicator(true)
-      setTimeout(() => {
-        setshowIndicator(false)
-      navigation.navigate('login')
-        
-      }, 2000);
+    var url =AppUrlCollection.USER+'/'+AppConstance.Id;
 
-    let value = {};
-    value.Name= name;
-    value.Email = email;
-    value.Phone = phone;
-    value.Date_of_Birth = dateofbirth;
-    value.Company_Name= companyName;
-    value.EIN= ein;
-    value.bankacountnumber=bankacountnumber;
-    value.Password=password;
-    value.Payment_Type= paymenttype;
-    value.Bank_Info=bankinfo;
-    value.Bank_Number=bankacountnumber;
-    value.Credit_Card_No=creditcardnumber;
-    value.Expire_Date=expiredate;
-    value.Security_Code=securitycode;
-    value.Zip_Code=zipcode;
-    value.Token= 'token';
-    value.Role= "0";
-    value.Device_id=123
-
-
-    console.log(value);
-
-    var url =AppUrlCollection.REGISTER;
     fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type':  'application/json',
-        "Accept": 'application/json'
-      },
-      body: JSON.stringify(value),
+        'Accept':'application/json',
+        'Authorization': "Bearer "+AppConstance.AUTH_KEY
+      }
+     
   })
       .then((response) =>  response.json() )
       .then((responseJson) => {
-          if(responseJson.status == 200){
-            console.log('register data response',responseJson);
-            navigation.navigate('login')
-            setshowIndicator(true)
+
+
+        setname(responseJson.Name)
+        setemail(responseJson.Email)
+        setphone(responseJson.Phone)
+        setdateofbirth(responseJson.Date_of_Birth)
+        // setsnn(responseJson.SNN)
+        // setdl(responseJson.DL)
+        // setmcnumber(responseJson.MC_Number)
+        // setdotnumber(responseJson.Dot_Number)
+        // setDrivePicture(responseJson.Driver_Pic)
+        setstates(responseJson.States)
+
+        if(responseJson.Payment_Type == '0')
+        {
+          setbankinfo(responseJson.Bank_Info)
+          setbankacountnumber(responseJson.Bank_Number)
+        }
+        else 
+        {
+          setcreditcardnumber(responseJson.Credit_Card_No)
+          setexpiredate(responseJson.Expire_Date)
+          setsecuritycode(responseJson.Security_Code)
+          
+        }
+
+          if(responseJson.result == 'SUCCESS'){
+            // alert(responseJson.DATA.user.Bank_Info)
+            // alert(JSON.stringify(responseJson))
+
+            console.log('login data response',responseJson);
+            // alert(responseJson.DATA)
+
+        //  loginServiceCall( responseJson , responseJson.user.role, responseJson.user.username, responseJson.user.role_name, responseJson.user.photo)
+
           }else if(responseJson.status == 422){
+            setspinner(false)
+
             alert(responseJson.errors.password)
           }else if(responseJson.status == 401){
+            setspinner(false)
+
             alert(responseJson.error)
           }
-      console.log('Register user data response',responseJson);
+      console.log('login data response',responseJson);
+    //   setspinner(false)  
       })
       .catch((error) => {
+        setspinner(false)
         alert(error)
-        setshowIndicator(true)
           console.warn(error)
       });
-  
-}
-
-  useEffect(() => {
-    
-    let deviceId = DeviceInfo.getDeviceId();
-    setdeviceId(deviceId);
-    // DeviceInfo.getAndroidId().then((androidId) => {
-    //   // androidId here
-    //   // console.log(androidId)
-    //   setdeviceId(androidId)
-    //   // console.log(deviceId)
-
-
-    // });
-  },[]);
  
+  }
+  useEffect(()=>{
+    getApi()
+  },[])
+ 
+    const galleryPic=()=>{
+
+      // ImagePicker.openPicker({
+      //   width: 300,
+      //   height: 400,
+      //   cropping: true
+      // }).then(image => {
+      //   console.log(image);
+      //   setimageuser(image.path)
+      // });
+      // console.log('img')
+    }
+
+ 
+    let uriimage ='../assets/logocrop.png'
     return (
       <>
            <SafeAreaView style={styles.container}>
          
          
-      <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}> 
-        </ImageBackground>
+      {/* <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}> 
+        </ImageBackground> */}
         <Appbar.Header style={styles.header}>
 
         <View style={styles.headview}>
-          <View style={{justifyContent:"center"}}>
-            <Ionicons name='chevron-back' onPress={()=> {navigation.goBack()}} color={'grey'} style={{alignSelf:'center'}} size={25}/>
-            </View>
-          <Text style={{color:"black",fontSize:16,alignSelf:'center'}}>Register</Text>
-          <View>
-            </View>
-        </View>
+
+<Ionicons name='chevron-back-outline' 
+onPress={() => navigation.goBack()}
+style={{alignSelf:'center',}} size={30} color='black'/>
+<Text style={{color:"black",fontSize:16,alignSelf:'center',}}>Profile</Text>
+{/* <Text>Edit</Text> */}
+<Ionicons name='create-outline' 
+onPress={() => changeInput()}
+style={{alignSelf:'center',}} size={30} color='black'/>
+</View>
 
       </Appbar.Header>
 
 
           <ScrollView>
      
-          <View style={styles.logtxt}>   
       {/* <ActivityIndicator size='large' color="#EFDF79" animating={showIndicator}  /> */}
-          
+       
+          <TouchableOpacity style={{alignSelf:"center"}}
+          onPress={galleryPic}
+          >
+            {/* "../assets/logocrop.png" */}
+          {imageuser == ''?
+                         <Image style={{  borderRadius:130/2,
+                         height:130,
+                         width:130,}} source={{uri:'https://reactjs.org/logo-og.png'}} />
+                    :
+                         <Image style={{  borderRadius:130/2,
+                         height:130,
+                         width:130,}} source={{uri:imageuser}} />
+
+          }
+             {/* <Image style={{width:"100%",height:"80%",}} source={{uri:imageuser}} /> */}
+             
+          </TouchableOpacity>
+          <View style={styles.logtxt}>   
    
-             <TextInput   
+             <TextInput  
+             editable={Editable} 
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setname(Text)}}
         value={name}
-        style={styles.input}
+        style={[styles.input, {borderColor:name.length>0 && Editable == false ?"#EFDF79":"red"}]}
         placeholder="Name"/>
          <TextInput   
+             editable={Editable} 
+
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setemail(Text)}}
         value={email}
         style={styles.input}
-        placeholder="Email "/>
+        placeholder="Enter Email "/>
          <TextInput   
+             editable={Editable} 
+
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setphone(Text)}}
         value={phone}
@@ -168,33 +228,52 @@ const Profile = ({navigation}) => {
         />
        
          <TextInput   
+             editable={Editable} 
+
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setdateofbirth(Text)}}
         value={dateofbirth}
         style={styles.input}
         placeholder="Date of Birth"/>
-         <TextInput   
+       
+        <TextInput   
+             editable={Editable} 
+
+        onChangeText={(Text)=>{setCompanyName(Text)}}
+        value={CompanyName}
         placeholderTextColor={'grey'}
-        onChangeText={(Text)=>{setcompanyName(Text)}}
-        value={companyName}
         style={styles.input}
         placeholder="Company Name"/> 
-        <TextInput   
-        onChangeText={(Text)=>{setein(Text)}}
-        value={ein}
+          <TextInput   
+             editable={Editable} 
+
         placeholderTextColor={'grey'}
+        onChangeText={(Text)=>{setEIN(Text)}}
+        value={EIN}
         style={styles.input}
         placeholder="EIN"/> 
-
-
+        {/* <TextInput   
+             editable={Editable} 
+        onChangeText={(Text)=>{setmcnumber(Text)}}
+        value={mcnumber}
+        placeholderTextColor={'grey'}
+        style={styles.input}
+        placeholder=" MC Number"/> 
+        <TextInput   
+             editable={Editable} 
+        onChangeText={(Text)=>{setdotnumber(Text)}}
+        value={dotnumber}
+        placeholderTextColor={'grey'}
+        style={styles.input}
+        placeholder="DOT Number"/>  */}
 
       <SelectList 
       
       dropdownStyles={{backgroundColor:"white", borderWidth: 1,borderColor:'#EFDF79',borderRadius:15,}}
-      boxStyles={{backgroundColor:"white", borderWidth: 1, height:40,  margin: 12,
+      boxStyles={{backgroundColor:"white", borderWidth: 1, height:44,  margin: 12,
       alignSelf:"center",paddingHorizontal:10, alignContent:'center', width:"100%",borderColor:'#EFDF79',borderRadius:10,}}
       setSelected={setSelected}  
-      onSelect={() => { setpaymenttype(selected)}}
+      
       data={data}  />
 
 {
@@ -202,14 +281,18 @@ const Profile = ({navigation}) => {
   ?
   <View >
    <TextInput   
+             editable={Editable} 
+
             onChangeText={(Text)=>{setbankinfo(Text)}}
             value={bankinfo}
         placeholderTextColor={'grey'}
         style={styles.DropDowninput}
         placeholder="Bank Information"/>
         <TextInput   
+             editable={Editable} 
+
             onChangeText={(Text)=>{setbankacountnumber(Text)}}
-            // value={bankacountnumber}
+            value={bankacountnumber}
         placeholderTextColor={'grey'}
         style={styles.DropDowninput}
         placeholder="Account Number"/>
@@ -219,6 +302,8 @@ const Profile = ({navigation}) => {
 
     <View >
         <TextInput   
+             editable={Editable} 
+
         onChangeText={(Text)=>{setcreditcardnumber(Text)}}
         value={creditcardnumber}
         placeholderTextColor={'grey'}
@@ -227,6 +312,8 @@ const Profile = ({navigation}) => {
         secureTextEntry={true}
         /> 
      <TextInput   
+             editable={Editable} 
+
          onChangeText={(Text)=>{setexpiredate(Text)}}
          value={expiredate}
         placeholderTextColor={'grey'}
@@ -235,12 +322,16 @@ const Profile = ({navigation}) => {
         secureTextEntry={true}
         /> 
          <TextInput   
+             editable={Editable} 
+
          onChangeText={(Text)=>{setsecuritycode(Text)}}
          value={securitycode}
         placeholderTextColor={'grey'}
         style={styles.DropDowninput}
         placeholder="Security Code"/>
         <TextInput   
+             editable={Editable} 
+
         onChangeText={(Text)=>{setzipcode(Text)}}
         value={zipcode}
         placeholderTextColor={'grey'}
@@ -254,42 +345,20 @@ const Profile = ({navigation}) => {
     </View>
 }
 
-        <TextInput   
-         onChangeText={(Text)=>{setpassword(Text)}}
-         value={password}
-        style={styles.input}
-        secureTextEntry={true}
-        placeholderTextColor={'grey'}
-        placeholder="Password"/>
-
-        {/* <TextInput   
-         onChangeText={(Text)=>{setpassword(Text)}}
-         value={password}
-        style={styles.input}
-        secureTextEntry={true}
-        placeholderTextColor={'grey'}
-        placeholder="Password"/> */}
+    
 
       <View style={styles.btnBorder}>
 
      <TouchableOpacity style={styles.btnregister}
             onPress={()=>{registerApi()}}
-
-    //  onPress={() => navigation.navigate('login')}
     >
-        {/* onPress={()=>{registerApi()}} */}
-      <Text style={{color:"black",fontSize:15,}}>Sign Up</Text>
+        
+      <Text style={{color:"black",fontSize:15,}}>Save</Text>
    </ TouchableOpacity>
     </View>
 
     </View>
 
-    <TouchableOpacity
-        style={{marginTop:50,alignSelf:"center"}}
-        onPress={() => navigation.navigate('login')}
-      >
-        <Text style={{color:'#EFDF79'}}>Already have an account? Login</Text>
-      </TouchableOpacity>
 
     </ScrollView>
     </SafeAreaView>
@@ -305,7 +374,8 @@ const styles = StyleSheet.create({
       //   justifyContent: center,
       // marginTop: 170,
         // padding: 24,
-        backgroundColor: "transparent",
+        // backgroundColor: "transparent",
+        backgroundColor:"#EFDF79"
       },
     input: {
       height: 40,
@@ -314,7 +384,7 @@ const styles = StyleSheet.create({
       padding: 10,
       borderWidth: 1,
       width:"100%",
-      borderColor:'#EFDF79',
+      borderColor:editableColor, 
       borderRadius:10,
       backgroundColor:"white",
       // width:190
@@ -338,7 +408,7 @@ const styles = StyleSheet.create({
   // marginTop:20,
   justifyContent:"center",
   height:"70%",
-  width:'70%',
+  width:'71%',
   alignSelf:"center",
   alignItems:"center",
   borderRadius:400/2,
@@ -373,14 +443,18 @@ const styles = StyleSheet.create({
       marginTop:10,
       borderColor:'#EFDF79',
     borderWidth:1,
-    
-    backgroundColor:'rgba(0,0,0,0.3)',
-    width:"90%",
+    flex:1,
+    // backgroundColor:'rgba(0,0,0,0.3)',
+    backgroundColor:"white",
+    width:"100%",
+    // height:"%",
     alignSelf:"center",
   paddingVertical:10,
   paddingHorizontal:20,
-  borderRadius:10,
-  marginBottom:10,
+  // borderRadius:40,
+  borderTopRightRadius:40,
+  borderTopLeftRadius:40
+  // marginBottom:100,
 },
 header: {
   elevation: 0,

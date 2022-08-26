@@ -1,5 +1,5 @@
-framework module Pods_KingGambit_KingGambitTests {
-  umbrella header "Pods-KingGambit-KingGambitTests-umbrella.h"
+module Pods_KingGamBit_KingGamBitTests {
+  umbrella header "Pods-KingGamBit-KingGamBitTests-umbrella.h"
 
   export *
   module * { export * }

@@ -1,5 +1,5 @@
 import React,{useState,useRef, useEffect} from 'react'
-import { View,Button,Modal,Image, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, ScrollView, PermissionsAndroid } from 'react-native'
+import { View,Button,Modal,Image, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, ScrollView, PermissionsAndroid, Platform } from 'react-native'
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
 import DatePicker from 'react-native-date-picker'
 import { Appbar } from "react-native-paper";
@@ -47,6 +47,8 @@ const CreateLoad = ({navigation}) => {
   const [currentloclon,setcurrentloclon ]=useState(-101.299591)
   const [pickupaddress , setpickupaddress] = useState('From')
   const [ vehicletype , setvehicletype] = useState('0')
+
+  const [ Distance , setDistance] = useState('')
   const [selected, setSelected] = useState()
 
   const data = [
@@ -113,6 +115,9 @@ const CreateLoad = ({navigation}) => {
 	const mapRef = useRef(null);
 
   const requestCameraPermission = async () => {
+   if(Platform.OS == 'ios'){
+    callLocation()
+   }else{
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -130,30 +135,15 @@ const CreateLoad = ({navigation}) => {
 
         console.log('Granted');
         callLocation()
-        // Geolocation.getCurrentPosition(
-        //   (position) => {
-        //     console.log(position);
-        //     setcurrentloclat(position.coords.latitude)
-        //     setcurrentloclon(position.coords.longitude)
-        //     Geocoder.from(position.coords.latitude, position.coords.longitude)
-        //     .then(json => {
-        //       var addressComponent = json.results[0].formatted_address;
-        //       setpickupaddress(addressComponent)
-        //       })
-        //     .catch(error => console.warn(error));
-        //   },
-        //   (error) => console.log(error)
-
-        //   //  this.setState({ error: error.message }),
-        //   // { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
-        // );
-        // console.log("You can use the camera");
+     
       } else {
         console.log("Camera permission denied");
       }
     } catch (err) {
       console.warn(err);
     }
+   }
+    
   };
 
   const callLocation = () => {
@@ -166,8 +156,8 @@ const CreateLoad = ({navigation}) => {
             setcurrentloclon(position.coords.longitude)
 
 
-            setcurrentloclat(32.524654)
-            setcurrentloclon(-83.600664)
+            // setcurrentloclat(32.524654)
+            // setcurrentloclon(-83.600664)
 						let currentLatitude =position.coords.latitude
             let currentLongitude = position.coords.longitude
             
@@ -260,11 +250,19 @@ const CreateLoad = ({navigation}) => {
       {latitude: dlatitude, longitude: dlongitude},
     );
 
+    let t= pdis / 1000 
+    t= t *0.621371
+
+
     let d= pdis / 1000 
 
-    setdistance(d)
+   d= d *0.621371
 
-    calculateprice(d)
+   console.log('distance'+''+ d);
+    setdistance(d)
+      setDistance(t)
+
+    calculateprice(d )
 
 console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
 );
@@ -385,8 +383,16 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       let p = d *(25)
       p  = p/100
       p= p+d
+
+      p=p.toFixed(0)
+      d=d.toFixed(0)
+
+      // alert(p +"      "+ d)
+
       setdriverprice(d)
       settotalprice(p)
+      // alert(p +'    '+d)
+      console.log(d , p);
       refRBSheet2.current.close()
         
     }else  if (vehicletype == '1'){
@@ -400,6 +406,8 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       let p = d *(25)
       p  = p/100
       p= p+d
+      p=p.toFixed(0)
+      d=d.toFixed(0)
       setdriverprice(d)
       settotalprice(p)
       refRBSheet2.current.close()
@@ -415,6 +423,8 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       let p = d *(25)
       p  = p/100
       p= p+d
+      p=p.toFixed(0)
+      d=d.toFixed(0)
       setdriverprice(d)
       settotalprice(p)
       refRBSheet2.current.close()
@@ -730,7 +740,8 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       <MapView
       scrollEnabled={true}
       onRegionChange={onRegionChangeDropoff}
-      provider={MapView.PROVIDER_GOOGLE}
+
+      // provider={PROVIDER_GOOGLE}
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
         style={styles.map}
         showsUserLocation={true}
@@ -826,7 +837,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
         
         <MapView
        ref={mapRef}
-       provider={MapView.PROVIDER_GOOGLE}
+      //  provider={MapView.PROVIDER_GOOGLE}
         scrollEnabled={true}
         onMapReady={() => setIsMapReady(true)}
           provider={PROVIDER_GOOGLE} // remove if not using Google Maps
@@ -913,7 +924,7 @@ null
       
 
 
-      <View style={{bottom:0,position:'absolute',alignSelf:'center', height:deviceHeight*0.30, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0.5, borderRadius:10, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
+      <View style={{bottom:0,position:'absolute',alignSelf:'center', height: Platform.OS == 'ios'? deviceHeight*.25:deviceHeight*0.30, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0.3, borderRadius:25, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
 
      <View
      style={{flexDirection:'row',height:'30%'}}
@@ -923,7 +934,7 @@ null
        <TouchableOpacity
        onPress={()=> {setvehicletype('0')}}
        style={{backgroundColor:vehicletype == '0' ?AppColors.Appcolor:"white",marginRight:5, marginVertical:'1%',borderColor:AppColors.Appcolor,borderWidth:0.6, borderRadius:10,justifyContent:'center', paddingHorizontal:'3%'}}>
-         <Text style={{color:vehicletype== "0"? "white":'grey'}}>Reefer Van</Text>
+         <Text style={{color:vehicletype== "0"? "white":'grey', }}>Reefer Van</Text>
        </TouchableOpacity>
 
        <TouchableOpacity 
@@ -947,8 +958,8 @@ null
           <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={pickupaddress == 'From' || pickupaddress.length>0 ? "grey": AppColors.skyblue} size={15} />
           <TouchableOpacity 
           onPress={()=> {refRBSheet.current.open()}}
-          style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
-          <Text style={{fontSize:16, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}}>{pickupaddress}</Text>
+          style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',textAlignVertical:'center',justifyContent:'center', }}>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'100%',  textAlign:'left'}}>{pickupaddress}</Text>
          </TouchableOpacity>
           </View>
 
@@ -956,8 +967,8 @@ null
           <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={dropoffaddress == 'To' || dropoffaddress.length >0 ? "grey": AppColors.skyblue}  size={15} />
           <TouchableOpacity 
           onPress={()=> {refRBSheet2.current.open()}}
-          style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
-          <Text style={{fontSize:16, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}}>{dropoffaddress}</Text>
+          style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,justifyContent:'center', borderColor:'#CACFD2',}}>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'100%',   textAlign:'left'}}>{dropoffaddress}</Text>
          </TouchableOpacity>
           </View>
 
@@ -979,9 +990,14 @@ null
          
 
 <TouchableOpacity
-style={{width:'95%',alignSelf:'center',borderRadius:400/2,height:'25%',justifyContent:'center', backgroundColor:AppColors.Appcolor}}
+
+disabled={pickupaddress != 'From' && dropoffaddress != 'To'? false:true}
+style={{width:'95%',alignSelf:'center',borderRadius:400/2,height:'25%',justifyContent:'center', backgroundColor:pickupaddress != 'From' && dropoffaddress != 'To'? AppColors.Appcolor:'grey'   }}
 onPress={() => 
-{  navigation.navigate('CreateLoadconfirmation',{plat:platitude,plong:plongitude,pAdd:pickupaddress, dlat:dlatitude,dlong:dlongitude, dAdd:dropoffaddress, tprice:totalprice, dprice:driverprice, vtype:vehicletype})}
+{ if(pickupaddress != 'From' && dropoffaddress != 'To' )
+{ navigation.navigate('CreateLoadconfirmation',{plat:platitude,plong:plongitude,pAdd:pickupaddress, dlat:dlatitude,dlong:dlongitude, dAdd:dropoffaddress, tprice:totalprice, dprice:driverprice, vtype:vehicletype})
+
+}}
 // CreateLoadAPI()
 }
 >

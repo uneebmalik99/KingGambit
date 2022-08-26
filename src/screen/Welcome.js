@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { View, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, Button, ScrollView } from 'react-native'
 import { Appbar } from "react-native-paper";
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
@@ -6,22 +6,103 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import database from '@react-native-firebase/database';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import firebase from '@react-native-firebase/app';
 
 import AppColors from '../Colors/AppColors';
 
 const WelcomeLogistic = ({navigation}) => {
+
+  const [spinner , setspinner ] = useState(false)
+
+  const getdata = async () => {
+
+
+    try {
+      setspinner(true)
+
+   let Id =  await AsyncStorage.getItem('Id')
+    let Name =  await AsyncStorage.getItem('Name')
+    let Email = await AsyncStorage.getItem('Email')
+    let Phone = await AsyncStorage.getItem('Phone')
+    let DateofBirth = await AsyncStorage.getItem('DateofBirth')
+    let CompanyName = await AsyncStorage.getItem('CompanyName')
+    let EIN = await AsyncStorage.getItem('EIN')
+    let Role = await AsyncStorage.getItem('Role')
+    let PaymentType = await AsyncStorage.getItem('PaymentType')
+    AppConstance.Login = "0";
+    AppConstance.Id=Id;
+    AppConstance.Name=Name;
+    AppConstance.Email=Email;
+    AppConstance.Phone=Phone;
+    AppConstance.DateofBirth=DateofBirth;
+    AppConstance.CompanyName=CompanyName;
+    AppConstance.EIN=EIN;
+    AppConstance.Role=Role;
+    AppConstance.PaymentType=PaymentType;
+
+    if(PaymentType	== "0"){
+      let BankInfo =await AsyncStorage.getItem('BankInfo')
+      let BankNumber =await AsyncStorage.getItem('BankNumber')
+      AppConstance.BankInfo=BankInfo;
+      AppConstance.BankNumber=BankNumber;
+    }else{
+      let CreditCardNo = await AsyncStorage.getItem('CreditCardNo')
+      let ExpireDate =await AsyncStorage.getItem('ExpireDate')
+     let SecurityCode= await AsyncStorage.getItem('SecurityCode')
+      let ZipCode =await AsyncStorage.getItem('ZipCode')
+      AppConstance.CreditCardNo=CreditCardNo;
+      AppConstance.ExpireDate=ExpireDate;
+      AppConstance.SecurityCode=SecurityCode;
+      AppConstance.ZipCode=ZipCode;
+    }
+
+    let Token = await AsyncStorage.getItem('Token')
+    AppConstance.AUTH_KEY=Token;
+    setspinner(false)
+
+    }
+    
+     catch (e) {
+      setspinner(false)
+alert(e)
+      console.log(e)
+    }
+
+
+   
+    setspinner(false)
+
+
+
+  
+  
+  }
+
+
   useEffect(()=>{
-database().ref('/kingGamBit/Loads/1').once('value').then((snapshot)=>   {console.log(snapshot)} )
+
+ getdata()
 
 
+  
   },[])
-
 
 
   return (
         <SafeAreaView style={styles.container}>
+
+<Spinner
+        visible={spinner}
+        textContent={"Loading..."}
+        color	={AppColors.Appcolor }
+        animation	='fade'
+        size='large'
+        overlayColor='rgba(0, 0, 0, 0.30)'
+         textStyle={{ color: AppColors.Appcolor }}
+      />
 
 <Appbar.Header style={styles.header}>
 
@@ -39,22 +120,68 @@ database().ref('/kingGamBit/Loads/1').once('value').then((snapshot)=>   {console
 </Appbar.Header>
 
 <ScrollView style={{paddingVertical:0}}>
-<View style={{height:deviceHeight}}>
-<TouchableOpacity 
-        onPress={() => navigation.navigate('createLoad')}
+<View style={{height:deviceHeight, paddingHorizontal:5,}}>
 
-style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around', backgroundColor:AppColors.AppGrey}}>
+
+<View style={{flexDirection:'row',justifyContent:"space-around", width:'100%', height:'25%'}}>
+
+  <TouchableOpacity 
+          onPress={() => navigation.navigate('allLoad', {status:''})}
+
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
 <Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
-       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Create a Load</Text>
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>All Loads</Text>
   </TouchableOpacity>
 
   <TouchableOpacity 
-          onPress={() => navigation.navigate('allLoad')}
+          onPress={() => navigation.navigate('allLoad', {status:'0'})}
 
-  style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
 <Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
-       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>ALL Load</Text>
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Pending</Text>
   </TouchableOpacity>
+  </View>
+
+
+  <View style={{flexDirection:'row',justifyContent:"space-around", width:'100%', height:'25%'}}>
+
+
+  <TouchableOpacity 
+          onPress={() => navigation.navigate('allLoad', {status:'1'})}
+
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>In Transit</Text>
+  </TouchableOpacity>
+
+
+
+  <TouchableOpacity 
+          onPress={() => navigation.navigate('allLoad', {status:'2'})}
+
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Completed</Text>
+  </TouchableOpacity>
+
+
+
+ 
+</View>
+
+
+<View style={{flexDirection:'row',justifyContent:"space-around", width:'100%', height:'25%'}}>
+
+<TouchableOpacity 
+        onPress={() => navigation.navigate('createLoad')}
+
+style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around', backgroundColor:AppColors.AppGrey}}>
+
+<Ionicons name={'add'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Create a Load</Text>
+  </TouchableOpacity>
+
+  </View>
 
   {/* <TouchableOpacity 
           onPress={() => {savedata()}}

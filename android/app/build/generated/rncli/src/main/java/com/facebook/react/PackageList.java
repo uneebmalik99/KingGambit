@@ -11,6 +11,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+// @notifee/react-native
+import io.invertase.notifee.NotifeePackage;
 // @react-native-async-storage/async-storage
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 // @react-native-community/geolocation
@@ -27,16 +29,22 @@ import org.reactnative.maskedview.RNCMaskedViewPackage;
 import com.henninghall.date_picker.DatePickerPackage;
 // react-native-device-info
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
+// react-native-document-picker
+import com.reactnativedocumentpicker.DocumentPickerPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.RNGestureHandlerPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
+// react-native-push-notification
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 // react-native-reanimated
 import com.swmansion.reanimated.ReanimatedPackage;
 // react-native-safe-area-context
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 // react-native-screens
 import com.swmansion.rnscreens.RNScreensPackage;
+// react-native-snackbar
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
 // react-native-vector-icons
 import com.oblador.vectoricons.VectorIconsPackage;
 
@@ -84,6 +92,7 @@ public class PackageList {
   public ArrayList<ReactPackage> getPackages() {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
+      new NotifeePackage(),
       new AsyncStoragePackage(),
       new GeolocationPackage(),
       new ReactNativeFirebaseAppPackage(),
@@ -92,11 +101,14 @@ public class PackageList {
       new RNCMaskedViewPackage(),
       new DatePickerPackage(),
       new RNDeviceInfo(),
+      new DocumentPickerPackage(),
       new RNGestureHandlerPackage(),
       new MapsPackage(),
+      new ReactNativePushNotificationPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),
+      new SnackbarPackage(),
       new VectorIconsPackage()
     ));
   }
