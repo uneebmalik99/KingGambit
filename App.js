@@ -1,6 +1,6 @@
 import React, {useState, useEffect}from 'react'
-import { View, Text, PermissionsAndroid } from 'react-native'
-import { Alert , Modal ,SafeAreaView,FlatList,TouchableOpacity} from 'react-native';
+import { View, Text, PermissionsAndroid, StyleSheet } from 'react-native'
+import { Alert , Modal ,SafeAreaView,FlatList,TouchableOpacity,Image} from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import AppNavigator from './src/route/AppNavigator'
 import 'react-native-gesture-handler';
@@ -37,6 +37,10 @@ import { DrawerContent } from './src/route/Drawer';
 import AppColors from './src/Colors/AppColors';
 import Setting from './src/screen/Setting';
 import Contact from './src/screen/Contact';
+import AppUrlCollection from './src/UrlCollection/AppUrlCollection';
+
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 const navigationRef = createNavigationContainerRef()
 
@@ -46,6 +50,17 @@ function navigate(name, params) {
   }
 }
 const App = () => {
+  
+  const[maxRating,setMaxRating] = useState([1,2,3,4,5])
+  const[defaultRating,setDefaultRating] = useState(1)
+
+  
+  const starImgFilled ='https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png'
+  const starImgCorner ='https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png'
+  const [CompleteLoadModal,setCompleteLoadModal] = useState(false)
+  const [spinner,setspinner]=useState(false)
+
+
   const [initialRouteName , setinitialRouteName] = useState('splash')
 
   const [notificationModal,setnotificationModal] = useState(false)
@@ -151,7 +166,47 @@ const App = () => {
       console.log('Authorization status:', authStatus);
     }
   }
+  const send =()=>{
+    
+    let value = {};
+  value.User_id = 53;
+  
+  value.load_id = '22';
+  value.Status = '3',
+  value.Rating = '4'
 
+    var url =AppUrlCollection.COMPLETE;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        "Accept": 'application/json'
+      },
+      body: JSON.stringify(value),
+  })
+      .then((response) =>  response.json() )
+      .then((responseJson) => {
+
+        setspinner(false)
+
+          if(responseJson.result == 'SUCCESS'){
+       
+            setCompleteLoadModal(false)
+           
+            console.log('register data response',responseJson);
+
+            // setshowIndicator(true)
+          }
+      console.log('Register user data response',responseJson);
+      })
+      .catch((error) => {
+        alert(error)
+        setspinner(false)
+        // setshowIndicator(true)
+          console.warn(error)
+      });
+  
+  }
   useEffect(async() => {
 
 
@@ -161,9 +216,19 @@ requestUserPermission()
     messaging().onMessage(async remoteMessage => {
 
 
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
      
-    //   if(notificationModal != true)
+      console.log(remoteMessage)
+
+      if(remoteMessage.data.type == '3')
+      {
+        setCompleteLoadModal(true)
+      }
+      else if(remoteMessage.data.type == '2')
+      {
+
+      }
+          //   if(notificationModal != true)
     //   {
     //     setnotificationModal(true)
     //   }
@@ -207,6 +272,115 @@ requestUserPermission()
   return (
 
   <NavigationContainer ref={navigationRef}>
+     <Spinner
+        visible={spinner}
+        textContent={"Loading..."}
+        color	={AppColors.Appcolor }
+        animation	='fade'
+        size='large'
+        overlayColor='rgba(0, 0, 0, 0.30)'
+         textStyle={{ color: AppColors.Appcolor }}
+      />
+<Modal
+       transparent={true}
+       visible={CompleteLoadModal}
+       animationType="fade"
+       
+       >
+        
+        <SafeAreaView style={{backgroundColor:"#000000aa",flex:1}} >
+        <View style={{backgroundColor:"#ffffff",borderTopRightRadius:15,borderTopLeftRadius:15
+        ,width:"90%" ,alignSelf:"center",height:"50%",justifyContent:"center",marginTop:"20%",
+        borderWidth:1,borderColor:AppColors.Appcolor}} >
+     
+     <Text style={{paddingHorizontal:10}}>Hi " client Name" Your Load " " are delivered by " Driver Name "</Text>
+     {/* <TextInput 
+// style={{}}
+placeholder="" 
+            // value={message} 
+            editable={false}
+            numberOfLines={4}
+            multiline={true}
+            style={{borderWidth:1,borderColor:AppColors.Appcolor,width:"90%"
+          ,alignSelf:"center"}}
+            onChangeText={text=>setMessage(text)}/> */}
+
+ <View 
+            style={styles.customRatingBarStyle}
+            >
+              
+                {
+                    maxRating.map((item,key)=>{
+                        return(
+
+                          
+                            <TouchableOpacity
+                            activeOpacity={0.7}
+                            key={item}
+                            onPress ={()=> setDefaultRating(item)}
+                            >
+                                <Image
+                                    style={styles.starImgStyle}
+                                    source={
+                                        item <= defaultRating ?
+                                        {uri: starImgFilled}
+                                        :
+                                        {uri : starImgCorner}
+                                    }
+                                />
+                                
+                            </TouchableOpacity>
+                        )
+                    })
+                    
+                }
+                
+            </View>
+     <View >
+     <Text style={styles.text}>
+               
+               {
+                   defaultRating +"/"+ maxRating.length
+               }
+               </Text>
+
+
+
+           </View>
+
+           <View style={{flexDirection:"row",justifyContent:'space-around',width:"100%",
+           height:'33%',marginTop:"3%"}}>
+
+<TouchableOpacity 
+ onPress={()=>setshowModal(false)}
+style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
+ borderRadius:15,height:"50%",}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+            Ignore</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+         onPress={()=>send()}
+        style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor, borderRadius:15,
+        height:"50%"}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+        Send                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          </Text>
+        </TouchableOpacity>
+        
+            </View>
+
+
+  
+
+
+ 
+
+
+</View>
+
+</SafeAreaView>
+
+       </Modal>
 
 
       {notificationModal == true ? 
@@ -301,5 +475,25 @@ requestUserPermission()
   </NavigationContainer>
   )
 }
+const styles = StyleSheet.create({
 
+
+  customRatingBarStyle:{
+    justifyContent:"center",
+    flexDirection:"row",
+    marginTop:30
+  },
+  starImgStyle:{
+    width:40,
+    height:40,
+    resizeMode:'cover'
+
+}
+,
+  text:{
+      alignSelf:"center",
+      marginTop:70,
+      color:"black"
+  },
+})
 export default App

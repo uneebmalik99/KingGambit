@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import { View, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, Button, ScrollView } from 'react-native'
+import { View, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet,Image, Button, ScrollView, Modal } from 'react-native'
 import { Appbar } from "react-native-paper";
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
@@ -12,10 +12,71 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import firebase from '@react-native-firebase/app';
 
 import AppColors from '../Colors/AppColors';
+import AppUrlCollection from '../UrlCollection/AppUrlCollection';
+
+
 
 const WelcomeLogistic = ({navigation}) => {
 
   const [spinner , setspinner ] = useState(false)
+  const[maxRating,setMaxRating] = useState([1,2,3,4,5])
+  const[defaultRating,setDefaultRating] = useState(1)
+
+  
+  const starImgFilled ='https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png'
+  const starImgCorner ='https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png'
+
+  const send =()=>{
+    
+    let value = {};
+  value.User_id = 53;
+  
+  value.load_id = '22';
+  value.Status = '3',
+  value.Rating = '4'
+
+    var url =AppUrlCollection.COMPLETE;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        "Accept": 'application/json'
+      },
+      body: JSON.stringify(value),
+  })
+      .then((response) =>  response.json() )
+      .then((responseJson) => {
+
+        setspinner(false)
+
+          if(responseJson.result == 'SUCCESS'){
+            setTimeout(() => {
+              Snackbar.show({
+                text: 'Registered Successfully',
+                duration: Snackbar.LENGTH_SHORT,
+                backgroundColor	:AppColors.Appcolor,
+              });
+              navigation.navigate('login')
+            }, 200);
+           
+            console.log('register data response',responseJson);
+
+            // setshowIndicator(true)
+          }else if(responseJson.status == 422){
+            alert(responseJson.errors.password)
+          }else if(responseJson.status == 401){
+            alert(responseJson.error)
+          }
+      console.log('Register user data response',responseJson);
+      })
+      .catch((error) => {
+        alert(error)
+        setspinner(false)
+        // setshowIndicator(true)
+          console.warn(error)
+      });
+  
+  }
 
   const getdata = async () => {
 
@@ -93,7 +154,126 @@ alert(e)
 
   return (
         <SafeAreaView style={styles.container}>
+          {/* <Modal
+             transparent={true}
+             visible={true}
+             >
+              <SafeAreaView style={{backgroundColor:"#000000aa",}} >
 
+               
+           <Text style={{color:"white"}}>Hi " client Name" Your Load " " are delivered by " Driver Name "</Text>
+           <Text>hi mapo</Text>
+           <Text>hi mapo</Text>
+           <Text>hi mapo</Text>
+           <Text>hi mapo</Text>
+           <Text>hi mapo</Text>
+           <Text>hi mapo</Text>
+
+       
+          
+      </SafeAreaView>
+      
+             </Modal> */}
+{/* <Modal
+       transparent={true}
+       visible={true}
+       animationType="fade"
+       
+       >
+        
+        <SafeAreaView style={{backgroundColor:"#000000aa",flex:1}} >
+        <View style={{backgroundColor:"#ffffff",borderTopRightRadius:15,borderTopLeftRadius:15
+        ,width:"90%" ,alignSelf:"center",height:"50%",justifyContent:"center",marginTop:"20%",
+        borderWidth:1,borderColor:AppColors.Appcolor}} >
+     
+     <Text style={{paddingHorizontal:10}}>Hi " client Name" Your Load " " are delivered by " Driver Name "</Text>
+     {/* <TextInput 
+// style={{}}
+placeholder="" 
+            // value={message} 
+            editable={false}
+            numberOfLines={4}
+            multiline={true}
+            style={{borderWidth:1,borderColor:AppColors.Appcolor,width:"90%"
+          ,alignSelf:"center"}}
+            onChangeText={text=>setMessage(text)}/> 
+
+ <View 
+            style={styles.customRatingBarStyle}
+            >
+              
+                {
+                    maxRating.map((item,key)=>{
+                        return(
+
+                          
+                            <TouchableOpacity
+                            activeOpacity={0.7}
+                            key={item}
+                            onPress ={()=> setDefaultRating(item)}
+                            >
+                                <Image
+                                    style={styles.starImgStyle}
+                                    source={
+                                        item <= defaultRating ?
+                                        {uri: starImgFilled}
+                                        :
+                                        {uri : starImgCorner}
+                                    }
+                                />
+                                
+                            </TouchableOpacity>
+                        )
+                    })
+                    
+                }
+                
+            </View>
+     <View >
+     <Text style={styles.text}>
+               
+               {
+                   defaultRating +"/"+ maxRating.length
+               }
+               </Text>
+
+
+
+           </View>
+
+           <View style={{flexDirection:"row",justifyContent:'space-around',width:"100%",
+           height:'33%',marginTop:"3%"}}>
+
+<TouchableOpacity 
+ onPress={()=>setshowModal(false)}
+style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
+ borderRadius:15,height:"50%",}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+            Ignore</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+         onPress={()=>send()}
+        style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor, borderRadius:15,
+        height:"50%"}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+        Send                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+          </Text>
+        </TouchableOpacity>
+        
+            </View>
+
+
+  
+
+
+ 
+
+
+</View>
+
+</SafeAreaView>
+
+       </Modal> */}
 <Spinner
         visible={spinner}
         textContent={"Loading..."}
@@ -260,6 +440,17 @@ const styles = StyleSheet.create({
   },
   allLoadd:{
     marginTop:20, borderWidth:1.5,borderRadius:10,width:'80%',height:'60%', alignSelf:"center", justifyContent:"center",alignItems:"center",borderColor:'#EFDF79'
-  }
+  },
+  customRatingBarStyle:{
+    justifyContent:"center",
+    flexDirection:"row",
+    marginTop:30
+  },
+  starImgStyle:{
+    width:40,
+    height:40,
+    resizeMode:'cover'
+
+}
 });
 export default WelcomeLogistic

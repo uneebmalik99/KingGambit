@@ -10,6 +10,7 @@ class AppUrlCollection extends Component{
     static CREATELOAD = AppUrlCollection.BASE_URL+'createload';
 
     static STATES = AppUrlCollection.BASE_URL+'stateinfo'
+    static COMPLETE = AppUrlCollection.BASE_URL+'CompleteLoad'
 
     
    
