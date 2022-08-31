@@ -10,8 +10,10 @@ import AppConstance from '../constance/AppConstance';
 import { Input } from 'react-native-elements';
 // or ES6+ destructured imports
 import DocumentPicker from 'react-native-document-picker';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import { getUniqueId, getManufacturer } from 'react-native-device-info';
+import AppColors from '../Colors/AppColors';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width
@@ -22,7 +24,7 @@ const Profile = ({navigation}) => {
 
 
   const [spinner,setspinner] = useState(false)  
-  const [imageuser,setimageuser] = useState('https://reactjs.org/logo-og.png')
+  const [imageuser,setimageuser] = useState('logocrop.png')
   const [deviceId,setdeviceId] = useState('')
   const [showIndicator,setshowIndicator] = useState(false)
   const [selected, setSelected] = useState()
@@ -67,6 +69,7 @@ const [states,setstates]=useState('')
   editableColor=editableColoru
   
   const getApi =()=>{
+    setspinner(true)
 
     var url =AppUrlCollection.USER+'/'+AppConstance.Id;
 
@@ -83,6 +86,7 @@ const [states,setstates]=useState('')
       .then((responseJson) => {
 
 
+        setspinner(false)
         setname(responseJson.Name)
         setemail(responseJson.Email)
         setphone(responseJson.Phone)
@@ -141,26 +145,24 @@ const [states,setstates]=useState('')
  
     const galleryPic=()=>{
 
-      // ImagePicker.openPicker({
-      //   width: 300,
-      //   height: 400,
-      //   cropping: true
-      // }).then(image => {
-      //   console.log(image);
-      //   setimageuser(image.path)
-      // });
-      // console.log('img')
+      
     }
 
- 
     let uriimage ='../assets/logocrop.png'
+
     return (
       <>
            <SafeAreaView style={styles.container}>
-         
-         
-      {/* <ImageBackground source={require('../assets/bk.png')} resizeMode="cover" style={styles.image}> 
-        </ImageBackground> */}
+           <Spinner
+        visible={spinner}
+        textContent={"Loading..."}
+        color	={AppColors.Appcolor }
+        animation	='fade'
+        size='large'
+        overlayColor='rgba(0, 0, 0, 0.30)'
+         textStyle={{ color: AppColors.Appcolor }}
+      />
+
         <Appbar.Header style={styles.header}>
 
         <View style={styles.headview}>
@@ -182,23 +184,21 @@ style={{alignSelf:'center',}} size={30} color='black'/>
      
       {/* <ActivityIndicator size='large' color="#EFDF79" animating={showIndicator}  /> */}
        
-          <TouchableOpacity style={{alignSelf:"center"}}
+          {/* <TouchableOpacity style={{alignSelf:"center"}}
           onPress={galleryPic}
           >
-            {/* "../assets/logocrop.png" */}
           {imageuser == ''?
                          <Image style={{  borderRadius:130/2,
                          height:130,
-                         width:130,}} source={{uri:'https://reactjs.org/logo-og.png'}} />
+                         width:130,}} source={require('../assets/logocrop.png')} />
                     :
-                         <Image style={{  borderRadius:130/2,
+                         <Image style={{  borderRadius:130/2, resizeMode:'contain',
                          height:130,
-                         width:130,}} source={{uri:imageuser}} />
+                         width:130,}} source={require('../assets/logocrop.png')} />
 
           }
-             {/* <Image style={{width:"100%",height:"80%",}} source={{uri:imageuser}} /> */}
              
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <View style={styles.logtxt}>   
    
              <TextInput  

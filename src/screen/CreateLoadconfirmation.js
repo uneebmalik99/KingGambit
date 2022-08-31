@@ -482,7 +482,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
   })
       .then((response) =>  response.json() )
       .then((responseJson) => {
-        navigation.navigate('welcome')
+        // navigation.navigate('welcome')
         console.log('login data response',responseJson);
         setspinner(false)
 
@@ -492,7 +492,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
             duration: Snackbar.LENGTH_SHORT,
             backgroundColor	:AppColors.Appcolor,
           });
-          // navigation.navigate('welcome')
+          navigation.navigate('welcome')
         }, 200);
 
 
@@ -861,23 +861,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        // region={{latitude:platitude, 
-        //   longitude:plongitude, 
-        //   latitudeDelta: 0.0922,
-        //   longitudeDelta: 0.0421,}} 
-        //  onRegionChangeComplete={async ({
-        //   latitude,
-        //   longitude,
-        //   latitudeDelta,
-        //   longitudeDelta,
-        // }) => {
-        //   await setAddress({
-        //     latitude,
-        //     longitude,
-        //     latitudeDelta,
-        //     longitudeDelta,
-        //   });
-        // }}
+      
         >
   
    
@@ -910,7 +894,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       
 
 
-      <View style={{top:'15%',position:'absolute',alignSelf:'center', height:deviceHeight*0.15, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0, borderRadius:5, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
+      <View style={{top:'10%',position:'absolute',alignSelf:'center', height:deviceHeight*0.15, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0, borderRadius:5, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
 
    
 
@@ -926,7 +910,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           </View>
 
           <View style={{flexDirection:'row', width:deviceWidth, height:'48%'}}>
-          <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={dAdd == 'To' || dAdd.length >0 ? "grey": AppColors.skyblue}  size={15} />
+          <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={AppColors.skyblue}  size={15} />
           <View 
           // onPress={()=> {refRBSheet2.current.open()}}
           style={{width:'85%',marginLeft:12, height:'95%',borderColor:'#CACFD2',justifyContent:'center' }}>
@@ -934,118 +918,14 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
          </View>
           </View>
 
-          {/* <View style={{flexDirection:'row', width:deviceWidth, height:'18%'}}>
-          <FontAwesome name='dollar' style={{alignSelf:'center'}}  size={15} />
-          <TouchableOpacity style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
-          <Text style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}}>{totalprice}</Text>
-         </TouchableOpacity>
-          </View> */}
-
-          {/* <View style={{flexDirection:'row',  width:deviceWidth, height:'18%'}}>
-          <MaterialIcons name='text-snippet' style={{alignSelf:'center'}}  size={15} />
-          <TouchableOpacity style={{width:'85%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
-          <Text style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}}>{docknumber}</Text>
-         </TouchableOpacity>
-          </View>
-       */}
 
          
 
-{/* <TouchableOpacity
-style={{width:'95%',alignSelf:'center',borderRadius:400/2,height:'25%',justifyContent:'center', backgroundColor:AppColors.Appcolor}}
-onPress={() => CreateLoadAPI()}
->
-<Text   
-style={{alignSelf:'center',fontSize:17, color:'white'}}>Next</Text>
-</TouchableOpacity> */}
 
 </View>
         
-       {/* <GooglePlacesAutocomplete
-       placeholder='Search'
-       GooglePlacesDetailsQuery={{
-         fields: 'geometry',
-       }}
-       fetchDetails={true}
- 
-       styles={{
-         textInput:{
-           height:'100%',
-           borderWidth:1.2,borderColor:AppColors.Appcolor,borderRadius:10,
-         },
-         loader: {
-          backgroundColor:'red'
-         },
-         
-        }}
- 
-        renderLeftButton={()=>(
-         <TouchableOpacity 
-         onPress={()=> {setpmapmodel(false)}} 
-         style={{backgroundColor:AppColors.Appcolor,width:'12%',marginTop:0, justifyContent:'center', borderRadius:10,marginRight:5}}>
-      <Ionicons   name='md-close-outline'  color={'white'} style={{alignSelf:'center'}} size={25}/>
- 
-           </TouchableOpacity>
-        )}
-       onPress={(data, details = null) => {
-         // 'details' is provided when fetchDetails = true
-         console.log(data);
- 
-       }}
-       query={{
-         key: GOOGLE_MAPS_APIKEY,
-         language: 'en',
-       }}
-     />
+      
 
-<GooglePlacesAutocomplete
-       placeholder='Search'
-       GooglePlacesDetailsQuery={{
-         fields: 'geometry',
-       }}
-       fetchDetails={true}
- 
-       styles={{
-         textInput:{
-           height:'100%',
-           borderWidth:1.2,borderColor:AppColors.Appcolor,borderRadius:10,
-         },
-         loader: {
-          backgroundColor:'red'
-         },
-         
-        }}
- 
-        renderLeftButton={()=>(
-         <TouchableOpacity 
-         onPress={()=> {setpmapmodel(false)}} 
-         style={{backgroundColor:AppColors.Appcolor,width:'12%',marginTop:0, justifyContent:'center', borderRadius:10,marginRight:5}}>
-      <Ionicons   name='md-close-outline'  color={'white'} style={{alignSelf:'center'}} size={25}/>
- 
-           </TouchableOpacity>
-        )}
-       onPress={(data, details = null) => {
-         // 'details' is provided when fetchDetails = true
-         console.log(data);
- 
-       }}
-       query={{
-         key: GOOGLE_MAPS_APIKEY,
-         language: 'en',
-       }}
-     /> */}
-        
-     
-   
-
-{/* <TouchableOpacity 
-          onPress={async()=> {  
-            addressgenerator(platitude,plongitude)
-  
-           setpmapmodel(false)}}
-          style={{backgroundColor:AppColors.Appcolor,height:deviceHeight*0.08,justifyContent:'center', borderRadius:25}}>
-            <Text style={{color:'white',fontWeight:'600',fontSize:18, alignSelf:'center'}}>Create Load</Text>
-            </TouchableOpacity> */}
          </View>
 
 
@@ -1058,9 +938,9 @@ style={{alignSelf:'center',fontSize:17, color:'white'}}>Next</Text>
 
 <TouchableOpacity style={{width:'100%',marginLeft:12, height:'30%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
    <TextInput style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}} 
-   value={weight}
+   value={weight+' Kg'}
    onChangeText={(text)=> {setweight(text)}}
-   placeholder={'Weight'}
+   placeholder={'Weight (Kg)'}
    placeholderTextColor={'grey'}
    />
   </TouchableOpacity>
@@ -1117,7 +997,7 @@ style={{alignSelf:'center',fontSize:17, color:'white'}}>Next</Text>
 
 
 <TouchableOpacity 
-disabled={weight != ''  && docknumber != '' && pickuptimedate != '' && dropofftimedate != ''? false :true}
+disabled={weight != ''  && docknumber != '' && pickuptimedate != null && dropofftimedate != null? false :true}
    onPress={async()=> {  
     //  addressgenerator(platitude,plongitude)
     if(weight != '' && docknumber != '' && pickuptimedate != '' && dropofftimedate != ''){
@@ -1126,7 +1006,7 @@ disabled={weight != ''  && docknumber != '' && pickuptimedate != '' && dropoffti
     // setpmapmodel(false)
   }
   }
-   style={{backgroundColor:weight != ''  && docknumber != '' && pickuptimedate != '' && dropofftimedate != ''? AppColors.Appcolor :'grey' ,height:deviceHeight*0.08,justifyContent:'center', borderRadius:25}}>
+   style={{backgroundColor:weight != ''  && docknumber != '' && pickuptimedate != null && dropofftimedate != null? AppColors.Appcolor :'grey' ,height:deviceHeight*0.08,justifyContent:'center', borderRadius:25}}>
      <Text style={{color:'white',fontWeight:'600',fontSize:18, alignSelf:'center'}}>Create Load</Text>
      </TouchableOpacity>
   </View>

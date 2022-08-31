@@ -17,7 +17,7 @@ const Contact = ({navigation}) => {
 <Ionicons name='chevron-back-outline' 
 onPress={() => navigation.goBack()}
 style={{alignSelf:'center',}} size={30} color='white'/>
-<Text style={{color:"white",fontSize:16,alignSelf:'center',}}>Setting</Text>
+<Text style={{color:"white",fontSize:16,alignSelf:'center',}}>Contact Us</Text>
 {/* <Text>Edit</Text> */}
 {/* <Ionicons name='create-outline' 
 onPress={() => changeInput()}
@@ -28,42 +28,13 @@ style={{alignSelf:'center',}} size={30} color='black'/> */}
 </View>
 
 </Appbar.Header>
-      {/* <Text>Contact</Text> */}
-      <View style={{marginTop:10,borderWidth:2,width:"80%",alignSelf:"center",borderColor:"#EFDF79",height:"60%",}}>
-      <TextInput  
-            //  editable={} 
-            //  label="DOT Number"
-        // onChangeText={(Text)=>{setdotnumber(Text)}}
-        // value={dotnumber}
-        placeholderTextColor={'grey'}
-        style={styles.input}
-        placeholder="Phone"/> 
-      <TextInput  
-            //  editable={} 
-            //  label="DOT Number"
-        // onChangeText={(Text)=>{setdotnumber(Text)}}
-        // value={dotnumber}
-        placeholderTextColor={'grey'}
-        style={styles.input}
-        placeholder="Email"/> 
-          <TextInput  
-            //  editable={} 
-            //  label="DOT Number"
-        // onChangeText={(Text)=>{setdotnumber(Text)}}
-        // value={dotnumber}
-        placeholderTextColor={'grey'}
-        style={styles.input}
-        placeholder="Message"/> 
-          <View style={styles.btnBorder}>
 
-<TouchableOpacity style={styles.btnregister}
-    //    onPress={()=>{registerApi()}}
->
-   
- <Text style={{color:"black",fontSize:15,}}>Submit</Text>
-</ TouchableOpacity>
-</View>
-</View>
+      <View style={{padding:10,margin:10,}}>
+
+
+
+      </View>
+
     </View>
   )
 }
