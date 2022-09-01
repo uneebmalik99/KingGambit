@@ -122,11 +122,15 @@ alert(e)
           }else if(responseJson.status == 422){
             setspinner(false)
 
-            alert(responseJson.errors.password)
+            alert(responseJson.message)
           }else if(responseJson.status == 401){
             setspinner(false)
 
-            alert(responseJson.error)
+            alert(responseJson.message)
+          }
+          else{
+            setspinner(false)
+            alert(responseJson.message)
           }
       console.log('login data response',responseJson);
       // setspinner(false)  

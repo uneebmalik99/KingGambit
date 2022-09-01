@@ -945,8 +945,14 @@ null
 
        <TouchableOpacity 
               onPress={()=> {setvehicletype('2')}}
-       style={{backgroundColor:vehicletype == '2' ?AppColors.Appcolor:"white",borderColor:AppColors.Appcolor,borderWidth:0.6, marginRight:5,marginVertical:'1%',borderRadius:10,justifyContent:'center', paddingHorizontal:'3%'}}>
-         <Text style={{color:vehicletype== "2"? "white":'grey'}}>Flatbed Van</Text>
+       style={{backgroundColor:vehicletype == '2' ?AppColors.Appcolor:"white",marginRight:5,marginVertical:'1%',borderColor:AppColors.Appcolor,borderWidth:0.6, borderRadius:10,justifyContent:'center', paddingHorizontal:'3%'}}>
+         <Text style={{color:vehicletype== "2"? "white":'grey'}}>Power</Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity 
+              onPress={()=> {setvehicletype('3')}}
+       style={{backgroundColor:vehicletype == '3' ?AppColors.Appcolor:"white",borderColor:AppColors.Appcolor,borderWidth:0.6, marginRight:5,marginVertical:'1%',borderRadius:10,justifyContent:'center', paddingHorizontal:'3%'}}>
+         <Text style={{color:vehicletype== "3"? "white":'grey'}}>Flatbed Van</Text>
        </TouchableOpacity>
 
        

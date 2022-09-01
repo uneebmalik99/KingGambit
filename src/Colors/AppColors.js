@@ -8,7 +8,7 @@ const AppColors = {
     purple:'#6770ce',
     skyblue:'#5DADE2',
     btnLoginColor: '#6658dd',
-    Appcolor:'#daa726',
+    Appcolor:'#f2c487',
     transplant: '#00000000',
     blue:'#0ea678',
     // blue:'#116bb9',

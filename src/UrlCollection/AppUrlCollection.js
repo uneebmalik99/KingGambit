@@ -11,6 +11,10 @@ class AppUrlCollection extends Component{
 
     static STATES = AppUrlCollection.BASE_URL+'stateinfo'
     static COMPLETE = AppUrlCollection.BASE_URL+'CompleteLoad'
+    
+    static Submit_Forget =AppUrlCollection.BASE_URL+'submitForgetPasswordForm';
+    static Submit_Reset =AppUrlCollection.BASE_URL+'submitResetPasswordForm';
+    static Re_Genrated_LOAD =AppUrlCollection.BASE_URL+'regnerate_load';
 
     
    

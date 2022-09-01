@@ -8,17 +8,158 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
 import AppColors from '../Colors/AppColors';
+import Snackbar from 'react-native-snackbar';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 
 const AllLoad = ({route, navigation }) => {
-
-
   const { status } = route.params;
+
+  
+  
 
   const [data,setdata] = useState([])
   const [spinner,setspinner]=useState(false)
+  // let plat1 = data.P_Latitude
+  // plat1= parseFloat(plat1)
+  // // console.log(d)
+  // let plong1 = data.P_Longitude
+  // plong1= parseFloat(plong1)
+  // // console.log(d)
+  // let dlat1 = data.D_Latitude
+  // dlat1= parseFloat(dlat1)
+  // // console.log(d)
+  // let dlong1 = data.D_Longitudes
+  // dlong1= parseFloat(dlong1)
+
+  // let dAdd = data.D_Address
+  // let pAdd = data.P_Address
+
+  const [modalVisible ,setmodalVisible] = useState(true)
+  const [currentloclat,setcurrentloclat ]=useState(47.116386)
+  const [currentloclon,setcurrentloclon ]=useState(-101.299591)
+  // const [pickupaddress , setpickupaddress] = useState(pAdd)
+  // const [ vehicletype , setvehicletype] = useState('0')
+  // const [platitude , setplatitude] = useState(plat1)
+  // const [plongitude , setplongitude] = useState(plong1)
+  // const [platitudeDelta,setplatitudeDelta]= useState('')
+  // const [plongitudeDelta ,setplongitudeDelta] = useState('')
+  // const [dlatitude , setdlatitude] = useState(dlat1)
+  // const [dlongitude , setdlongitude] = useState(dlong1)
+  // const [dropoffaddress , setdropoffaddress] = useState(dAdd)
+  const [docknumber, setdocknumber] = useState('')
+  const [price, setprice] = useState()
+  const [distance, setdistance] =useState('')
+  const [driverprice, setdriverprice] = useState()
+  const [totalprice, settotalprice] = useState()
+  const [weight ,setweight] = useState('')
+  const [pickuptimedate, setpickuptimedate] = useState()
+  const [dropofftimedate, setdropofftimedate] = useState()
+
+  const CreateLoadAPI =(item)=>{
+
+    // data.map((user) => (
+
+    //  console.log(user)
+    // //  console.log(user.id)
+    //   ))
+    
+    setspinner(true)
+
+
+    // console.log(platitude, plongitude)
+
+    let value = {};
+    value.User_id = AppConstance.Id;
+
+    value.P_Address=item.P_Address;
+    value.P_Latitude = item.P_Latitude;
+    value.P_Longitude= item.P_Longitude,
+
+    value.D_Address= item.D_Address
+    value.D_Latitude = item.D_Latitude;
+    value.D_Longitudes= item.D_Longitudes,
+
+    value.Load_Description='none';
+    value.Dock_Number =item.Dock_Number
+    value.Destination= "vdvd";
+    value.Vehicle_Type= '0'
+
+    value.Pick_up_Time=item.Pick_up_Time
+    value.Drop_of_Time = item.Drop_of_Time;
+
+    value.Pricing='5' 
+    value.Driver_Price=item.Driver_Price
+    value.Total_Price=item.Total_Price
+    value.Status="0"
+
+    value.Weight= item.Weight
+    value.Distance="2000KM"
+
+   
+
+    console.log(value);
+    // alert(JSON.stringaify(value))
+    // console.log(value);
+
+    var url =AppUrlCollection.Re_Genrated_LOAD;
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer '+AppConstance.AUTH_KEY,
+      },
+      body: JSON.stringify(value),
+  })
+      .then((response) =>  response.json() )
+      .then((responseJson) => {
+        // navigation.navigate('welcome')
+        console.log('login data response',responseJson);
+        setspinner(false)
+
+        setTimeout(() => {
+          Snackbar.show({
+            text: 'Load Re Generated Successfully',
+            duration: Snackbar.LENGTH_SHORT,
+            backgroundColor	:AppColors.Appcolor,
+          });
+          // navigation.navigate('welcome')
+        }, 200);
+
+
+          if(responseJson.j == 'iih'){
+            // alert(responseJson.DATA.user.Bank_Info)
+            // alert(JSON.stringify(responseJson))
+            setspinner(false)
+            console.log('login data response',responseJson);
+            
+
+            // alert(responseJson.DATA)
+            // storeData(responseJson)
+
+        //  loginServiceCall( responseJson , responseJson.user.role, responseJson.user.username, responseJson.user.role_name, responseJson.user.photo)
+
+          }else if(responseJson.status == 422){
+            setspinner(false)
+
+            alert(responseJson.errors.password)
+          }else if(responseJson.status == 401){
+            setspinner(false)
+
+            alert(responseJson.error)
+          }
+      console.log('login data response',responseJson);
+    //   setspinner(false)  
+      })
+      .catch((error) => {
+        setspinner(false)
+        alert(error)
+          console.warn(error)
+      });
+      
+  }
 
 
   const LoadApi =()=>{
@@ -56,7 +197,7 @@ const AllLoad = ({route, navigation }) => {
       setdata(responseJson)
       setspinner(false)
         if(responseJson.message == 'SUCCESS'){
-          console.log('login data response',responseJson);
+          console.log('login data response ataa',responseJson);
           setspinner(false)
        
         }else if(responseJson.status == 422){
@@ -64,7 +205,9 @@ const AllLoad = ({route, navigation }) => {
         }else if(responseJson.status == 401){
           alert(responseJson.error)
         }
-    console.log('login data response',responseJson);
+    console.log('login data response ta',responseJson[1]);
+    console.log('login data response ta',responseJson[1].id);
+
   //   setspinner(false)  
     })
     .catch((error) => {
@@ -106,7 +249,7 @@ const nextpage = (data)=>{
   const renderItem = ({ item }) => (
 
      <TouchableOpacity 
-                  style={{height:Platform.OS=='ios'? deviceHeight*0.15:deviceHeight*0.2,width:"100%",borderRadius:15,borderRadius:10, marginTop:10,backgroundColor:'#b3b3b3'}}
+                  style={{height:Platform.OS=='ios'? deviceHeight*0.15:deviceHeight*0.25,width:"100%",borderRadius:15,borderRadius:10, marginTop:10,backgroundColor:'#b3b3b3'}}
                     onPress={() => {
                       
                       nextpage(item);
@@ -116,7 +259,7 @@ const nextpage = (data)=>{
           <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
       </View>
 
-      <View style={{  paddingVertical:"2%", height:"80%", paddingHorizontal:'3%',flexDirection: "row" }}>
+      <View style={{  paddingVertical:"2%", height:"100%", paddingHorizontal:'3%',flexDirection: "row" }}>
 
           {/* <View style={{  padding:"1%", width: "35%", height: "100%" }}>
             <Image source={require('../assets/bk.png')}  style={{width:"100%",borderRadius:10, height:"100%"}} />
@@ -136,14 +279,27 @@ const nextpage = (data)=>{
               <Text style={styles.txt}>Drop Off: {item.D_Address}</Text>
             </View>
 
-            <View style={{  width: "100%", }}>
+            <View style={{  width: "100%",marginBottom:"2%" }}>
               <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":"Completed"}</Text>
             </View>
+            <TouchableOpacity style={{width:"100%",}}
+            onPress={()=>CreateLoadAPI(item)}
+            >
+          <View style={{ height:"50%",backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
+          <Text style={styles.txt}>Re Create:{item.id}</Text>
+      </View>
+          </TouchableOpacity>
+         
 
           </View>
-
+          
       </View>
 
+      {/* <TouchableOpacity>
+          <View style={{ height:"50%", backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
+          <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
+      </View>
+          </TouchableOpacity> */}
      </TouchableOpacity>
 
   );
