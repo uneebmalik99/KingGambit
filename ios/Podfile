@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '13.0'
 
-target 'KingGamBit' do
+target 'kinggambit' do
 
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
@@ -13,8 +13,6 @@ target 'KingGamBit' do
        pod 'GoogleUtilities', :modular_headers => true
       #  $RNFirebaseAsStaticFramework = true
 
-
-
   config = use_native_modules!
 
   use_react_native!(
@@ -23,7 +21,7 @@ target 'KingGamBit' do
     :hermes_enabled => false
   )
 
-  target 'KingGamBitTests' do
+  target 'kinggambitTests' do
     inherit! :complete
     # Pods for testing
   end

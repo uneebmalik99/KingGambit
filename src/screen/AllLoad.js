@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, FlatList,Dimensions, ScrollView,Image, Platform } from 'react-native'
+import { View, Text,Modal, TouchableOpacity, TextInput, StyleSheet, FlatList,Dimensions, ScrollView,Image, Platform } from 'react-native'
 import { Avatar, Button, Title, Card, Paragraph } from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import { Appbar } from "react-native-paper";
 import AppUrlCollection from '../UrlCollection/AppUrlCollection';
 import AppConstance from '../constance/AppConstance';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Spinner from 'react-native-loading-spinner-overlay';
 import AppColors from '../Colors/AppColors';
@@ -20,34 +21,12 @@ const AllLoad = ({route, navigation }) => {
   
 
   const [data,setdata] = useState([])
-  const [spinner,setspinner]=useState(false)
-  // let plat1 = data.P_Latitude
-  // plat1= parseFloat(plat1)
-  // // console.log(d)
-  // let plong1 = data.P_Longitude
-  // plong1= parseFloat(plong1)
-  // // console.log(d)
-  // let dlat1 = data.D_Latitude
-  // dlat1= parseFloat(dlat1)
-  // // console.log(d)
-  // let dlong1 = data.D_Longitudes
-  // dlong1= parseFloat(dlong1)
+  const [spinner,setspinner]=useState(false) 
 
-  // let dAdd = data.D_Address
-  // let pAdd = data.P_Address
-
+  const [cancelmodal , setcancelmodal] = useState(false)
   const [modalVisible ,setmodalVisible] = useState(true)
   const [currentloclat,setcurrentloclat ]=useState(47.116386)
   const [currentloclon,setcurrentloclon ]=useState(-101.299591)
-  // const [pickupaddress , setpickupaddress] = useState(pAdd)
-  // const [ vehicletype , setvehicletype] = useState('0')
-  // const [platitude , setplatitude] = useState(plat1)
-  // const [plongitude , setplongitude] = useState(plong1)
-  // const [platitudeDelta,setplatitudeDelta]= useState('')
-  // const [plongitudeDelta ,setplongitudeDelta] = useState('')
-  // const [dlatitude , setdlatitude] = useState(dlat1)
-  // const [dlongitude , setdlongitude] = useState(dlong1)
-  // const [dropoffaddress , setdropoffaddress] = useState(dAdd)
   const [docknumber, setdocknumber] = useState('')
   const [price, setprice] = useState()
   const [distance, setdistance] =useState('')
@@ -59,49 +38,29 @@ const AllLoad = ({route, navigation }) => {
 
   const CreateLoadAPI =(item)=>{
 
-    // data.map((user) => (
-
-    //  console.log(user)
-    // //  console.log(user.id)
-    //   ))
-    
     setspinner(true)
-
-
-    // console.log(platitude, plongitude)
-
     let value = {};
     value.User_id = AppConstance.Id;
-
     value.P_Address=item.P_Address;
     value.P_Latitude = item.P_Latitude;
     value.P_Longitude= item.P_Longitude,
-
     value.D_Address= item.D_Address
     value.D_Latitude = item.D_Latitude;
     value.D_Longitudes= item.D_Longitudes,
-
     value.Load_Description='none';
     value.Dock_Number =item.Dock_Number
     value.Destination= "vdvd";
     value.Vehicle_Type= '0'
-
     value.Pick_up_Time=item.Pick_up_Time
     value.Drop_of_Time = item.Drop_of_Time;
-
     value.Pricing='5' 
     value.Driver_Price=item.Driver_Price
     value.Total_Price=item.Total_Price
     value.Status="0"
-
     value.Weight= item.Weight
     value.Distance="2000KM"
-
-   
-
     console.log(value);
-    // alert(JSON.stringaify(value))
-    // console.log(value);
+ 
 
     var url =AppUrlCollection.Re_Genrated_LOAD;
 
@@ -200,13 +159,12 @@ const AllLoad = ({route, navigation }) => {
           console.log('login data response ataa',responseJson);
           setspinner(false)
        
-        }else if(responseJson.status == 422){
-          alert(responseJson.errors.password)
-        }else if(responseJson.status == 401){
-          alert(responseJson.error)
+        }else if(responseJson.length ==0 ) {
+          // alert(JSON.stringify(responseJson))
+          setspinner(false)
+
         }
-    console.log('login data response ta',responseJson[1]);
-    console.log('login data response ta',responseJson[1].id);
+    
 
   //   setspinner(false)  
     })
@@ -218,6 +176,35 @@ const AllLoad = ({route, navigation }) => {
     
     // <ActivityIndicator size='large' color="#EFDF79" animating={true}  />
 }
+
+
+const cancelapi = (item)=>{
+  let value = {};
+  value.load_id = item.Load_id;
+  value.Status= item.status;
+
+  var url =AppUrlCollection.CANCEL_RIDE;
+
+  fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type':  'application/json',
+    },
+    body: JSON.stringify(value),
+})
+    .then((response) =>  response.json() )
+    .then((responseJson) => {
+
+      console.log(responseJson);
+      setcancelmodal(false)
+
+    })
+    .catch((error) => {
+      alert(error)
+        console.warn(error)
+    });
+  }
+
 
 useEffect(()=>{
   LoadApi()
@@ -281,14 +268,38 @@ const nextpage = (data)=>{
 
             <View style={{  width: "100%",marginBottom:"2%" }}>
               <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":"Completed"}</Text>
+
             </View>
+
+
+
+            {status == '1'?
             <TouchableOpacity style={{width:"100%",}}
             onPress={()=>CreateLoadAPI(item)}
             >
-          <View style={{ height:"50%",backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
-          <Text style={styles.txt}>Re Create:{item.id}</Text>
+          <View style={{ height:"50%",borderRadius:10, justifyContent:"center"}}>
+
+<Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
       </View>
           </TouchableOpacity>
+          :
+          <View 
+          style={{ height:"10%",borderRadius:10, justifyContent:"center"}}>
+        </View>}
+
+            {status == '0'?
+            <TouchableOpacity style={{width:"100%",}}
+            onPress={()=>cancelapi(item)}
+            >
+          <View style={{ height:"50%",borderRadius:10, justifyContent:"center"}}>
+
+<Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
+      </View>
+          </TouchableOpacity>
+          :
+          <View 
+          style={{ height:"10%",borderRadius:10, justifyContent:"center"}}>
+        </View>}
          
 
           </View>
@@ -319,6 +330,10 @@ const nextpage = (data)=>{
       />
 <Appbar.Header style={styles.header}>
 
+
+
+
+
 <View style={styles.headview}>
   <View style={{justifyContent:"center"}}>
     <Ionicons name='chevron-back' onPress={()=> {navigation.goBack()}} color={'grey'} style={{alignSelf:'center'}} size={25}/>
@@ -327,6 +342,72 @@ const nextpage = (data)=>{
   <View>
     </View>
 </View>
+
+<Modal
+       transparent={true}
+       visible={cancelmodal}
+       animationType="fade"
+       
+       >
+        
+        <SafeAreaView style={{backgroundColor:"#000000aa",justifyContent:'center', flex:1}} >
+          
+        <View style={{backgroundColor:"#ffffff",borderTopRightRadius:15,borderTopLeftRadius:15
+        ,width:"90%" ,alignSelf:"center",marginTop:"0%", borderColor:AppColors.Appcolor}} >
+
+
+          
+<View style={{height:40,paddingHorizontal:5, width:'100%', backgroundColor:AppColors.AppGrey ,justifyContent:'center', borderTopLeftRadius:15, borderTopRightRadius:15,}}>
+
+<TouchableOpacity 
+ onPress={()=> {}}
+style={{justifyContent:'center',backgroundColor:'red', alignSelf:'flex-end' 
+
+ }}>
+
+<Text>Cancel</Text>
+</TouchableOpacity>
+
+
+</View>
+
+     
+     <Text style={{alignSelf:'center',paddingVertical:20, fontSize:18}}>Do you want to Cancel Load ?</Text>
+
+           <View style={{flexDirection:"row",paddingVertical:15, justifyContent:'space-around', width:"100%", 
+        marginTop:"0%"}}>
+         
+
+<TouchableOpacity 
+ onPress={()=> { setcancelmodal(false)}}
+style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
+ borderRadius:15,height:40,}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+          No</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+         onPress={()=> { cancelapi()}}
+        style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor, borderRadius:15,
+        height:40}}>
+          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
+          Yes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+          </Text>
+        </TouchableOpacity>
+        
+            </View>
+
+
+  
+
+
+ 
+
+
+</View>
+
+</SafeAreaView>
+
+       </Modal>
 
 </Appbar.Header>
   

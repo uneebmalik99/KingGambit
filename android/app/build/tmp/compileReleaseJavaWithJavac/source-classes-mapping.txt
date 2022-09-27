@@ -1,0 +1,9 @@
+com/kinggambit/MainApplication.java
+ com.kinggambit.MainApplication
+ com.kinggambit.MainApplication$1
+com/kinggambit/MainActivity.java
+ com.kinggambit.MainActivity
+com/kinggambit/BuildConfig.java
+ com.kinggambit.BuildConfig
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList

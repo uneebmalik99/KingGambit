@@ -1,5 +1,5 @@
 import React,{useState,useRef, useEffect} from 'react'
-import { View,Button,Modal,Image, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, ScrollView, PermissionsAndroid } from 'react-native'
+import { View,Button,Modal,Image, Text,TouchableOpacity,TextInput,SafeAreaView, StyleSheet, ScrollView, PermissionsAndroid, KeyboardAvoidingView } from 'react-native'
 import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
 import DatePicker from 'react-native-date-picker'
 import { Appbar } from "react-native-paper";
@@ -24,9 +24,10 @@ import Snackbar from 'react-native-snackbar';
 
 const CreateLoadconfirmation = ({route ,navigation}) => {
   
-  const {plat , plong, pAdd, dlat, dlong,dAdd,tprice,dprice,vtype} = route.params
+  const {plat , plong, pAdd, dlat, dlong,dAdd,tprice,dprice,vtype, distance0} = route.params
   const refRBSheet = useRef();
   const refRBSheet2 = useRef();
+// alert(distance0)
 
   const [mapState, setMapState] = useState({
 		initialRegion: {
@@ -443,32 +444,24 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
     value.P_Address=pickupaddress;
     value.P_Latitude = platitude;
     value.P_Longitude= plongitude,
-
     value.D_Address= dropoffaddress
     value.D_Latitude = dlatitude;
     value.D_Longitudes= dlongitude,
-
     value.Load_Description='none';
     value.Dock_Number=docknumber
     value.Destination= "vdvd";
     value.Vehicle_Type= vtype
-
     value.Pick_up_Time=pickuptimedate
     value.Drop_of_Time = dropofftimedate;
-
     value.Pricing='5' 
     value.Driver_Price=driverprice
     value.Total_Price=totalprice
     value.Status="0"
-
     value.Weight=weight
-    value.Distance="2000KM"
-
-   
+    value.Distance=distance0
 
     console.log(value);
-    // alert(JSON.stringaify(value))
-    // console.log(value);
+    
 
     var url =AppUrlCollection.CREATELOAD;
 
@@ -551,6 +544,11 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
   const sheetRef = React.useRef(null);
 
   return (
+
+     <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    > 
     <SafeAreaView style={styles.container}>
  <Spinner
         visible={spinner}
@@ -575,6 +573,12 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           }
         }}
       >
+
+
+{/* <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{height:'100%', paddingHorizontal:'3%'}}
+    > */}
         <View style={{height:'100%', paddingHorizontal:'3%'}}>
        
 <GooglePlacesAutocomplete
@@ -894,7 +898,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       
 
 
-      <View style={{top:'10%',position:'absolute',alignSelf:'center', height:deviceHeight*0.15, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0, borderRadius:5, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
+      <View style={{top:'13%',position:'absolute',alignSelf:'center', height:deviceHeight*0.15, margin:10, paddingVertical:2,backgroundColor:'white',borderColor:AppColors.Appcolor,borderWidth:0, borderRadius:5, flexDirection:'column',   width:'95%', paddingHorizontal:'2%'}}>
 
    
 
@@ -936,11 +940,14 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
 
 <View style={{height:'98%',justifyContent:'center', paddingHorizontal:'1%'}}>
 
+
 <TouchableOpacity style={{width:'100%',marginLeft:12, height:'30%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
    <TextInput style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}} 
-   value={weight+' Kg'}
-   onChangeText={(text)=> {setweight(text)}}
+   value={docknumber}
+   
+   onChangeText={(text)=> {setdocknumber(text)}}
    placeholder={'Weight (Kg)'}
+   placeholder={'Dock Number'}
    placeholderTextColor={'grey'}
    />
   </TouchableOpacity>
@@ -957,9 +964,9 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
 
   <TouchableOpacity style={{width:'65%',marginLeft:12, height:'95%',borderBottomWidth:0.4,borderColor:'#CACFD2',}}>
    <TextInput style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}} 
-   value={docknumber}
-   onChangeText={(text)=> {setdocknumber(text)}}
-   placeholder={'Dock Number'}
+   value={weight}
+   onChangeText={(text)=> {setweight(text)}}
+   placeholder={'Weight (Kg)'}
    placeholderTextColor={'grey'}
    />
   </TouchableOpacity>
@@ -969,7 +976,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
    <View style={{flexDirection:'row',alignSelf:'center',  justifyContent:'space-evenly', width:deviceWidth, height:'35%'}}>
    
    <View style={{flexDirection:'row',width:'45%',}}>
-   <FontAwesome name='clock-o' style={{alignSelf:'center'}}  size={15} />
+   <FontAwesome name='clock-o' style={{alignSelf:'center', marginLeft:5,}}  size={15} />
    <TouchableOpacity 
      onPress={()=> {setpickuptimeopen(true)}}
    style={{width:'90%', marginLeft:8, height:'95%',borderBottomWidth:0.4,justifyContent:'center', borderColor:'#CACFD2',}}>
@@ -1023,6 +1030,9 @@ style={{alignSelf:'center'}}>Create</Text>
       {/* </ScrollView> */}
 
 </SafeAreaView>
+
+</KeyboardAvoidingView>
+
   )
 }
 
@@ -1106,7 +1116,7 @@ style={{alignSelf:'center'}}>Create</Text>
       borderBottomLeftRadius:15,
       paddingHorizontal:10,
       justifyContent:'space-between',
-      backgroundColor:'#EFDF79'
+      backgroundColor:AppColors.Appcolor
     },
     text:{
         alignSelf:"center"

@@ -17,7 +17,7 @@ import AppColors from '../Colors/AppColors';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width
-let editableColor ='#EFDF79'
+let editableColor =AppColors.Appcolor
 
 
 const Profile = ({navigation}) => {
@@ -206,7 +206,7 @@ style={{alignSelf:'center',}} size={30} color='black'/>
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setname(Text)}}
         value={name}
-        style={[styles.input, {borderColor:name.length>0 && Editable == false ?"#EFDF79":"red"}]}
+        style={[styles.input, {borderColor:name.length>0 && Editable == false ?AppColors.Appcolor:"red"}]}
         placeholder="Name"/>
          <TextInput   
              editable={Editable} 
@@ -244,14 +244,14 @@ style={{alignSelf:'center',}} size={30} color='black'/>
         placeholderTextColor={'grey'}
         style={styles.input}
         placeholder="Company Name"/> 
-          <TextInput   
+          {/* <TextInput   
              editable={Editable} 
 
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setEIN(Text)}}
         value={EIN}
         style={styles.input}
-        placeholder="EIN"/> 
+        placeholder="EIN"/>  */}
         {/* <TextInput   
              editable={Editable} 
         onChangeText={(Text)=>{setmcnumber(Text)}}
@@ -269,9 +269,9 @@ style={{alignSelf:'center',}} size={30} color='black'/>
 
       <SelectList 
       
-      dropdownStyles={{backgroundColor:"white", borderWidth: 1,borderColor:'#EFDF79',borderRadius:15,}}
+      dropdownStyles={{backgroundColor:"white", borderWidth: 1,borderColor:AppColors.Appcolor,borderRadius:15,}}
       boxStyles={{backgroundColor:"white", borderWidth: 1, height:44,  margin: 12,
-      alignSelf:"center",paddingHorizontal:10, alignContent:'center', width:"100%",borderColor:'#EFDF79',borderRadius:10,}}
+      alignSelf:"center",paddingHorizontal:10, alignContent:'center', width:"100%",borderColor:AppColors.Appcolor,borderRadius:10,}}
       setSelected={setSelected}  
       
       data={data}  />
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
       // marginTop: 170,
         // padding: 24,
         // backgroundColor: "transparent",
-        backgroundColor:"#EFDF79"
+        backgroundColor:AppColors.Appcolor
       },
     input: {
       height: 40,
@@ -391,7 +391,7 @@ const styles = StyleSheet.create({
 
     },
     btnBorder:{
-      borderColor:'#EFDF79',
+      borderColor:AppColors.Appcolor,
       borderWidth:3,
       // borderRadius:200,
       // height:100,
@@ -412,9 +412,9 @@ const styles = StyleSheet.create({
   alignSelf:"center",
   alignItems:"center",
   borderRadius:400/2,
-  borderColor:'#EFDF79',
+  borderColor:AppColors.Appcolor,
   borderWidth:1,
-  backgroundColor:'#EFDF79',
+  backgroundColor:AppColors.Appcolor,
   alignContent:"center"
   // fontSize:40
   
@@ -425,9 +425,9 @@ const styles = StyleSheet.create({
       // textAlign:"center",
       alignItems:"center",
       justifyContent:"center",
-      borderColor:'#EFDF79',
+      borderColor:AppColors.Appcolor,
       borderWidth:2,
-      backgroundColor:'#EFDF79',
+      backgroundColor:AppColors.Appcolor,
       borderRadius:200,
       // marginBottom:40
     },
@@ -441,7 +441,7 @@ const styles = StyleSheet.create({
       // flex:1,
       paddingVertical:10,
       marginTop:10,
-      borderColor:'#EFDF79',
+      borderColor:AppColors.Appcolor,
     borderWidth:1,
     flex:1,
     // backgroundColor:'rgba(0,0,0,0.3)',
@@ -475,7 +475,7 @@ headview:{
   borderBottomLeftRadius:15,
   paddingHorizontal:10,
   justifyContent:'space-between',
-  backgroundColor:'#EFDF79'
+  backgroundColor:AppColors.Appcolor
 },
 image:{
   justifyContent: "center",
@@ -489,7 +489,7 @@ DropDowninput:{
   paddingHorizontal:10,
   margin: 12,
 alignSelf:"center",
-          borderColor:'#EFDF79',
+          borderColor:AppColors.Appcolor,
           borderRadius:10,
           backgroundColor:"white",
         height:40

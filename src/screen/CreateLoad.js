@@ -305,10 +305,6 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
 
     requestCameraPermission()
 
-
-  
-    // Geocoder.fallbackToGoogle('AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo');
-
   },[])
 
   const onRegionChange=(region)=> {
@@ -354,19 +350,13 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
     Geocoder.from(dlatitude, dlongitude)
 		.then(json => {
 
-      // console.log(json.results);
-        		var addressComponent = json.results[0].formatted_address;
-
+      var addressComponent = json.results[0].formatted_address;
       setdropoffaddress(addressComponent)
 
       calculatePreciseDistance()
-
-			// console.log('--'+JSON.stringify(addressComponent));
 		})
 		.catch(error => console.warn(error));
-    // let ret = await Geocoder.geocodePosition({lat, lng})
-    // console.log('kkkhkhk');
-    // alert(ret)
+  
   }
 
   const calculateprice = (dis)=> {
@@ -412,7 +402,27 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       settotalprice(p)
       refRBSheet2.current.close()
 
-    }else {
+
+    }
+    else  if (vehicletype == '2'){
+      console.log("vheicletype"+"power van");
+      let d =0;
+      d=distance
+      if(d==0){
+        d=dis
+      }
+      d=d*(3.00)
+      let p = d *(25)
+      p  = p/100
+      p= p+d
+      p=p.toFixed(0)
+      d=d.toFixed(0)
+      setdriverprice(d)
+      settotalprice(p)
+      refRBSheet2.current.close()
+    }
+    
+    else {
       console.log("vheicletype"+"Flatbed van");
       let d =0;
       d=distance
@@ -568,7 +578,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
        styles={{
          textInput:{
            height:'100%',
-            
+            marginTop:10,
            borderBottomWidth:1.2,borderColor:AppColors.Appcolor,borderRadius:10,
          },
          loader: {
@@ -578,7 +588,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
         }}
  
         renderLeftButton={()=>(
-         <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={dropoffaddress !== 'From' || dropoffaddress !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
+         <FontAwesome name='circle-o' style={{alignSelf:'center', marginTop:15,}} color={dropoffaddress !== 'From' || dropoffaddress !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
  
            
         )}
@@ -602,16 +612,16 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
        }}
      /> 
 
-     <View style={{height:'10%',bottom:20,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
+     <View style={{height:'10%',bottom:40,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
        <TouchableOpacity 
         onPress={()=> {refRBSheet.current.close()}}
-       style={{height:'80%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
+       style={{height:'70%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
        <Text style={{fontWeight:'700', color:AppColors.Appcolor,alignSelf:'center'}}>Close</Text>
        </TouchableOpacity>
 
        <TouchableOpacity 
        onPress={()=> {refRBSheet.current.close()}}
-       style={{height:'80%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
+       style={{height:'70%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
        <Text style={{fontWeight:'700',color:AppColors.Appcolor, alignSelf:'center'}}>Done</Text>
        </TouchableOpacity>
        </View>
@@ -649,7 +659,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
          textInput:{
            height:'100%',
             
-           borderBottomWidth:1.2,borderColor:AppColors.Appcolor,borderRadius:10,
+           borderBottomWidth:1.2,marginTop:10, borderColor:AppColors.Appcolor,borderRadius:10,
          },
          loader: {
           backgroundColor:'red'
@@ -658,7 +668,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
         }}
  
         renderLeftButton={()=>(
-         <FontAwesome name='circle-o' style={{alignSelf:'center'}} color={dropoffaddress !== 'To' && dropoffaddress.length>0 !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
+         <FontAwesome name='circle-o' style={{alignSelf:'center', marginTop:18,}} color={dropoffaddress !== 'To' && dropoffaddress.length>0 !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
  
            
         )}
@@ -682,16 +692,16 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
        }}
      /> 
 
-     <View style={{height:'10%',bottom:20,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
+     <View style={{height:'10%',bottom:40,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
        <TouchableOpacity 
         onPress={()=> {calculatePreciseDistance();}}
-       style={{height:'80%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
+       style={{height:'70%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
        <Text style={{fontWeight:'700', color:AppColors.Appcolor,alignSelf:'center'}}>Close</Text>
        </TouchableOpacity>
 
        <TouchableOpacity 
        onPress={()=> { calculatePreciseDistance(); }}
-       style={{height:'80%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
+       style={{height:'70%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
        <Text style={{fontWeight:'700',color:AppColors.Appcolor, alignSelf:'center'}}>Done</Text>
        </TouchableOpacity>
        </View>
@@ -711,7 +721,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       transparent={true}
       style={{height:deviceHeight*0.5,marginTop:10, backgroundColor:'green', bottom:0, width:deviceWidth}}
       >
-      <View style={{backgroundColor:'red',bottom:0, height:deviceHeight*0.3}}>
+      <SafeAreaView style={{backgroundColor:'red',bottom:0, height:deviceHeight*0.3}}>
 <Text>hbdhjfbj</Text>
 
 {/* <View style={{position:'absolute',bottom:'7%', alignSelf:'flex-start', width:deviceWidth, paddingHorizontal:'5%'}}>
@@ -725,7 +735,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           <Text style={{color:'white',fontWeight:'600',fontSize:18, alignSelf:'center'}}>Done</Text>
           </TouchableOpacity>
         </View> */}
-    </View>
+    </SafeAreaView>
 
         </Modal>
 
@@ -735,7 +745,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
       visible={dmapmodel}
       style={{height:deviceHeight, width:deviceWidth}}
       >
-      <View style={styles.mapcontainer}>
+      <SafeAreaView style={styles.mapcontainer}>
         
       <MapView
       scrollEnabled={true}
@@ -780,7 +790,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           <Text style={{color:'white',fontWeight:'600',fontSize:18, alignSelf:'center'}}>Done</Text>
           </TouchableOpacity>
         </View>
-    </View>
+    </SafeAreaView>
 
         </Modal>
 
@@ -946,7 +956,7 @@ null
        <TouchableOpacity 
               onPress={()=> {setvehicletype('2')}}
        style={{backgroundColor:vehicletype == '2' ?AppColors.Appcolor:"white",marginRight:5,marginVertical:'1%',borderColor:AppColors.Appcolor,borderWidth:0.6, borderRadius:10,justifyContent:'center', paddingHorizontal:'3%'}}>
-         <Text style={{color:vehicletype== "2"? "white":'grey'}}>Power</Text>
+         <Text style={{color:vehicletype== "2"? "white":'grey'}}>Power Only</Text>
        </TouchableOpacity>
 
        <TouchableOpacity 
@@ -1001,7 +1011,7 @@ disabled={pickupaddress != 'From' && dropoffaddress != 'To'? false:true}
 style={{width:'95%',alignSelf:'center',borderRadius:400/2,height:'25%',justifyContent:'center', backgroundColor:pickupaddress != 'From' && dropoffaddress != 'To'? AppColors.Appcolor:'grey'   }}
 onPress={() => 
 { if(pickupaddress != 'From' && dropoffaddress != 'To' )
-{ navigation.navigate('CreateLoadconfirmation',{plat:platitude,plong:plongitude,pAdd:pickupaddress, dlat:dlatitude,dlong:dlongitude, dAdd:dropoffaddress, tprice:totalprice, dprice:driverprice, vtype:vehicletype})
+{ navigation.navigate('CreateLoadconfirmation',{plat:platitude,plong:plongitude,pAdd:pickupaddress, dlat:dlatitude,dlong:dlongitude, dAdd:dropoffaddress, tprice:totalprice, dprice:driverprice, vtype:vehicletype, distance0:distance})
 
 }}
 // CreateLoadAPI()

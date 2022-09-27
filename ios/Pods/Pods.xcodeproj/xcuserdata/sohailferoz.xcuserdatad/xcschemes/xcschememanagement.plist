@@ -144,12 +144,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KingGamBit-KingGamBitTests.xcscheme</key>
+		<key>Pods-kinggambit-kinggambitTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-KingGamBit.xcscheme</key>
+		<key>Pods-kinggambit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

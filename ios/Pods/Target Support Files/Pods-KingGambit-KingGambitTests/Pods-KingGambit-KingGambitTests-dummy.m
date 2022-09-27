@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_KingGamBit_KingGamBitTests : NSObject
+@interface PodsDummy_Pods_kinggambit_kinggambitTests : NSObject
 @end
-@implementation PodsDummy_Pods_KingGamBit_KingGamBitTests
+@implementation PodsDummy_Pods_kinggambit_kinggambitTests
 @end

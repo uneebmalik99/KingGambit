@@ -1,5 +1,5 @@
-module Pods_KingGamBit_KingGamBitTests {
-  umbrella header "Pods-KingGamBit-KingGamBitTests-umbrella.h"
+module Pods_kinggambit_kinggambitTests {
+  umbrella header "Pods-kinggambit-kinggambitTests-umbrella.h"
 
   export *
   module * { export * }

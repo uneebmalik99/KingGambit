@@ -79,10 +79,7 @@ const WelcomeLogistic = ({navigation}) => {
   }
 
   const getdata = async () => {
-
-
-    try {
-      setspinner(true)
+    setspinner(true)
 
    let Id =  await AsyncStorage.getItem('Id')
     let Name =  await AsyncStorage.getItem('Name')
@@ -103,177 +100,43 @@ const WelcomeLogistic = ({navigation}) => {
     AppConstance.EIN=EIN;
     AppConstance.Role=Role;
     AppConstance.PaymentType=PaymentType;
-
-    if(PaymentType	== "0"){
-      let BankInfo =await AsyncStorage.getItem('BankInfo')
-      let BankNumber =await AsyncStorage.getItem('BankNumber')
-      AppConstance.BankInfo=BankInfo;
-      AppConstance.BankNumber=BankNumber;
-    }else{
-      let CreditCardNo = await AsyncStorage.getItem('CreditCardNo')
-      let ExpireDate =await AsyncStorage.getItem('ExpireDate')
-     let SecurityCode= await AsyncStorage.getItem('SecurityCode')
-      let ZipCode =await AsyncStorage.getItem('ZipCode')
-      AppConstance.CreditCardNo=CreditCardNo;
-      AppConstance.ExpireDate=ExpireDate;
-      AppConstance.SecurityCode=SecurityCode;
-      AppConstance.ZipCode=ZipCode;
-    }
-
     let Token = await AsyncStorage.getItem('Token')
     AppConstance.AUTH_KEY=Token;
-    setspinner(false)
+    // if(PaymentType	== "0"){
+    //   let BankInfo =await AsyncStorage.getItem('BankInfo')
+    //   let BankNumber =await AsyncStorage.getItem('BankNumber')
+    //   AppConstance.BankInfo=BankInfo;
+    //   AppConstance.BankNumber=BankNumber;
+    // }else{
+    //   let CreditCardNo = await AsyncStorage.getItem('CreditCardNo')
+    //   let ExpireDate =await AsyncStorage.getItem('ExpireDate')
+    //  let SecurityCode= await AsyncStorage.getItem('SecurityCode')
+    //   let ZipCode =await AsyncStorage.getItem('ZipCode')
+    //   AppConstance.CreditCardNo=CreditCardNo;
+    //   AppConstance.ExpireDate=ExpireDate;
+    //   AppConstance.SecurityCode=SecurityCode;
+    //   AppConstance.ZipCode=ZipCode;
+    //   console.log('else');
 
-    }
-    
-     catch (e) {
-      setspinner(false)
-alert(e)
-      console.log(e)
-    }
-
+    // }
 
    
     setspinner(false)
-
-
 
   
   
   }
 
-
   useEffect(()=>{
 
- getdata()
-
-
+    getdata()
   
   },[])
 
 
   return (
         <SafeAreaView style={styles.container}>
-          {/* <Modal
-             transparent={true}
-             visible={true}
-             >
-              <SafeAreaView style={{backgroundColor:"#000000aa",}} >
-
-               
-           <Text style={{color:"white"}}>Hi " client Name" Your Load " " are delivered by " Driver Name "</Text>
-           <Text>hi mapo</Text>
-           <Text>hi mapo</Text>
-           <Text>hi mapo</Text>
-           <Text>hi mapo</Text>
-           <Text>hi mapo</Text>
-           <Text>hi mapo</Text>
-
-       
           
-      </SafeAreaView>
-      
-             </Modal> */}
-{/* <Modal
-       transparent={true}
-       visible={true}
-       animationType="fade"
-       
-       >
-        
-        <SafeAreaView style={{backgroundColor:"#000000aa",flex:1}} >
-        <View style={{backgroundColor:"#ffffff",borderTopRightRadius:15,borderTopLeftRadius:15
-        ,width:"90%" ,alignSelf:"center",height:"50%",justifyContent:"center",marginTop:"20%",
-        borderWidth:1,borderColor:AppColors.Appcolor}} >
-     
-     <Text style={{paddingHorizontal:10}}>Hi " client Name" Your Load " " are delivered by " Driver Name "</Text>
-     {/* <TextInput 
-// style={{}}
-placeholder="" 
-            // value={message} 
-            editable={false}
-            numberOfLines={4}
-            multiline={true}
-            style={{borderWidth:1,borderColor:AppColors.Appcolor,width:"90%"
-          ,alignSelf:"center"}}
-            onChangeText={text=>setMessage(text)}/> 
-
- <View 
-            style={styles.customRatingBarStyle}
-            >
-              
-                {
-                    maxRating.map((item,key)=>{
-                        return(
-
-                          
-                            <TouchableOpacity
-                            activeOpacity={0.7}
-                            key={item}
-                            onPress ={()=> setDefaultRating(item)}
-                            >
-                                <Image
-                                    style={styles.starImgStyle}
-                                    source={
-                                        item <= defaultRating ?
-                                        {uri: starImgFilled}
-                                        :
-                                        {uri : starImgCorner}
-                                    }
-                                />
-                                
-                            </TouchableOpacity>
-                        )
-                    })
-                    
-                }
-                
-            </View>
-     <View >
-     <Text style={styles.text}>
-               
-               {
-                   defaultRating +"/"+ maxRating.length
-               }
-               </Text>
-
-
-
-           </View>
-
-           <View style={{flexDirection:"row",justifyContent:'space-around',width:"100%",
-           height:'33%',marginTop:"3%"}}>
-
-<TouchableOpacity 
- onPress={()=>setshowModal(false)}
-style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
- borderRadius:15,height:"50%",}}>
-          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
-            Ignore</Text>
-        </TouchableOpacity>
-        <TouchableOpacity 
-         onPress={()=>send()}
-        style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor, borderRadius:15,
-        height:"50%"}}>
-          <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
-        Send                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-          </Text>
-        </TouchableOpacity>
-        
-            </View>
-
-
-  
-
-
- 
-
-
-</View>
-
-</SafeAreaView>
-
-       </Modal> */}
 <Spinner
         visible={spinner}
         textContent={"Loading..."}
@@ -313,6 +176,7 @@ style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
        <Text style={{color:"black",alignSelf:'center', fontSize:20}}>All Loads</Text>
   </TouchableOpacity>
 
+{/* 0 for , 1 for ,   2 for , 3 for  */}
   <TouchableOpacity 
           onPress={() => navigation.navigate('allLoad', {status:'0'})}
 
@@ -329,7 +193,7 @@ style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
   <TouchableOpacity 
           onPress={() => navigation.navigate('allLoad', {status:'1'})}
 
-  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:5, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
 <Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
        <Text style={{color:"black",alignSelf:'center', fontSize:20}}>In Transit</Text>
   </TouchableOpacity>
@@ -339,10 +203,12 @@ style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
   <TouchableOpacity 
           onPress={() => navigation.navigate('allLoad', {status:'2'})}
 
-  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:5, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
 <Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
        <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Completed</Text>
   </TouchableOpacity>
+
+
 
 
 
@@ -352,10 +218,22 @@ style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
 
 <View style={{flexDirection:'row',justifyContent:"space-around", width:'100%', height:'25%'}}>
 
+
+
+
+<TouchableOpacity 
+          onPress={() => navigation.navigate('allLoad', {status:'2'})}
+
+  style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:5, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
+<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
+       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Cancelled</Text>
+  </TouchableOpacity>
+
+
 <TouchableOpacity 
         onPress={() => navigation.navigate('createLoad')}
 
-style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around', backgroundColor:AppColors.AppGrey}}>
+style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:5, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around', backgroundColor:AppColors.AppGrey}}>
 
 <Ionicons name={'add'} style={{alignSelf:'center'}} size={30}   color={'black'} />
        <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Create a Load</Text>
@@ -363,13 +241,7 @@ style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertica
 
   </View>
 
-  {/* <TouchableOpacity 
-          onPress={() => {savedata()}}
-
-  style={{borderWidth:1, height:'20%',width:'76%',alignSelf:'center',marginVertical:10, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
-<Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />
-       <Text style={{color:"black",alignSelf:'center', fontSize:20}}>Frebase</Text>
-  </TouchableOpacity> */}
+ 
 </View>
 </ScrollView>
 

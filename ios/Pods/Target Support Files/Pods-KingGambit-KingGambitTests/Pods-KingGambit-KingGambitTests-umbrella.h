@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_KingGamBit_KingGamBitTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_KingGamBit_KingGamBitTestsVersionString[];
+FOUNDATION_EXPORT double Pods_kinggambit_kinggambitTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_kinggambit_kinggambitTestsVersionString[];
 

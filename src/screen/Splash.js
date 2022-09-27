@@ -35,7 +35,7 @@ const Splash = ({navigation}) => {
     return (
     <SafeAreaView style={styles.container}>
     
-    <ImageBackground source={require('../assets/splash.png')} resizeMode="cover" style={styles.image}>
+    <ImageBackground source={require('../assets/Splash.png')} resizeMode="cover" style={styles.image}>
             </ImageBackground>
   </SafeAreaView>
     )
