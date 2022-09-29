@@ -7,12 +7,28 @@ import AppConstance,{deviceHeight,deviceWidth} from "../constance/AppConstance"
 import MapView, { PROVIDER_GOOGLE ,Geojson, Marker} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import MapViewDirections from 'react-native-maps-directions';
 import database from '@react-native-firebase/database';
+import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+import RBSheet from "react-native-raw-bottom-sheet";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import AppColors from '../Colors/AppColors';
+import {getDistance, getPreciseDistance} from 'geolib';
 
 const TrackYourDelivery = ({route, navigation}) => {
+
+  const refRBSheet = useRef();
+  const refRBSheet2 = useRef();
+
   // const reference = database().ref('/DriverLocations');
 
+
   const { data ,plat ,plong,dlat,dlong} = route.params;
-  
+
+  const [pickupaddress , setpickupaddress] = useState(data.P_Address)
+  const [dropoffaddress , setdropoffaddress] = useState(data.D_Address)
+  const [distance, setdistance] =useState('')
+  const [driverprice, setdriverprice] = useState('')
+  const [totalprice, settotalprice] = useState('Fare')
 // console.log(data);
   const GOOGLE_MAPS_APIKEY ='AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo'
   const[location,setLocation] =useState({
@@ -44,18 +60,22 @@ const TrackYourDelivery = ({route, navigation}) => {
 
   useEffect(()=>{
 
-    database()
-    .ref('/kingGamBit/Loads/1')
-    .on('value', snapshot => {
+    console.log( '----------'+JSON.stringify(data));
 
-      let C_Latitude = snapshot.child('C_Latitude');
-      let C_Longitude = snapshot.child('C_Longitude');
-      // setdriverplatitude(C_Latitude)
-      // setdriverplongitude(C_Longitude)
-      console.log(C_Latitude , C_Longitude);
 
-      console.log('User data: ', snapshot.val());
-    });
+    if(data.Driver_Id != null){
+      database()
+      .ref('/kingGamBit/Loads/1')
+      .on('value', snapshot => {
+  
+        let C_Latitude = snapshot.child('C_Latitude');
+        let C_Longitude = snapshot.child('C_Longitude');
+        console.log(C_Latitude , C_Longitude);
+  
+        console.log('User data: ', snapshot.val());
+      });
+    }
+   
     
   // console.log(parseFloat(data.P_Latitude));
 
@@ -63,8 +83,120 @@ const TrackYourDelivery = ({route, navigation}) => {
      },[])
 
 
+     const calculatePreciseDistance = () => {
+      var pdis = getPreciseDistance(
+        {latitude: platitude, longitude: plongitude},
+        {latitude: dlatitude, longitude: dlongitude},
+      );
+  
+      let t= pdis / 1000 
+      t= t *0.621371
+  
+  
+      let d= pdis / 1000 
+  
+     d= d *0.621371
+  
+     console.log('distance'+''+ d);
+      setdistance(d)
+        // setDistance(t)
+  
+      calculateprice(d )
+  
+  console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
+  );
+    
+    };
+
+    
+
+    const calculateprice = (dis)=> {
+console.log('calculateprice');
+      if(data.vehicletype == '0' ){
+        console.log("vheicletype"+"Reefer van");
+        
+        let d =0;
+        d=distance
+        if(d==0){
+          d=dis
+        }
+        d=d*(3.59)
+        let p = d *(25)
+        p  = p/100
+        p= p+d
+  
+        p=p.toFixed(0)
+        d=d.toFixed(0)
+  
+        // alert(p +"      "+ d)
+  
+        setdriverprice(d)
+        settotalprice(p)
+        // alert(p +'    '+d)
+        console.log(d , p);
+        refRBSheet2.current.close()
+          
+      }else  if (data.vehicletype == '1'){
+        console.log("vheicletype"+"Dry van");
+        let d =0;
+        d=distance
+        if(d==0){
+          d=dis
+        }
+        d=d*(3.31)
+        let p = d *(25)
+        p  = p/100
+        p= p+d
+        p=p.toFixed(0)
+        d=d.toFixed(0)
+        setdriverprice(d)
+        settotalprice(p)
+        refRBSheet2.current.close()
+  
+  
+      }
+      else  if (data.vehicletype == '2'){
+        console.log("vheicletype"+"power van");
+        let d =0;
+        d=distance
+        if(d==0){
+          d=dis
+        }
+        d=d*(3.00)
+        let p = d *(25)
+        p  = p/100
+        p= p+d
+        p=p.toFixed(0)
+        d=d.toFixed(0)
+        setdriverprice(d)
+        settotalprice(p)
+        refRBSheet2.current.close()
+      }
+      
+      else {
+        console.log("vheicletype"+"Flatbed van");
+        let d =0;
+        d=distance
+        if(d==0){
+          d=dis
+        }
+        d=d*(3.44)
+        let p = d *(25)
+        p  = p/100
+        p= p+d
+        p=p.toFixed(0)
+        d=d.toFixed(0)
+        setdriverprice(d)
+        settotalprice(p)
+        refRBSheet2.current.close()
+      }
+    }
+
+
   return (
     <View>
+
+
       <Appbar.Header style={styles.header}>
 
         <View style={styles.headview}>
@@ -78,11 +210,194 @@ const TrackYourDelivery = ({route, navigation}) => {
 
       </Appbar.Header>
 
+
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        height={deviceHeight*0.95}
+        customStyles={{
+          wrapper: {
+            backgroundColor: "transparent"
+          },
+          draggableIcon: {
+            backgroundColor: "#000"
+          }
+        }}
+      >
+        <View style={{height:'100%', paddingHorizontal:'3%'}}>
+       
+<GooglePlacesAutocomplete
+       placeholder={pickupaddress}
+       GooglePlacesDetailsQuery={{
+         fields: 'geometry',
+       }}
+       fetchDetails={true}
+       styles={{
+         textInput:{
+           height:'100%',
+            marginTop:10,
+           borderBottomWidth:1.2,borderColor:AppColors.Appcolor,borderRadius:10,
+         },
+         loader: {
+          backgroundColor:'red'
+         },
+         
+        }}
+ 
+        renderLeftButton={()=>(
+         <FontAwesome name='circle-o' style={{alignSelf:'center', marginTop:15,}} color={dropoffaddress !== 'From' || dropoffaddress !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
+ 
+           
+        )}
+       onPress={(data, details = null) => {
+         // 'details' is provided when fetchDetails = true
+         console.log(data);
+         
+         console.log(JSON.stringify(details?.geometry?.location));
+
+         setplatitude(details?.geometry?.location.lat)
+         setplongitude(details?.geometry?.location.lng)
+        //  alert(details?.geometry?.location.lng)
+        
+         setpickupaddress(data.description)
+
+ 
+       }}
+       query={{
+         key: GOOGLE_MAPS_APIKEY,
+         language: 'en',
+       }}
+     /> 
+
+     <View style={{height:'10%',bottom:40,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
+       <TouchableOpacity 
+        onPress={()=> {refRBSheet.current.close()}}
+       style={{height:'70%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
+       <Text style={{fontWeight:'700', color:AppColors.Appcolor,alignSelf:'center'}}>Close</Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity 
+       onPress={()=> {refRBSheet.current.close()}}
+       style={{height:'70%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
+       <Text style={{fontWeight:'700',color:AppColors.Appcolor, alignSelf:'center'}}>Done</Text>
+       </TouchableOpacity>
+       </View>
+        </View>
+
+      </RBSheet>
+
+
+
+      <RBSheet
+        ref={refRBSheet2}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        height={deviceHeight*0.95}
+        customStyles={{
+          wrapper: {
+            backgroundColor: "transparent"
+          },
+          draggableIcon: {
+            backgroundColor: "#000"
+          }
+        }}
+      >
+        <View style={{height:'100%', paddingHorizontal:'3%'}}>
+       
+<GooglePlacesAutocomplete
+       
+       value={dropoffaddress}
+       GooglePlacesDetailsQuery={{
+         fields: 'geometry',
+       }}
+       fetchDetails={true}
+       styles={{
+         textInput:{
+           height:'100%',
+            
+           borderBottomWidth:1.2,marginTop:10, borderColor:AppColors.Appcolor,borderRadius:10,
+         },
+         loader: {
+          backgroundColor:'red'
+         },
+         
+        }}
+ 
+        renderLeftButton={()=>(
+         <FontAwesome name='circle-o' style={{alignSelf:'center', marginTop:18,}} color={dropoffaddress !== 'To' && dropoffaddress.length>0 !== "" || dropoffaddress != null ? "grey": AppColors.skyblue}  size={15} />
+ 
+           
+        )}
+       onPress={(data, details = null) => {
+         // 'details' is provided when fetchDetails = true
+         console.log(data);
+         
+         console.log(JSON.stringify(details?.geometry?.location));
+
+
+         
+         setdlatitude(details?.geometry?.location.lat)
+         setdlongitude(details?.geometry?.location.lng)
+        
+         setdropoffaddress(data.description)
+
+
+ 
+       }}
+       query={{
+         key: GOOGLE_MAPS_APIKEY,
+         language: 'en',
+       }}
+     /> 
+
+     <View style={{height:'10%',bottom:40,justifyContent:'space-around', flexDirection:'row', width:deviceWidth,alignSelf:'center', }}>
+       <TouchableOpacity 
+        onPress={()=> {calculatePreciseDistance();}}
+       style={{height:'70%',borderWidth:0.7,borderRadius:10,borderColor:AppColors.Appcolor,  justifyContent:'center', width:'30%'}}>
+       <Text style={{fontWeight:'700', color:AppColors.Appcolor,alignSelf:'center'}}>Close</Text>
+       </TouchableOpacity>
+
+       <TouchableOpacity 
+       onPress={()=> { calculatePreciseDistance(); }}
+       style={{height:'70%',borderWidth:0.7,borderRadius:10, borderColor:AppColors.Appcolor, justifyContent:'center', width:'30%'}}>
+       <Text style={{fontWeight:'700',color:AppColors.Appcolor, alignSelf:'center'}}>Done</Text>
+       </TouchableOpacity>
+       </View>
+        </View>
+
+      </RBSheet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <ScrollView>
       <View style={styles.mapShow}>
 
       <MapView 
     style={{width:"100%",height:"100%"}}
+    provider={PROVIDER_GOOGLE}
     initialRegion={
       {
         latitude:platitude, longitude:plongitude,
@@ -98,7 +413,7 @@ const TrackYourDelivery = ({route, navigation}) => {
     >
       </Marker>
 
-{/* {data.Driver_Id != null ? */}
+{data.Driver_Id != null ?
     <Marker
     coordinate={{latitude:driverplatitude, longitude:driverplongitude}}
    
@@ -106,10 +421,9 @@ const TrackYourDelivery = ({route, navigation}) => {
             <Image source={require('../assets/car.png')} resizeMode={'contain'} resizeMethod={'resize'}  />
 
       </Marker>
-      {/* :
+    :
       null
-
-} */}
+}
 
 
     <Marker
@@ -132,7 +446,34 @@ const TrackYourDelivery = ({route, navigation}) => {
 
 
 
-<View style={{paddingHorizontal:20, width:'100%'}}>
+<View style={{paddingHorizontal:5, width:'98%', alignSelf:'center'}}>
+
+
+<View style={{flexDirection:'row',paddingHorizontal:5,borderColor:AppColors.Appcolor,borderWidth:1, borderRadius:10, alignSelf:'center',   width:'100%',}}>
+          <FontAwesome name='circle-o' style={{alignSelf:'center'}}  size={15} />
+          <View 
+          // onPress={()=> {refRBSheet.current.open()}}
+          style={{width:'85%',marginLeft:12,borderBottomWidth:0.4,borderColor:'#CACFD2',textAlignVertical:'center',justifyContent:'center', }}>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',  textAlign:'left'}}>{pickupaddress}</Text>
+         
+         </View>
+        {data.Status != '2' ?  <MaterialIcons name='edit'         onPress={()=> {refRBSheet.current.open()}} 
+ style={{alignSelf:"center"}}  color='grey' size={20}/>
+ :null }
+
+          </View>
+
+          <View style={{flexDirection:'row' ,paddingHorizontal:5 ,borderColor:AppColors.Appcolor,borderWidth:1, borderRadius:10,alignSelf:'center',  marginTop:5, width:'100%',}}>
+          <FontAwesome name='circle-o' style={{alignSelf:'center'}}   size={15} />
+          <View 
+          style={{width:'85%',marginLeft:12,borderBottomWidth:0.4,justifyContent:'center', borderColor:'#CACFD2',}}>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',   textAlign:'left'}}>{dropoffaddress}</Text>
+         </View>
+         {data.Status != '2' ?    <MaterialIcons name='edit'           onPress={()=> {refRBSheet2.current.open()}}
+ style={{alignSelf:"center"}} color='grey' size={20}/>
+ :null }
+          </View>
+
 
 {data.Driver_Id != null ?
 <View>
@@ -218,7 +559,7 @@ const styles = StyleSheet.create({
       borderRadius:15,
       padding:20,
       borderWidth:1.2,
-     borderColor:'#EFDF79',
+     borderColor:AppColors.Appcolor,
       alignContent:"center"
     },
   input: {
@@ -249,7 +590,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius:15,
     paddingHorizontal:10,
     justifyContent:'space-between',
-    backgroundColor:'#EFDF79'
+    backgroundColor:AppColors.Appcolor
   },
   text:{
       alignSelf:"center"
@@ -260,7 +601,8 @@ const styles = StyleSheet.create({
 }
 ,mapShow:{
     height: deviceHeight*0.5,
-    margin: 10,
+    margin: 0,
+    marginBottom:5,
     borderColor:'c#EFDF79'
   }
 });

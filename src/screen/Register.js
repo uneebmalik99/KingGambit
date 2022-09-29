@@ -357,6 +357,10 @@ const renderstateslist = ({ item }) => {
 
       </Appbar.Header>
 
+      <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      // style={styles.container}
+    > 
 
           <ScrollView>
      
@@ -405,18 +409,36 @@ const renderstateslist = ({ item }) => {
         placeholder="EIN"/> 
 
 <TouchableOpacity
-       onPress={() =>setshowModal(true) }
+
+
+       
+TouchableOpacity
+style={{backgroundColor:'white', borderWidth:0.5,paddingHorizontal:11, marginTop:8,marginBottom:8, justifyContent:'center', borderRadius:10, height:45}}
+       onPress={() =>{setshowModal(true) }}
        > 
-       <TextInput   
+
+       <Text  style={{color:'black', backgroundColor:'white',}}>
+         {statevalue != ''?statevalue:"Select States" } 
+         </Text>
+       {/* <TextInput   
         onChangeText={(Text)=>{setstates(Text)}}
         value={statevalue}
         editable={false}
         placeholderTextColor={'grey'}
         style={[styles.input,{color:'black'}]}
-        placeholder="States"/> 
+        placeholder="States"/>  */}
 
 
 </TouchableOpacity>
+       {/* <TextInput   
+        onChangeText={(Text)=>{setstates(Text)}}
+        value={statevalue}
+        editable={false}
+        placeholderTextColor={'grey'}
+        style={[styles.input,{color:'black'}]}
+        placeholder="States"/>  */}
+
+
       
 
       <SelectList 
@@ -523,6 +545,8 @@ const renderstateslist = ({ item }) => {
       </TouchableOpacity>
 
     </ScrollView>
+
+    </KeyboardAvoidingView>
     </SafeAreaView>
         
         </>

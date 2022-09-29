@@ -631,7 +631,6 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
 
 
 
-
       <RBSheet
         ref={refRBSheet2}
         closeOnDragDown={true}

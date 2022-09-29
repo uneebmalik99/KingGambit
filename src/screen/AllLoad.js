@@ -35,6 +35,7 @@ const AllLoad = ({route, navigation }) => {
   const [weight ,setweight] = useState('')
   const [pickuptimedate, setpickuptimedate] = useState()
   const [dropofftimedate, setdropofftimedate] = useState()
+  const [ item1 , setitem1] = useState({})
 
   const CreateLoadAPI =(item)=>{
 
@@ -177,13 +178,27 @@ const AllLoad = ({route, navigation }) => {
     // <ActivityIndicator size='large' color="#EFDF79" animating={true}  />
 }
 
+const deleteItem =(id) =>{
+
+
+
+  const filteredData = data.filter(item => item.id !== id);
+  //Updating List Data State with NEW Data.
+  setdata(filteredData);
+
+    }
 
 const cancelapi = (item)=>{
-  let value = {};
-  value.load_id = item.Load_id;
-  value.Status= item.status;
+  setspinner(true)
 
-  var url =AppUrlCollection.CANCEL_RIDE;
+  let value = {};
+  value.load_id = item1.id;
+  value.Status= "3";
+value.user_type ="1";
+
+
+
+  var url = AppUrlCollection.CANCEL_RIDE;
 
   fetch(url, {
     method: 'PUT',
@@ -192,16 +207,25 @@ const cancelapi = (item)=>{
     },
     body: JSON.stringify(value),
 })
-    .then((response) =>  response.json() )
+    .then((response) =>  response.json() ) 
     .then((responseJson) => {
 
+      if(responseJson.result == "Success")
+      {
+        setcancelmodal(false)
+        deleteItem(item1.id)
+      }
       console.log(responseJson);
-      setcancelmodal(false)
+      // setcancelmodal(false)
+
+  setspinner(false)
 
     })
     .catch((error) => {
       alert(error)
         console.warn(error)
+  setspinner(false)
+
     });
   }
 
@@ -248,13 +272,6 @@ const nextpage = (data)=>{
 
       <View style={{  paddingVertical:"2%", height:"100%", paddingHorizontal:'3%',flexDirection: "row" }}>
 
-          {/* <View style={{  padding:"1%", width: "35%", height: "100%" }}>
-            <Image source={require('../assets/bk.png')}  style={{width:"100%",borderRadius:10, height:"100%"}} />
-          </View> */}
-
-
-
-
           <View style={{  width: "90%",paddingHorizontal:"1%", alignItems: "flex-start", justifyContent: "space-around" }}>
 
             <View style={{  width: "100%",flexDirection:'row' }}>
@@ -267,13 +284,30 @@ const nextpage = (data)=>{
             </View>
 
             <View style={{  width: "100%",marginBottom:"2%" }}>
-              <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":"Completed"}</Text>
+              <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":  item.Status == '2'? "Completed": "Cancalled"}</Text>
 
             </View>
 
 
 
-            {status == '1'?
+            
+
+
+{
+          status == '1'?
+          <TouchableOpacity
+ style={{backgroundColor:"#FF5A5A",height:40,width:80,alignItems:"center",
+ justifyContent:"center",borderRadius:15,}}
+ onPress={()=> {setitem1(item); setcancelmodal(true)}}
+
+ >
+  <Text style={{color:"white"}}>Cancel</Text>
+</TouchableOpacity>:
+null
+        }
+         
+
+            {status == '0' ?   
             <TouchableOpacity style={{width:"100%",}}
             onPress={()=>CreateLoadAPI(item)}
             >
@@ -283,34 +317,29 @@ const nextpage = (data)=>{
       </View>
           </TouchableOpacity>
           :
-          <View 
-          style={{ height:"10%",borderRadius:10, justifyContent:"center"}}>
-        </View>}
 
-            {status == '0'?
-            <TouchableOpacity style={{width:"100%",}}
-            onPress={()=>cancelapi(item)}
-            >
-          <View style={{ height:"50%",borderRadius:10, justifyContent:"center"}}>
+          status == '3'?
+          <TouchableOpacity style={{width:"100%",}}
+          onPress={()=>CreateLoadAPI(item)}
+          >
+        <View style={{ height:"50%",borderRadius:10, justifyContent:"center"}}>
 
 <Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
-      </View>
-          </TouchableOpacity>
-          :
+    </View>
+        </TouchableOpacity>
+        :
           <View 
           style={{ height:"10%",borderRadius:10, justifyContent:"center"}}>
         </View>}
-         
+
+
+        
 
           </View>
           
       </View>
 
-      {/* <TouchableOpacity>
-          <View style={{ height:"50%", backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
-          <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
-      </View>
-          </TouchableOpacity> */}
+
      </TouchableOpacity>
 
   );
@@ -360,33 +389,33 @@ const nextpage = (data)=>{
 <View style={{height:40,paddingHorizontal:5, width:'100%', backgroundColor:AppColors.AppGrey ,justifyContent:'center', borderTopLeftRadius:15, borderTopRightRadius:15,}}>
 
 <TouchableOpacity 
- onPress={()=> {}}
-style={{justifyContent:'center',backgroundColor:'red', alignSelf:'flex-end' 
+ onPress={()=> { setcancelmodal(false)}}
+style={{justifyContent:'center', alignSelf:'flex-end' 
 
  }}>
 
-<Text>Cancel</Text>
+<Ionicons onPress={()=> setcancelmodal(false)} name='ios-close-outline'style={{alignSelf:'center', }} size={25} />
 </TouchableOpacity>
 
 
 </View>
 
      
-     <Text style={{alignSelf:'center',paddingVertical:20, fontSize:18}}>Do you want to Cancel Load ?</Text>
+     <Text style={{alignSelf:'center',paddingVertical:20, fontSize:18}}>Do you want to Cancel This Load ?</Text>
 
            <View style={{flexDirection:"row",paddingVertical:15, justifyContent:'space-around', width:"100%", 
         marginTop:"0%"}}>
          
 
 <TouchableOpacity 
- onPress={()=> { setcancelmodal(false)}}
+ onPress={()=> { setitem1(); setcancelmodal(false)}}
 style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor,
  borderRadius:15,height:40,}}>
           <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>
           No</Text>
         </TouchableOpacity>
         <TouchableOpacity 
-         onPress={()=> { cancelapi()}}
+         onPress={()=> { cancelapi(item1)}}
         style={{justifyContent:'center',width:'40%', backgroundColor:AppColors.Appcolor, borderRadius:15,
         height:40}}>
           <Text style={{fontWeight:'600',color:'white', alignSelf:'center'}}>

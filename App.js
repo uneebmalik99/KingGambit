@@ -161,7 +161,7 @@ requestUserPermission()
     messaging().onMessage(async remoteMessage => {
 
 
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+      // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
      
     //   if(notificationModal != true)
     //   {

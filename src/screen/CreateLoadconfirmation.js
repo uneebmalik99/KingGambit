@@ -946,7 +946,6 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
    value={docknumber}
    
    onChangeText={(text)=> {setdocknumber(text)}}
-   placeholder={'Weight (Kg)'}
    placeholder={'Dock Number'}
    placeholderTextColor={'grey'}
    />
@@ -966,7 +965,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
    <TextInput style={{fontSize:15, textAlignVertical:'center',width:'100%',  height:'100%', textAlign:'left'}} 
    value={weight}
    onChangeText={(text)=> {setweight(text)}}
-   placeholder={'Weight (Kg)'}
+   placeholder={'Weight (Pounds)'}
    placeholderTextColor={'grey'}
    />
   </TouchableOpacity>

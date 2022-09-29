@@ -222,7 +222,7 @@ const WelcomeLogistic = ({navigation}) => {
 
 
 <TouchableOpacity 
-          onPress={() => navigation.navigate('allLoad', {status:'2'})}
+          onPress={() => navigation.navigate('allLoad', {status:'3'})}
 
   style={{borderWidth:1, height:'70%',width:'45%',alignSelf:'center',marginVertical:5, borderColor:'#EFDF79',borderRadius:10,justifyContent:'space-around',  backgroundColor:AppColors.AppGrey}}>
 <Feather name={'box'} style={{alignSelf:'center'}} size={30}   color={'black'} />

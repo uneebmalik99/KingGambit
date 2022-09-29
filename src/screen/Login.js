@@ -240,7 +240,7 @@ alert(e)
         style={{marginTop:100,alignSelf:"center"}}
         onPress={() => navigation.navigate('register')}
       >
-        <Text style={{color:'#EFDF79'}}>Don't have an account? Register</Text>
+        <Text style={{color:AppColors.Appcolor}}>Don't have an account? Register</Text>
       </TouchableOpacity>
       </ScrollView>
         </SafeAreaView>
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius:15,
         borderBottomLeftRadius:15,
         justifyContent:'center',
-        backgroundColor:'#EFDF79'
+        backgroundColor:AppColors.Appcolor
       },
     input: {
       height: 60,
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       // padding: 10,
       borderRadius:15,
-      borderColor:'#EFDF79',
+      borderColor:AppColors.Appcolor,
       backgroundColor:"white",
       color:"black"
       
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     },
     logtxt:{
       marginTop:120,
-      borderColor:'#EFDF79',
+      borderColor:AppColors.Appcolor,
     borderWidth:1,
     
     height:"51%",
@@ -314,10 +314,10 @@ header: {
 forgetPass:{
   alignSelf:"flex-end",
   marginBottom:45,
-  color:'#EFDF79'
+  color:AppColors.Appcolor
 },
 btnBorder:{
- borderColor:'#EFDF79',
+ borderColor:AppColors.Appcolor,
  borderWidth:3,
  backgroundColor:'black',
  borderRadius:150/2,
@@ -334,9 +334,9 @@ btnBorderSize:{
   alignSelf:"center",
   alignItems:"center",
   borderRadius:400/2,
-  borderColor:'#EFDF79',
+  borderColor:AppColors.Appcolor,
   borderWidth:1,
-  backgroundColor:'#EFDF79',
+  backgroundColor:AppColors.Appcolor,
   alignContent:"center"
   // fontSize:40
 },
@@ -356,9 +356,9 @@ loginFirst:{
   height:50,
   // textAlign:"center",
   alignItems:"center",
-  borderColor:'#EFDF79',
+  borderColor:AppColors.Appcolor,
   borderWidth:2,
-  backgroundColor:'#EFDF79',
+  backgroundColor:AppColors.Appcolor,
   // borderRadius:200,
   borderBottomRightRadius:15,
   borderBottomLeftRadius:15,
