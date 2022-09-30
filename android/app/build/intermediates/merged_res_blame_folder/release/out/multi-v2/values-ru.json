@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ru/values-ru.xml",
+            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ru/values-ru.xml",
             "map": [
                 {
                     "source": "/Users/sohailferoz/.gradle/caches/transforms-3/f431849efed4b9b1795d9caafada9ad3/transformed/jetified-play-services-base-18.1.0/res/values-ru/values.xml",

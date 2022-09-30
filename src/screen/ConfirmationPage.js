@@ -7,16 +7,18 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import AppColors from '../Colors/AppColors';
 import Snackbar from 'react-native-snackbar';
 
+// import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width
-
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 const ConfirmationPage = ({navigation,route}) => {
 
   const {item} = route.params;
   const [NewPass,setNewPass] = useState()
   const [ConfirmationNewPass,setConfirmationNewPass] = useState()
   console.log(item)
+  const [passsecure ,setpasssecure]= useState(true)
 
 
 
@@ -81,24 +83,163 @@ const ConfirmationPage = ({navigation,route}) => {
 </Appbar.Header>
 
 
-     <View style={styles.logtxt}>   
+     <View style={styles.logtxt}> 
+      
       <View style={{ width:"90%",marginTop:20,alignSelf:"center",paddingHorizontal:10}}>
-      <TextInput   
+      {/* <TextInput   
   style={styles.input}
-  placeholder="New Password "
+  secureTextEntry={true}
+  
+// <Ionicons   name='ios-eye-outline' color={AppColors.Appcolor} size={20}/>
+placeholder="New Password"
   onChangeText={(text)=>{setNewPass(text)}}
   value={NewPass}
   placeholderTextColor={'grey'}
-  />
-        <TextInput   
+  
+  /> */}
+{/* <Ionicons   name='ios-eye-outline' color={AppColors.Appcolor} size={20}/> */}
+
+        {/* <TextInput   
   style={styles.input}
+  secureTextEntry={false}
+
   onChangeText={(text)=>{setConfirmationNewPass(text)}}
   value={ConfirmationNewPass}
   placeholder="Confirm New Password "
   placeholderTextColor={'grey'}
-  />
+  /> */}
+  <View
+            style={{
+              borderColor: AppColors.Appcolor,
+           
+              borderWidth:1,
+              
+              backgroundColor:'white',
+              borderRadius:15,
+              height:60,
+
+              paddingHorizontal:15,
+              margin:12,
+              width:'100%',
+              alignSelf:'center',
+              flexDirection: "row",
+              justifyContent:'center',
+            
+              
+            }}
+          >
+          
+            <View style={{ justifyContent:'center', backgroundColor:'white', width: "90%" }}>
+              <TextInput
+                style={{
+                 
+                  paddingVertical: 4,
+
+                  width: "98%",
+                  
+                }}
+                // onChangeText={text => onChangeText(text)}
+                onChangeText={(Text)=>{setNewPass(Text)}}
+                placeholder="Enter Password"
+                placeholderTextColor={'grey'}
+                secureTextEntry={passsecure}
+                value={NewPass}
+                inlineImageLeft="search_icon"
+              />
+            </View>
+            {passsecure == true ? (
+              <MaterialCommunityIcons
+                name="eye"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="eye-off"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            )}
+          </View>
      
-     
+     <View
+            style={{
+              borderColor: AppColors.Appcolor,
+           
+              borderWidth:1,
+              
+              backgroundColor:'white',
+              borderRadius:15,
+              height:60,
+
+              paddingHorizontal:15,
+              margin:12,
+              width:'100%',
+              alignSelf:'center',
+              flexDirection: "row",
+              justifyContent:'center',
+            
+              
+            }}
+          >
+          
+            <View style={{ justifyContent:'center', backgroundColor:'white', width: "90%" }}>
+              <TextInput
+                style={{
+                 
+                  paddingVertical: 4,
+
+                  width: "98%",
+                  
+                }}
+                // onChangeText={text => onChangeText(text)}
+                onChangeText={(Text)=>{setConfirmationNewPass(Text)}}
+                placeholder="Enter Password"
+                placeholderTextColor={'grey'}
+                secureTextEntry={passsecure}
+                value={ConfirmationNewPass}
+                inlineImageLeft="search_icon"
+              />
+            </View>
+            {passsecure == true ? (
+              <MaterialCommunityIcons
+                name="eye"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="eye-off"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            )}
+          </View>
+
     
 
 </View>

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rCA/values-en-rCA.xml",
+            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rCA/values-en-rCA.xml",
             "map": [
                 {
                     "source": "/Users/sohailferoz/.gradle/caches/transforms-3/b362d926c11494128ecad752923105e8/transformed/core-1.6.0/res/values-en-rCA/values-en-rCA.xml",

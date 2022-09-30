@@ -26,6 +26,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import StarReview from 'react-native-star-review'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
+import AppColors from "../Colors/AppColors";
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -73,25 +74,29 @@ export function DrawerContent(props) {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
-      <View style={{ backgroundColor:'#daa726', height: "25%" }}>
-        <View style={styles.userInfoSection}>
+      <View style={{ backgroundColor:AppColors.Appcolor, height: "25%" }}>
+      <View style={styles.userInfoSection}>
           <Image
-            style={{ width: "50%", height: "40%", alignSelf: "center" }}
+            style={{ width: "60%", height: Platform.OS == 'ios'?"50%":"40%", alignSelf: "center" , borderRadius:10, }}
+            
             source={require("../assets/logocrop.png")}
           />
-          <View style={{ flexDirection: "row",justifyContent:'space-around',  alignSelf:'center', width: "80%" }}>
-            {/* <Title style={styles.title}>John Doe</Title> */}
+          <View style={{alignSelf:'center',   
+          alignSelf:'center', width: "80%" }}>
+            <Title style={{color:AppColors.Appcolor, alignSelf:'center', fontSize:Platform.OS == 'ios'? 18:16}}>{AppConstance.Name}</Title>
             <Title style={styles.title}>
-              {AppConstance.Name}
+            {AppConstance.Email}
             </Title>
             {/* <Caption style={styles.caption}>
-              {AppConstance.USER_INFO.USER_EMAIL}
+              {AppConstance.Email}
             </Caption> */}
             <View style={{alignSelf:'center'}}>
             <StarReview 
           style={{alignSelf:'center'}}
-              ratings={2}
+              ratings={AppConstance.rating}
               stars={5}
+              reviews={AppConstance.rating}
+              disableReview={false}
               starColor="#EFDF79"
             />
               </View>
@@ -200,7 +205,7 @@ export function DrawerContent(props) {
 
 const styles = StyleSheet.create({
   drawerContent: {
-    backgroundColor: '#daa726',
+    backgroundColor: AppColors.Appcolor,
     borderTopLeftRadius: 35,
     width: "93%",
     justifyContent: "flex-start",
@@ -217,8 +222,9 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   title: {
-    fontSize: 16,
+    fontSize: Platform.OS == 'ios'? 16:12,
     fontWeight: "bold",
+    alignSelf:'center',
     color: 'grey',
   },
   caption: {

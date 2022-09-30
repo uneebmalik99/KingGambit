@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react'
-import { View,Modal,FlatList, Text,TextInput,StyleSheet,Button, ScrollView, SafeAreaView,ImageBackground ,Dimensions, TouchableOpacity, Alert} from 'react-native'
+import { View,Modal,FlatList, Text,TextInput,StyleSheet,Button, ScrollView, SafeAreaView,ImageBackground,KeyboardAvoidingView ,Dimensions, TouchableOpacity, Alert} from 'react-native'
 import { ActivityIndicator, Appbar } from "react-native-paper";
 import AppUrlCollection from '../UrlCollection/AppUrlCollection';
 import SelectList from 'react-native-dropdown-select-list'
@@ -9,6 +9,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import AppColors from '../Colors/AppColors';
 import Snackbar from 'react-native-snackbar';
 import Feather from 'react-native-vector-icons/dist/Feather'
+import DatePicker from 'react-native-date-picker'
 
 // or ES6+ destructured imports
 
@@ -47,7 +48,10 @@ const Register = ({navigation}) => {
   const [password,setpassword] = useState('')
   const [role,setrole] = useState('')
 
-  
+
+
+
+  const [pickuptimeopen, setpickuptimeopen] = useState(false)
   const [states, setstates] = useState([
     {
       id:1,
@@ -388,13 +392,30 @@ const renderstateslist = ({ item }) => {
         placeholder="Phone"
         keyboardType={"numeric"}
         />
-       
-         <TextInput   
+       <DatePicker
+        modal
+        open={pickuptimeopen}
+        date={new Date()}
+        mode='date'
+        onConfirm={(date) => {
+          // alert(date)
+          setdateofbirth(date.toDateString())
+          
+          console.log(date.toDateString());
+          setpickuptimeopen(false)
+
+        }}
+        onCancel={() => {
+          setpickuptimeopen(false)
+        }}
+      />
+      
+         {/* <TextInput   
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setdateofbirth(Text)}}
         value={dateofbirth}
         style={styles.input}
-        placeholder="Date of Birth"/>
+        placeholder="Date of Birth"/> */}
          <TextInput   
         placeholderTextColor={'grey'}
         onChangeText={(Text)=>{setcompanyName(Text)}}

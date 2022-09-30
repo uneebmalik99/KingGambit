@@ -13,6 +13,8 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import AppColors from '../Colors/AppColors';
 import {getDistance, getPreciseDistance} from 'geolib';
+import AppUrlCollection from '../UrlCollection/AppUrlCollection';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const TrackYourDelivery = ({route, navigation}) => {
 
@@ -56,12 +58,21 @@ const TrackYourDelivery = ({route, navigation}) => {
   const [dlatitude , setdlatitude] = useState(dlat)
   const [dlongitude , setdlongitude] = useState(dlong)
 
+  const [dropOffUpdateAdress , setdropOffUpdateAdress] = useState(data.D_Address)
+  const [pickuUpdateAdress , setpickuUpdateAdress] = useState(data.P_Address)
+  const [Updatepickuplat,setUpdatepickuplat] =useState(plat)
+  const [Updatepickuplongi,setUpdatepickuplongi] =useState(plong)
+
+  const [UpdateDropOfflat,setUpdateDropOfflat] =useState(dlat)
+
+  const [UpdateDropOfflongi,setUpdateDropOfflongi] =useState(dlong)
+  const [spinner,setspinner] = useState(false)  
+
   const {pickupLocation,dropUpLocation} = location
 
   useEffect(()=>{
 
     console.log( '----------'+JSON.stringify(data));
-
 
     if(data.Driver_Id != null){
       database()
@@ -192,11 +203,77 @@ console.log('calculateprice');
       }
     }
 
+   
+  //  ,plat ,plong,dlat,dlong
+    const  updateApiCall = ()=>
+    {
+
+      if(pickuUpdateAdress != pickupaddress || dropoffaddress != dropOffUpdateAdress){
+        setspinner(true)
+
+        let value = {};
+
+        value.Id = data.id;
+        value.notification_check = "1";
+        value.P_Address = pickuUpdateAdress;
+        value.D_Address= dropOffUpdateAdress;
+      value.P_Latitude = Updatepickuplat;
+      value.P_Longitude= Updatepickuplongi;
+      value.D_Latitude= UpdateDropOfflat;
+      value.D_Longitudes= UpdateDropOfflongi;
+      value.Distance= distance;
+      value.Total_Price = totalprice;
+      value.Driver_Price = driverprice;
+      
+      
+      
+        var url = AppUrlCollection.LOADS_UPDATE;
+      
+        fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type':  'application/json',
+          },
+          body: JSON.stringify(value),
+      })
+          .then((response) =>  response.json() ) 
+          .then((responseJson) => {
+      
+            if(responseJson.status == "1")
+            {
+              setspinner(false)
+
+            }
+            console.log(responseJson);
+            // setcancelmodal(false)
+      
+        setspinner(false)
+      
+          })
+          .catch((error) => {
+            alert(error)
+              console.warn(error)
+        setspinner(false)
+      
+          });
+        
+      }
+
+
+    }
 
   return (
     <View>
 
-
+<Spinner
+        visible={spinner}
+        textContent={"Loading..."}
+        color	={AppColors.Appcolor }
+        animation	='fade'
+        size='large'
+        overlayColor='rgba(0, 0, 0, 0.30)'
+         textStyle={{ color: AppColors.Appcolor }}
+      />
       <Appbar.Header style={styles.header}>
 
         <View style={styles.headview}>
@@ -256,11 +333,15 @@ console.log('calculateprice');
          
          console.log(JSON.stringify(details?.geometry?.location));
 
-         setplatitude(details?.geometry?.location.lat)
-         setplongitude(details?.geometry?.location.lng)
+        //  setplatitude(details?.geometry?.location.lat)
+        //  setplongitude(details?.geometry?.location.lng)
+         setUpdatepickuplat(details?.geometry?.location.lat)
+         setUpdatepickuplongi(details?.geometry?.location.lng)
         //  alert(details?.geometry?.location.lng)
         
-         setpickupaddress(data.description)
+        //  setpickupaddress(data.description)
+
+         setpickuUpdateAdress(data.description)
 
  
        }}
@@ -337,10 +418,13 @@ console.log('calculateprice');
 
 
          
-         setdlatitude(details?.geometry?.location.lat)
-         setdlongitude(details?.geometry?.location.lng)
+        //  setdlatitude(details?.geometry?.location.lat)
+        //  setdlongitude(details?.geometry?.location.lng)
+
+         setUpdateDropOfflat(details?.geometry?.location.lat)
+         setUpdateDropOfflongi(details?.geometry?.location.lng)
         
-         setdropoffaddress(data.description)
+         setdropOffUpdateAdress(data.description)
 
 
  
@@ -368,30 +452,6 @@ console.log('calculateprice');
 
       </RBSheet>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <ScrollView>
       <View style={styles.mapShow}>
 
@@ -400,22 +460,22 @@ console.log('calculateprice');
     provider={PROVIDER_GOOGLE}
     initialRegion={
       {
-        latitude:platitude, longitude:plongitude,
+        latitude:Updatepickuplat, longitude:Updatepickuplongi,
         latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
       }
     }
   >
-
 <Marker
-    coordinate={{latitude:platitude, longitude:plongitude}}
+    coordinate={{latitude:Updatepickuplat, longitude:Updatepickuplongi}}
    
     >
       </Marker>
+   {/* Driver location pick from firebase */}
 
 {data.Driver_Id != null ?
     <Marker
-    coordinate={{latitude:driverplatitude, longitude:driverplongitude}}
+    coordinate={{latitude:UpdateDropOfflat, longitude:UpdateDropOfflongi}}
    
     >
             <Image source={require('../assets/car.png')} resizeMode={'contain'} resizeMethod={'resize'}  />
@@ -427,12 +487,12 @@ console.log('calculateprice');
 
 
     <Marker
-    coordinate={{latitude:dlatitude, longitude:dlongitude}}
+    coordinate={{latitude:UpdateDropOfflat, longitude:UpdateDropOfflongi}}
     />
 
   <MapViewDirections
-    origin={{latitude:platitude, longitude:plongitude}}
-    destination={{latitude:dlatitude, longitude:dlongitude}}
+    origin={{latitude:Updatepickuplat, longitude:Updatepickuplongi}}
+    destination={{latitude:UpdateDropOfflat, longitude:UpdateDropOfflongi}}
     apikey={GOOGLE_MAPS_APIKEY}
     // stroke
     strokeWidth={3}
@@ -449,17 +509,21 @@ console.log('calculateprice');
 <View style={{paddingHorizontal:5, width:'98%', alignSelf:'center'}}>
 
 
-<View style={{flexDirection:'row',paddingHorizontal:5,borderColor:AppColors.Appcolor,borderWidth:1, borderRadius:10, alignSelf:'center',   width:'100%',}}>
+<View style={{flexDirection:'row',paddingHorizontal:5,borderColor:AppColors.Appcolor,borderWidth:1, borderRadius:10, alignSelf:'center',marginVertical:"2%",   width:'100%',}}>
           <FontAwesome name='circle-o' style={{alignSelf:'center'}}  size={15} />
           <View 
           // onPress={()=> {refRBSheet.current.open()}}
           style={{width:'85%',marginLeft:12,borderBottomWidth:0.4,borderColor:'#CACFD2',textAlignVertical:'center',justifyContent:'center', }}>
-          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',  textAlign:'left'}}>{pickupaddress}</Text>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',  textAlign:'left'}}>{pickuUpdateAdress}</Text>
          
          </View>
-        {data.Status != '2' ?  <MaterialIcons name='edit'         onPress={()=> {refRBSheet.current.open()}} 
+        {data.Status == '0' ?  <MaterialIcons name='edit'         onPress={()=> {refRBSheet.current.open()}} 
  style={{alignSelf:"center"}}  color='grey' size={20}/>
- :null }
+ :
+ data.Status == '1' ?  <MaterialIcons name='edit'         onPress={()=> {refRBSheet.current.open()}} 
+ style={{alignSelf:"center"}}  color='grey' size={20}/>
+ :
+ null }
 
           </View>
 
@@ -467,16 +531,36 @@ console.log('calculateprice');
           <FontAwesome name='circle-o' style={{alignSelf:'center'}}   size={15} />
           <View 
           style={{width:'85%',marginLeft:12,borderBottomWidth:0.4,justifyContent:'center', borderColor:'#CACFD2',}}>
-          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',   textAlign:'left'}}>{dropoffaddress}</Text>
+          <Text style={{fontSize:16, textAlignVertical:'center',width:'90%',   textAlign:'left'}}>{dropOffUpdateAdress}</Text>
          </View>
-         {data.Status != '2' ?    <MaterialIcons name='edit'           onPress={()=> {refRBSheet2.current.open()}}
+         {data.Status == '0' ?    <MaterialIcons name='edit'     onPress={()=> {refRBSheet2.current.open()}}
  style={{alignSelf:"center"}} color='grey' size={20}/>
- :null }
+ :
+ data.Status == '1' ?    <MaterialIcons name='edit'     onPress={()=> {refRBSheet2.current.open()}}
+ style={{alignSelf:"center"}} color='grey' size={20}/>
+ 
+ : null }
           </View>
+
+
+
+          {data.Status != '2' && data.Status != '3' ?
+
+          <TouchableOpacity onPress={()=>{
+    updateApiCall()
+  }} style={{borderRadius:15,height:"15%",width:'40%',marginVertical:"2%",justifyContent:"center",alignSelf:"center",backgroundColor:AppColors.Appcolor}}> 
+    <Text style={{alignSelf:"center",color:"white"}} >Update location</Text>
+    </TouchableOpacity>  
+    :
+
+    null }
+
+
 
 
 {data.Driver_Id != null ?
 <View>
+
 <TouchableOpacity
 // onPress={()=> {navigation.navigate('DriverDetails',{id:data.Driver_Id})}}
 style={{width:'90%',marginTop:10, borderWidth:1.2, borderRadius:15,borderColor:'#EFDF79', height:80,alignSelf:'center', flexDirection:'row'}}>

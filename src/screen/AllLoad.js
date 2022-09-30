@@ -260,54 +260,111 @@ const nextpage = (data)=>{
   const renderItem = ({ item }) => (
 
      <TouchableOpacity 
-                  style={{height:Platform.OS=='ios'? deviceHeight*0.15:deviceHeight*0.25,width:"100%",borderRadius:15,borderRadius:10, marginTop:10,backgroundColor:'#b3b3b3'}}
+                  style={{width:"100%",borderRadius:15,borderRadius:10, marginTop:10,backgroundColor:AppColors.AppGrey}}
                     onPress={() => {
                       
                       nextpage(item);
                     }}>
 
-      <View style={{ height:"20%", backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
+      <View style={{  backgroundColor: AppColors.Appcolor,borderRadius:10, justifyContent:"center"}}>
           <Text style={styles.txt}>Dock Number:{item.Dock_Number}</Text>
       </View>
 
-      <View style={{  paddingVertical:"2%", height:"100%", paddingHorizontal:'3%',flexDirection: "row" }}>
+      <View style={{  paddingVertical:"2%", paddingHorizontal:'3%',flexDirection: "row" }}>
 
           <View style={{  width: "90%",paddingHorizontal:"1%", alignItems: "flex-start", justifyContent: "space-around" }}>
 
-            <View style={{  width: "100%",flexDirection:'row' }}>
-           
+            <View style={{  width: "100%",  flexDirection:'row' }}>
+             
+ <Ionicons   name='ios-location-outline' style={{alignSelf:'center'}} color={AppColors.Appcolor} size={20}/>
+ {/* <Ionicons   name='arrow-forward-outline' color={AppColors.Appcolor} size={20}/> */}
               <Text style={styles.txt}>Pick Up: {item.P_Address}</Text>
             </View>
 
             <View style={{  width: "100%" , flexDirection:'row'}}>
+ <Ionicons   name='ios-locate-outline' style={{alignSelf:'center'}} color={AppColors.Appcolor} size={20}/>
+ {/* <Ionicons   name='arrow-forward-outline' color={AppColors.Appcolor} size={20}/> */}
+
               <Text style={styles.txt}>Drop Off: {item.D_Address}</Text>
             </View>
 
-            <View style={{  width: "100%",marginBottom:"2%" }}>
-              <Text style={styles.txt}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":  item.Status == '2'? "Completed": "Cancalled"}</Text>
+            <View style={{  width: "100%",marginBottom:"2%",flexDirection:"row"  , marginTop:8,  justifyContent:"space-between"}}>
+              {/* <Text style={{color: 'white',marginLeft:"33%", alignSelf:"center"}}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":  item.Status == '2'? "Completed": "Cancalled"}</Text> */}
 
-            </View>
+<View style={{  width: "20%",}}>
 
+      {status == '0' ?   
+            <TouchableOpacity style={{width:"100%", }}
+            onPress={()=>CreateLoadAPI(item)}
+            >
+<Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
 
+       
+          </TouchableOpacity>
+          :
+        status == '3'?
 
-            
+          <TouchableOpacity style={{width:"100%", }}
+            onPress={()=>CreateLoadAPI(item)}
+            >
+<Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
 
-
+       
+          </TouchableOpacity>
+          :
+          null
+      }
+</View>
+<View style={{  width: "60%",}}>
+ <Text style={{color: 'white', alignSelf:"center",}}>Status: {item.Status == '0'? "Pending": item.Status == '1'? "In Transit":  item.Status == '2'? "Completed": "Cancalled"}</Text>
+  
+</View>
+<View style={{  width: "30%",marginTop:"-3%"}}>
 {
           status == '1'?
           <TouchableOpacity
  style={{backgroundColor:"#FF5A5A",height:40,width:80,alignItems:"center",
- justifyContent:"center",borderRadius:15,}}
+ justifyContent:"center",borderRadius:15,marginLeft:"10%"}}
  onPress={()=> {setitem1(item); setcancelmodal(true)}}
 
  >
   <Text style={{color:"white"}}>Cancel</Text>
-</TouchableOpacity>:
+</TouchableOpacity>
+:
 null
         }
+</View>
+
+{/* {
+          status == '1'?
+          <TouchableOpacity
+ style={{backgroundColor:"#FF5A5A",height:40,width:80,alignItems:"center",
+ justifyContent:"center",borderRadius:15,marginLeft:"10%"}}
+ onPress={()=> {setitem1(item); setcancelmodal(true)}}
+
+ >
+  <Text style={{color:"white"}}>Cancel</Text>
+</TouchableOpacity>
+:
+null
+        } */}
+          {/* {status == '0' ?   
+            <TouchableOpacity style={{width:"100%", }}
+            onPress={()=>CreateLoadAPI(item)}
+            >
+<Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
+
+       
+          </TouchableOpacity>
+          :
+          null
+      } */}
+      
+            </View>
+
          
 
-            {status == '0' ?   
+            {/* {status == '0' ?   
             <TouchableOpacity style={{width:"100%",}}
             onPress={()=>CreateLoadAPI(item)}
             >
@@ -317,8 +374,9 @@ null
       </View>
           </TouchableOpacity>
           :
-
-          status == '3'?
+          null
+      } */}
+         {/* { status == '3'?
           <TouchableOpacity style={{width:"100%",}}
           onPress={()=>CreateLoadAPI(item)}
           >
@@ -330,7 +388,7 @@ null
         :
           <View 
           style={{ height:"10%",borderRadius:10, justifyContent:"center"}}>
-        </View>}
+        </View>} */}
 
 
         
@@ -511,7 +569,8 @@ const styles = StyleSheet.create({
   txt: {
     color: 'white',
     alignSelf:"center",
-    
+    marginLeft:5,
+    // justifyContent:"center"
   }
 });
 

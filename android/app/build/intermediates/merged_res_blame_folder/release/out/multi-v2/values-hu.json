@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-hu/values-hu.xml",
+            "outputFile": "/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-hu/values-hu.xml",
             "map": [
                 {
                     "source": "/Users/sohailferoz/.gradle/caches/transforms-3/b362d926c11494128ecad752923105e8/transformed/core-1.6.0/res/values-hu/values-hu.xml",

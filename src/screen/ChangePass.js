@@ -66,6 +66,7 @@ style={styles.loginFirst}
       <View style={{ width:"90%",marginTop:20,alignSelf:"center",paddingHorizontal:10}}>
         <TextInput   
   style={styles.input}
+  // secureTextEntry={true}
   placeholder="New Password "
   placeholderTextColor={'grey'}
   />

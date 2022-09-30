@@ -8,7 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import AppColors from '../Colors/AppColors';
 import messaging from '@react-native-firebase/messaging';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
 // const image = {require('    ')};
@@ -18,6 +18,7 @@ const Login = ({navigation}) => {
   const [password,setpassword] = useState('12345678')
   const [spinner,setspinner]=useState(false)
   const [firebasetoken, setfirebasetoken] =useState('')
+  const [passsecure ,setpasssecure]= useState(true)
 
 
   const storeData = async (responseJson) => {
@@ -195,7 +196,7 @@ alert(e)
         placeholder="Enter Username or Email "
         placeholderTextColor={'grey'}
         />
-            <TextInput
+            {/* <TextInput
         style={styles.input}
         // onChangeText={onChangeNumber}
         // value={number}
@@ -207,8 +208,73 @@ alert(e)
         secureTextEntry={true}
 
         
-      />
+      /> */}
+           <View
+            style={{
+              borderColor: AppColors.Appcolor,
            
+              borderWidth:1,
+              
+              backgroundColor:'white',
+              borderRadius:15,
+              height:60,
+
+              paddingHorizontal:15,
+              margin:12,
+              width:'100%',
+              alignSelf:'center',
+              flexDirection: "row",
+              justifyContent:'center',
+            
+              
+            }}
+          >
+          
+            <View style={{ justifyContent:'center', backgroundColor:'white', width: "90%" }}>
+              <TextInput
+                style={{
+                 
+                  paddingVertical: 4,
+
+                  width: "98%",
+                  
+                }}
+                // onChangeText={text => onChangeText(text)}
+                onChangeText={(Text)=>{setpassword(Text)}}
+                placeholder="Enter Password"
+                placeholderTextColor={'grey'}
+                secureTextEntry={passsecure}
+                value={password}
+                inlineImageLeft="search_icon"
+              />
+            </View>
+            {passsecure == true ? (
+              <MaterialCommunityIcons
+                name="eye"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            ) : (
+              <MaterialCommunityIcons
+                name="eye-off"
+                onPress={() => {
+                  passsecure == true
+                    ? setpasssecure(false)
+                    : setpasssecure(true);
+                }}
+                style={{ alignSelf: "center" }}
+                size={20}
+                color={"gray"}
+              />
+            )}
+          </View>
+
            <TouchableOpacity 
    
     // title="Login"

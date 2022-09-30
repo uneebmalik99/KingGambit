@@ -9,26 +9,26 @@
 9        android:targetSdkVersion="31" />
 10
 11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-11-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/debug/AndroidManifest.xml:5:5-77
-11-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/debug/AndroidManifest.xml:5:22-75
+11-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/debug/AndroidManifest.xml:5:5-77
+11-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/debug/AndroidManifest.xml:5:22-75
 12    <uses-permission android:name="android.permission.INTERNET" />
-12-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:4:5-67
-12-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:4:22-64
+12-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:4:5-67
+12-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:4:22-64
 13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-13-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:5:1-75
-13-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:5:18-72
+13-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:5:1-75
+13-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:5:18-72
 14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-14-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:6:1-76
-14-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:6:18-74
+14-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:6:1-76
+14-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:6:18-74
 15    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 15-->[com.facebook.flipper:flipper:0.99.0] /Users/sohailferoz/.gradle/caches/transforms-3/f70111141cbceef670a3334ed80f320c/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:16:5-76
 15-->[com.facebook.flipper:flipper:0.99.0] /Users/sohailferoz/.gradle/caches/transforms-3/f70111141cbceef670a3334ed80f320c/transformed/jetified-flipper-0.99.0/AndroidManifest.xml:16:22-73
 16    <uses-permission android:name="android.permission.WAKE_LOCK" />
-16-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
-16-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+16-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
+16-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
 17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-17-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
-17-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
+17-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
+17-->[:react-native-firebase_database] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/database/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
 18    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 18-->[androidx.work:work-runtime:2.7.1] /Users/sohailferoz/.gradle/caches/transforms-3/3892b8458d60c9db924895aeea9824d7/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:5-81
 18-->[androidx.work:work-runtime:2.7.1] /Users/sohailferoz/.gradle/caches/transforms-3/3892b8458d60c9db924895aeea9824d7/transformed/work-runtime-2.7.1/AndroidManifest.xml:27:22-78
@@ -137,146 +137,146 @@
 63-->[me.leolin:ShortcutBadger:1.1.22] /Users/sohailferoz/.gradle/caches/transforms-3/d6ea71ba90e6f225d10de28ec5fb1640/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
 64
 65    <application
-65-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:8:5-30:19
+65-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:8:5-30:19
 66        android:name="com.kinggambit.MainApplication"
-66-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:9:7-38
+66-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:9:7-38
 67        android:allowBackup="false"
-67-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:13:7-34
+67-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:13:7-34
 68        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 68-->[androidx.core:core:1.6.0] /Users/sohailferoz/.gradle/caches/transforms-3/b362d926c11494128ecad752923105e8/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 69        android:debuggable="true"
 70        android:icon="@mipmap/ic_launcher"
-70-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:11:7-41
+70-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:11:7-41
 71        android:label="@string/app_name"
-71-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:10:7-39
+71-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:10:7-39
 72        android:roundIcon="@mipmap/ic_launcher_round"
-72-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:12:7-52
+72-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:12:7-52
 73        android:theme="@style/AppTheme"
-73-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:14:7-38
+73-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:14:7-38
 74        android:usesCleartextTraffic="true" >
-74-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/debug/AndroidManifest.xml:8:9-44
+74-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/debug/AndroidManifest.xml:8:9-44
 75        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-75-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/debug/AndroidManifest.xml:11:9-86
-75-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/debug/AndroidManifest.xml:11:19-83
+75-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/debug/AndroidManifest.xml:11:9-86
+75-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/debug/AndroidManifest.xml:11:19-83
 76        <activity
-76-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:15:7-26:18
+76-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:15:7-26:18
 77            android:name="com.kinggambit.MainActivity"
-77-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:16:9-37
+77-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:16:9-37
 78            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-78-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:19:9-86
+78-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:19:9-86
 79            android:exported="true"
-79-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:18:17-40
+79-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:18:17-40
 80            android:label="@string/app_name"
-80-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:17:9-41
+80-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:17:9-41
 81            android:launchMode="singleTask"
-81-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:20:9-40
+81-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:20:9-40
 82            android:windowSoftInputMode="adjustResize" >
-82-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:21:9-51
+82-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:21:9-51
 83            <intent-filter>
-83-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:22:9-25:25
+83-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:22:9-25:25
 84                <action android:name="android.intent.action.MAIN" />
-84-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:23:13-65
-84-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:23:21-62
+84-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:23:13-65
+84-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:23:21-62
 85
 86                <category android:name="android.intent.category.LAUNCHER" />
-86-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:24:13-73
-86-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:24:23-70
+86-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:24:13-73
+86-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:24:23-70
 87            </intent-filter>
 88        </activity>
 89
 90        <meta-data
-90-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:27:16-29:63
+90-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:27:16-29:63
 91            android:name="com.google.android.geo.API_KEY"
-91-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:28:6-51
+91-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:28:6-51
 92            android:value="AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo" />
-92-->/Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/android/app/src/main/AndroidManifest.xml:29:6-61
+92-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:29:6-61
 93
 94        <provider
-94-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:40
+94-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:40
 95            android:name="io.invertase.notifee.NotifeeInitProvider"
-95-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-68
+95-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-68
 96            android:authorities="com.kinggambit.notifee-init-provider"
-96-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-73
+96-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-73
 97            android:exported="false"
-97-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+97-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
 98            android:initOrder="-100" />
-98-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+98-->[:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
 99
 100        <service
-100-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:40
+100-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-16:40
 101            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingHeadlessService"
-101-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-103
+101-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-103
 102            android:exported="false" />
-102-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
+102-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-37
 103        <service
-103-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-23:19
+103-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:9-23:19
 104            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingService"
-104-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-95
+104-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-95
 105            android:exported="false" >
-105-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
+105-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-37
 106            <intent-filter>
-106-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
+106-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
 107                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-107-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-78
-107-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:25-75
+107-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-78
+107-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:25-75
 108            </intent-filter>
 109        </service>
 110
 111        <receiver
-111-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-32:20
+111-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-32:20
 112            android:name="io.invertase.firebase.messaging.ReactNativeFirebaseMessagingReceiver"
-112-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-96
+112-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-96
 113            android:exported="true"
-113-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-36
+113-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-36
 114            android:permission="com.google.android.c2dm.permission.SEND" >
-114-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-73
+114-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-73
 115            <intent-filter>
-115-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
+115-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
 116                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-116-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
-116-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
+116-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
+116-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
 117            </intent-filter>
 118        </receiver>
 119
 120        <meta-data
-120-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:9-36:36
+120-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:34:9-36:36
 121            android:name="firebase_messaging_auto_init_enabled"
-121-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-64
+121-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:35:13-64
 122            android:value="true" />
-122-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-33
+122-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:36:13-33
 123        <meta-data
-123-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:9-39:32
+123-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:37:9-39:32
 124            android:name="com.google.firebase.messaging.default_notification_channel_id"
-124-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-89
+124-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-89
 125            android:value="" />
-125-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-29
+125-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:39:13-29
 126        <meta-data
-126-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:9-42:47
+126-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:40:9-42:47
 127            android:name="com.google.firebase.messaging.default_notification_color"
-127-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-84
+127-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:41:13-84
 128            android:resource="@color/white" />
-128-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-44
+128-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:42:13-44
 129        <meta-data
-129-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-13:36
+129-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-13:36
 130            android:name="app_data_collection_default_enabled"
-130-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-63
+130-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-63
 131            android:value="true" />
-131-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-33
+131-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-33
 132
 133        <service
-133-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:19
+133-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:9-23:19
 134            android:name="com.google.firebase.components.ComponentDiscoveryService"
-134-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-84
+134-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-84
 135            android:directBootAware="true"
-135-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-43
+135-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-43
 136            android:exported="false" >
-136-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+136-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
 137            <meta-data
-137-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:85
+137-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:85
 138                android:name="com.google.firebase.components:io.invertase.firebase.app.ReactNativeFirebaseAppRegistrar"
-138-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-120
+138-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-120
 139                android:value="com.google.firebase.components.ComponentRegistrar" />
-139-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-82
+139-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:22:17-82
 140            <meta-data
 140-->[com.google.firebase:firebase-messaging:23.0.7] /Users/sohailferoz/.gradle/caches/transforms-3/289a1d759d40c491743c8a797b94158d/transformed/jetified-firebase-messaging-23.0.7/AndroidManifest.xml:56:13-58:85
 141                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
@@ -304,15 +304,15 @@
 152        </service>
 153
 154        <provider
-154-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-29:38
+154-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:25:9-29:38
 155            android:name="io.invertase.firebase.app.ReactNativeFirebaseAppInitProvider"
-155-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
+155-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
 156            android:authorities="com.kinggambit.reactnativefirebaseappinitprovider"
-156-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-86
+156-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:27:13-86
 157            android:exported="false"
-157-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-37
+157-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:28:13-37
 158            android:initOrder="99" />
-158-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
+158-->[:react-native-firebase_app] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
 159        <provider
 159-->[androidx.work:work-runtime:2.7.1] /Users/sohailferoz/.gradle/caches/transforms-3/3892b8458d60c9db924895aeea9824d7/transformed/work-runtime-2.7.1/AndroidManifest.xml:31:9-39:20
 160            android:name="androidx.startup.InitializationProvider"
@@ -527,10 +527,10 @@
 268            android:permission="com.google.android.c2dm.permission.SEND" >
 268-->[com.google.firebase:firebase-messaging:23.0.7] /Users/sohailferoz/.gradle/caches/transforms-3/289a1d759d40c491743c8a797b94158d/transformed/jetified-firebase-messaging-23.0.7/AndroidManifest.xml:35:13-73
 269            <intent-filter>
-269-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
+269-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-31:29
 270                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-270-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
-270-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
+270-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:17-81
+270-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:30:25-78
 271            </intent-filter>
 272        </receiver>
 273        <!--
@@ -546,10 +546,10 @@
 280            android:exported="false" >
 280-->[com.google.firebase:firebase-messaging:23.0.7] /Users/sohailferoz/.gradle/caches/transforms-3/289a1d759d40c491743c8a797b94158d/transformed/jetified-firebase-messaging-23.0.7/AndroidManifest.xml:48:13-37
 281            <intent-filter android:priority="-500" >
-281-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
+281-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:20:13-22:29
 282                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-282-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-78
-282-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit Projects/temp/0.66/kinggambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:25-75
+282-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:17-78
+282-->[:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:21:25-75
 283            </intent-filter>
 284        </service>
 285        <service
