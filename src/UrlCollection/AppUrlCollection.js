@@ -17,6 +17,8 @@ class AppUrlCollection extends Component{
     static Re_Genrated_LOAD =AppUrlCollection.BASE_URL+'regnerate_load';
     static CANCEL_RIDE =AppUrlCollection.BASE_URL+'cancel_ride';
     static LOADS_UPDATE = AppUrlCollection.BASE_URL+'select'
+    static USER_UPDATE =AppUrlCollection.BASE_URL+'updateuserdata';
+
 
    
 

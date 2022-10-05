@@ -14,8 +14,8 @@ const deviceWidth = Dimensions.get("window").width;
 // const image = {require('    ')};
 const Login = ({navigation}) => {
 
-  const [email,setemail] = useState('uneebmalik99@gmail.com')
-  const [password,setpassword] = useState('12345678')
+  const [email,setemail] = useState('')
+  const [password,setpassword] = useState('')
   const [spinner,setspinner]=useState(false)
   const [firebasetoken, setfirebasetoken] =useState('')
   const [passsecure ,setpasssecure]= useState(true)
