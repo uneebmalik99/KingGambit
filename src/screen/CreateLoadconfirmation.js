@@ -457,6 +457,7 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
     value.Driver_Price=driverprice
     value.Total_Price=totalprice
     value.Status="0"
+    value.Cancel_count="0"
     value.Weight=weight
     value.Distance=distance0
 
@@ -921,10 +922,6 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
           <Text style={{fontSize:16, textAlignVertical:'center',width:'100%',   textAlign:'left'}}>{dAdd}</Text>
          </View>
           </View>
-
-
-         
-
 
 </View>
         

@@ -37,11 +37,14 @@ const AllLoad = ({route, navigation }) => {
   const [dropofftimedate, setdropofftimedate] = useState()
   const [ item1 , setitem1] = useState({})
 
-  const CreateLoadAPI =(item)=>{
+  const CreateLoadAPI =( item, recreate)=>{
 
     setspinner(true)
     let value = {};
     value.User_id = AppConstance.Id;
+    if(recreate == 1){
+      value.id = item.id
+    }
     value.P_Address=item.P_Address;
     value.P_Latitude = item.P_Latitude;
     value.P_Longitude= item.P_Longitude,
@@ -58,8 +61,9 @@ const AllLoad = ({route, navigation }) => {
     value.Driver_Price=item.Driver_Price
     value.Total_Price=item.Total_Price
     value.Status="0"
+    value.Cancel_count=item.Cancel_count
     value.Weight= item.Weight
-    value.Distance="2000KM"
+    value.Distance=item.Distance
     console.log(value);
  
 
@@ -295,7 +299,7 @@ const nextpage = (data)=>{
 
       {status == '0' ?   
             <TouchableOpacity style={{width:"100%", }}
-            onPress={()=>CreateLoadAPI(item)}
+            onPress={()=>CreateLoadAPI (item, 1)}
             >
 <Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
 
@@ -305,7 +309,7 @@ const nextpage = (data)=>{
         status == '3'?
 
           <TouchableOpacity style={{width:"100%", }}
-            onPress={()=>CreateLoadAPI(item)}
+            onPress={()=>CreateLoadAPI(item,1)}
             >
 <Ionicons   name='reload' color={AppColors.Appcolor} size={20}/>
 

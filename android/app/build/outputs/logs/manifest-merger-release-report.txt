@@ -4,6 +4,7 @@ ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/ma
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/sohailferoz/.gradle/caches/transforms-3/05b8b0a86e73bcfacbfbfee31f457af1/transformed/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-17:12
 MERGED from [:react-native-async-storage_async-storage] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-community_geolocation] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-community/geolocation/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-9:12
@@ -280,6 +281,8 @@ uses-sdk
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/sohailferoz/.gradle/caches/transforms-3/05b8b0a86e73bcfacbfbfee31f457af1/transformed/multidex-2.0.0/AndroidManifest.xml:20:5-43
+MERGED from [androidx.multidex:multidex:2.0.0] /Users/sohailferoz/.gradle/caches/transforms-3/05b8b0a86e73bcfacbfbfee31f457af1/transformed/multidex-2.0.0/AndroidManifest.xml:20:5-43
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:5:5-7:41
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-async-storage_async-storage] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:5:5-7:41
