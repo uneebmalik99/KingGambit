@@ -133,7 +133,7 @@
 61-->[me.leolin:ShortcutBadger:1.1.22] /Users/sohailferoz/.gradle/caches/transforms-3/d6ea71ba90e6f225d10de28ec5fb1640/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
 62
 63    <application
-63-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:8:5-30:19
+63-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:8:5-32:19
 64        android:name="com.kinggambit.MainApplication"
 64-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:9:7-38
 65        android:allowBackup="false"
@@ -178,7 +178,7 @@
 85-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:27:16-29:63
 86            android:name="com.google.android.geo.API_KEY"
 86-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:28:6-51
-87            android:value="AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo" />
+87            android:value="AIzaSyDCRFvmRovo6gMuJ2hgVkQvp1VY35XnJLY" />
 87-->/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:29:6-61
 88
 89        <provider
@@ -732,4 +732,4 @@
 379        </receiver>
 380    </application>
 381
-382</manifest>
+382</manifest> <!-- android:value="AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo"/> -->

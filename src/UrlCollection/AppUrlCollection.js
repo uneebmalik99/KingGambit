@@ -18,6 +18,9 @@ class AppUrlCollection extends Component{
     static CANCEL_RIDE =AppUrlCollection.BASE_URL+'cancel_ride';
     static LOADS_UPDATE = AppUrlCollection.BASE_URL+'select'
     static USER_UPDATE =AppUrlCollection.BASE_URL+'updateuserdata';
+    static USER_DELETE =AppUrlCollection.BASE_URL+'deleteuser';
+
+
 
 
    

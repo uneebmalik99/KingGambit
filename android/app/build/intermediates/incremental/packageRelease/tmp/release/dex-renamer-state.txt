@@ -1,4 +1,4 @@
-#Tue Oct 11 00:17:22 PKT 2022
+#Sat Oct 15 21:47:39 PKT 2022
 base.1=/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/build/intermediates/dex/release/mergeDexRelease/classes2.dex
 path.1=classes2.dex
 base.0=/Users/sohailferoz/Desktop/React Native/KingGambit/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex

@@ -79,7 +79,7 @@ const WelcomeLogistic = ({navigation}) => {
   }
 
   const getdata = async () => {
-    setspinner(true)
+    // setspinner(true)
 
    let Id =  await AsyncStorage.getItem('Id')
     let Name =  await AsyncStorage.getItem('Name')

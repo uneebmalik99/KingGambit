@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
+ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
 MERGED from [androidx.multidex:multidex:2.0.0] /Users/sohailferoz/.gradle/caches/transforms-3/05b8b0a86e73bcfacbfbfee31f457af1/transformed/multidex-2.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-17:12
 MERGED from [:react-native-async-storage_async-storage] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:2:1-9:12
@@ -116,20 +116,20 @@ MERGED from [com.google.maps.android:android-maps-utils:0.5] /Users/sohailferoz/
 MERGED from [me.leolin:ShortcutBadger:1.1.22] /Users/sohailferoz/.gradle/caches/transforms-3/d6ea71ba90e6f225d10de28ec5fb1640/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:2:1-52:12
 MERGED from [com.facebook.fresco:fbcore:2.5.0] /Users/sohailferoz/.gradle/caches/transforms-3/20d268527c40218b497b2a669892ee8a/transformed/jetified-fbcore-2.5.0/AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /Users/sohailferoz/.gradle/caches/transforms-3/2cbecd8b7687640bf45efb5edf8bf975/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
-INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
+INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
 	package
 		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:2:3-27
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
+		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
-		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-31:12
+		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:1-33:12
 		INJECTED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:1:11-69
@@ -164,7 +164,7 @@ ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/ma
 	android:name
 		ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:6:18-74
 application
-ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:8:5-30:19
+ADDED from /Users/sohailferoz/Desktop/React Native/KingGambit/android/app/src/main/AndroidManifest.xml:8:5-32:19
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:9:5-15:19
 MERGED from [:notifee_react-native] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@notifee/react-native/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:9:5-15:19
 MERGED from [:react-native-firebase_messaging] /Users/sohailferoz/Desktop/React Native/KingGambit/node_modules/@react-native-firebase/messaging/android/build/intermediates/merged_manifest/release/AndroidManifest.xml:13:5-43:19

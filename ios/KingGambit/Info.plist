@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App Requires to use location features</string>
+	<string>Uber collects vour location data from the time of trip request through five minutes after the trip ends, including when the app is in the background. We do this to improve pickups, drop-offs, customer service, and to enhance safety.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SimpleLineIcons.ttf</string>

@@ -32,7 +32,9 @@ const TrackYourDelivery = ({route, navigation}) => {
   const [driverprice, setdriverprice] = useState('')
   const [totalprice, settotalprice] = useState('Fare')
 // console.log(data);
-  const GOOGLE_MAPS_APIKEY ='AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo'
+  // const GOOGLE_MAPS_APIKEY ='AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo'
+
+  const GOOGLE_MAPS_APIKEY ='AIzaSyDCRFvmRovo6gMuJ2hgVkQvp1VY35XnJLY'
   const[location,setLocation] =useState({
     pickupLocation:{
       latitude: data.P_Latitude,

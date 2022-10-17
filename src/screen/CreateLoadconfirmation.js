@@ -97,7 +97,8 @@ const CreateLoadconfirmation = ({route ,navigation}) => {
   })
   const origin = {latitude: plat,longitude: plong};
   const destination = {latitude: dlat,longitude: dlong};
-  const GOOGLE_MAPS_APIKEY = 'AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo';
+  // const GOOGLE_MAPS_APIKEY = 'AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo';
+  const GOOGLE_MAPS_APIKEY = 'AIzaSyDCRFvmRovo6gMuJ2hgVkQvp1VY35XnJLY';
 
   const [pmapmodel , setpmapmodel] = useState(false)
   const [dmapmodel , setdmapmodel] = useState(false)
@@ -313,7 +314,8 @@ console.log( `Precise Distance\n\n${pdis} Meter\nOR\n${pdis / 1000} KM`
     // mapRef.current?.fitToCoordinates([origin ,destination], {edgepadding})
   }
   useEffect(()=>{
-    Geocoder.init("AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo"); // use a valid API key
+    // Geocoder.init("AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo"); // use a valid API key
+    Geocoder.init("AIzaSyDCRFvmRovo6gMuJ2hgVkQvp1VY35XnJLY"); // use a valid API key
 
     getloation();
     // requestCameraPermission()

@@ -84,7 +84,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo" />
+            android:value="AIzaSyDCRFvmRovo6gMuJ2hgVkQvp1VY35XnJLY" />
 
         <provider
             android:name="io.invertase.notifee.NotifeeInitProvider"
@@ -379,4 +379,4 @@
         </receiver>
     </application>
 
-</manifest>
+</manifest> <!-- android:value="AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo"/> -->
