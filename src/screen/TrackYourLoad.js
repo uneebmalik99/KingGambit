@@ -31,6 +31,11 @@ const TrackYourDelivery = ({route, navigation}) => {
   const [distance, setdistance] =useState('')
   const [driverprice, setdriverprice] = useState('')
   const [totalprice, settotalprice] = useState('Fare')
+  const [driverloclat ,setdriverloclat] = useState(33.658566)
+  const [driverloclong ,setdriverloclong] =  useState(73.063308)
+
+  
+ 
 // console.log(data);
   // const GOOGLE_MAPS_APIKEY ='AIzaSyC0PyPzbZ1oOzhm74aUjuXNxZcbD3bEhOo'
 
@@ -78,11 +83,14 @@ const TrackYourDelivery = ({route, navigation}) => {
 
     if(data.Driver_Id != null){
       database()
-      .ref('/kingGamBit/Loads/1')
+      .ref('/kingGamBit/Loads/'+data.id)
       .on('value', snapshot => {
   
         let C_Latitude = snapshot.child('C_Latitude');
         let C_Longitude = snapshot.child('C_Longitude');
+
+        // setdriverloclat(C_Latitude)
+        // setdriverloclong(C_Longitude)
         console.log(C_Latitude , C_Longitude);
   
         console.log('User data: ', snapshot.val());
@@ -475,17 +483,11 @@ console.log('calculateprice');
       </Marker>
    {/* Driver location pick from firebase */}
 
-{data.Driver_Id != null ?
-    <Marker
-    coordinate={{latitude:UpdateDropOfflat, longitude:UpdateDropOfflongi}}
-   
-    >
-            <Image source={require('../assets/car.png')} resizeMode={'contain'} resizeMethod={'resize'}  />
 
-      </Marker>
-    :
-      null
-}
+   <Marker
+    coordinate={{latitude:driverloclat, longitude:driverloclong}}
+    />
+ 
 
 
     <Marker
